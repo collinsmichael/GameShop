@@ -15,6 +15,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -34,5 +35,11 @@ namespace GameShop {
         public Entity(string TypeName) {
             typename = TypeName;
         }
+
+
+        // ----------------------------------------------------------------- //
+        // pure virtuals                                                     //
+        // ----------------------------------------------------------------- //
+        public abstract bool RegexMatch(Regex regex);
     }
 }

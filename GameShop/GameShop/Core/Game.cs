@@ -12,6 +12,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -57,6 +58,17 @@ namespace GameShop {
             title = Title;
             genre = Genre;
             info  = Info;
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // pure virtuals                                                     //
+        // ----------------------------------------------------------------- //
+        public override bool RegexMatch(Regex regex) {
+            if (regex.Match(title).Success) return true;
+            if (regex.Match(genre).Success) return true;
+            if (regex.Match(info).Success) return true;
+            return false;
         }
     }
 }

@@ -17,6 +17,8 @@
 //   x  Refactored code, structurally meets the Design Doc Specification.
 //   x  Design Doc entries for System Overview
 //   x  Design Doc entries for FormGen and Context API's
+//   x  Regex Powered Search Bar
+//   x  Supplied some sample Regex in UserPage and GamePage
 
 
 // ToDo List:
@@ -28,3 +30,4 @@
 //   o  Return copies of games
 //   o  Design Doc entries for Widget API's
 //   o  Design Doc entries for User/Game/Report classes
+//   x  Regex sanity check during Edit/Create objects

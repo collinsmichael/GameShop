@@ -20,6 +20,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -91,7 +92,7 @@ namespace GameShop {
             view.Add("header", new WidgetTitle("View Game"));
             view.Add("title",  new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
             view.Add("edit",   new WidgetButton(464, 388, 128, 32, "Edit", OnViewEditClick));
-            view.Add("cancel", new WidgetButton(272, 388, 128, 32, "Cancel", OnCancelClick));
+            view.Add("order",  new WidgetButton(272, 388, 128, 32, "Order", OnViewOrderClick));
             Form1.formgen.AddPage("game.view", view);
         }
 
@@ -105,6 +106,19 @@ namespace GameShop {
             Form1.formgen.BuildPage(pagename);
             FormPage formpage = Form1.formgen.GetPage(typename + ".form") as FormPage;
             formpage.OnPopulateForm(pagename);
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // Clicking order on the view page will reroute the user to an order //
+        // page and populate the form with the fields from the entity.       //
+        // ----------------------------------------------------------------- //
+        public void OnViewOrderClick(object sender, EventArgs e) {
+            string pagename = typename + ".order";
+            MessageBox.Show(typename + "\n" + pagename);
+            //Form1.formgen.BuildPage(pagename);
+            //FormPage formpage = Form1.formgen.GetPage(typename + ".form") as FormPage;
+            //formpage.OnPopulateForm(pagename);
         }
     }
     #endregion
@@ -140,6 +154,42 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         public void OnEditSubmitClick(object sender, EventArgs e) {
             // TODO : Sanitize field data (use regular expression parsing)
+            // TODO : If you're not using any of these please comment out
+            //        rather than deleting these took a lot of time to build
+            #region sanitize
+            Regex regexname = new Regex(@"^[A-Za-z]+", RegexOptions.IgnoreCase);
+            Regex regexdate = new Regex(@"^[0-9]{1,2}[-/.]{1}[0-9]{1,2}[-/.]{1}[0-9]{2,4}");
+            Regex regexvalu = new Regex(@"^[0-9]+", RegexOptions.IgnoreCase);
+            Regex regexurls = new Regex(@"^www[.][a-z]{1,15}[.](com|org)$");
+            Regex regexmail = new Regex(@"^[a-zA-Z0-9]{1,10}@[a-zA-Z]{1,10}.(com|org)$");
+
+            Match matchname = regexname.Match("mike");
+        	if (matchname.Success) MessageBox.Show(matchname.Value);
+        	else                   MessageBox.Show("No Match");
+
+            Match matchvalu = regexvalu.Match("123456");
+        	if (matchvalu.Success) MessageBox.Show(matchvalu.Value);
+        	else                   MessageBox.Show("No Match");
+
+            Match matchdate = regexdate.Match("1-1-2000");
+        	if (matchdate.Success) MessageBox.Show(matchdate.Value);
+        	else                   MessageBox.Show("No Match");
+            matchdate = regexdate.Match("1/1/2000");
+        	if (matchdate.Success) MessageBox.Show(matchdate.Value);
+        	else                   MessageBox.Show("No Match");
+            matchdate = regexdate.Match("1.1.2000");
+        	if (matchdate.Success) MessageBox.Show(matchdate.Value);
+        	else                   MessageBox.Show("No Match");
+
+            Match matchurls = regexurls.Match("www.domain.com");
+        	if (matchurls.Success) MessageBox.Show(matchurls.Value);
+        	else                   MessageBox.Show("No Match");
+
+            Match matchmail = regexmail.Match("mike@collins.com");
+        	if (matchmail.Success) MessageBox.Show(matchmail.Value);
+        	else                   MessageBox.Show("No Match");
+            #endregion
+
             Game game = Form1.context.GetGame(Form1.context.GetSelectedGame());
             game.SetTitle((Form1.formgen.GetControl("game.edit", "title") as TextBox).Text);
             game.SetGenre((Form1.formgen.GetControl("game.edit", "genre") as TextBox).Text);
@@ -182,6 +232,42 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         public void OnMakeSubmitClick(object sender, EventArgs e) {
             // TODO : Sanitize field data (use regular expression parsing)
+            // TODO : If you're not using any of these please comment out
+            //        rather than deleting these took a lot of time to build
+            #region sanitize
+            Regex regexname = new Regex(@"^[A-Za-z]+", RegexOptions.IgnoreCase);
+            Regex regexdate = new Regex(@"^[0-9]{1,2}[-/.]{1}[0-9]{1,2}[-/.]{1}[0-9]{2,4}");
+            Regex regexvalu = new Regex(@"^[0-9]+", RegexOptions.IgnoreCase);
+            Regex regexurls = new Regex(@"^www[.][a-z]{1,15}[.](com|org)$");
+            Regex regexmail = new Regex(@"^[a-zA-Z0-9]{1,10}@[a-zA-Z]{1,10}.(com|org)$");
+
+            Match matchname = regexname.Match("mike");
+        	if (matchname.Success) MessageBox.Show(matchname.Value);
+        	else                   MessageBox.Show("No Match");
+
+            Match matchvalu = regexvalu.Match("123456");
+        	if (matchvalu.Success) MessageBox.Show(matchvalu.Value);
+        	else                   MessageBox.Show("No Match");
+
+            Match matchdate = regexdate.Match("1-1-2000");
+        	if (matchdate.Success) MessageBox.Show(matchdate.Value);
+        	else                   MessageBox.Show("No Match");
+            matchdate = regexdate.Match("1/1/2000");
+        	if (matchdate.Success) MessageBox.Show(matchdate.Value);
+        	else                   MessageBox.Show("No Match");
+            matchdate = regexdate.Match("1.1.2000");
+        	if (matchdate.Success) MessageBox.Show(matchdate.Value);
+        	else                   MessageBox.Show("No Match");
+
+            Match matchurls = regexurls.Match("www.domain.com");
+        	if (matchurls.Success) MessageBox.Show(matchurls.Value);
+        	else                   MessageBox.Show("No Match");
+
+            Match matchmail = regexmail.Match("mike@collins.com");
+        	if (matchmail.Success) MessageBox.Show(matchmail.Value);
+        	else                   MessageBox.Show("No Match");
+            #endregion
+
             Game game = new Game();
             game.SetTitle((Form1.formgen.GetControl("game.make", "title") as TextBox).Text);
             game.SetGenre((Form1.formgen.GetControl("game.make", "genre") as TextBox).Text);

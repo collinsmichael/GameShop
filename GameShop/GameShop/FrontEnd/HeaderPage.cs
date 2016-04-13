@@ -56,6 +56,7 @@ namespace GameShop {
             if (label != null) label.TextAlign = ContentAlignment.MiddleRight;
             RadioButton games = Form1.formgen.GetControl("header.page", "games") as RadioButton;
             if (games != null) games.Appearance = Appearance.Button;
+            if (games != null) games.Checked    = true;
             RadioButton users = Form1.formgen.GetControl("header.page", "users") as RadioButton;
             if (users != null) users.Appearance = Appearance.Button;
             RadioButton reports = Form1.formgen.GetControl("header.page", "reports") as RadioButton;

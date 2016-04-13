@@ -12,6 +12,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -153,18 +154,58 @@ namespace GameShop {
         public void OnUpdateSearch(object sender, EventArgs e) {
             TextBox textbox = sender as TextBox;
 
-            if (typename == "user") {
-                User user = Form1.context.GetUser(textbox.Text);
-                if (user == null) return;
-            } else if (typename == "game") {
-                Game game = Form1.context.GetGame(textbox.Text);
-                if (game == null) return;
-            }
+            if (textbox.Text == "") EmptySearch();
+            else RegexSearch(textbox.Text);
+        }
 
-            Form1.context.SetSelected(typename, textbox.Text);
-            Form1.formgen.BuildPage(typename + ".view");
-            FormPage formpage = Form1.formgen.GetPage(typename + ".form") as FormPage;
-            formpage.OnPopulateForm(typename + ".view");
+
+        // ----------------------------------------------------------------- //
+        // fill the ListView with everything you possibly can.               //
+        // ----------------------------------------------------------------- //
+        public void EmptySearch() {
+            ListView listview = Form1.formgen.GetControl(pagename, "listview") as ListView;
+            UserListPage userpage = Form1.formgen.GetPage("user.list") as UserListPage;
+            GameListPage gamepage = Form1.formgen.GetPage("game.list") as GameListPage;
+            if (listview == null || userpage == null || gamepage == null) return;
+            listview.Items.Clear();
+
+            if (typename == "user") {
+                foreach (KeyValuePair<string, User> user in Form1.context.users) {
+                    userpage.PopulateListItem(listview, user.Value);
+                }
+            } else if (typename == "game") {
+                foreach (KeyValuePair<string, Game> game in Form1.context.games) {
+                    gamepage.PopulateListItem(listview, game.Value);
+                }
+            }
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // filter the ListView powered by regular expression.                //
+        // ----------------------------------------------------------------- //
+        public void RegexSearch(string filter) {
+            ListView listview = Form1.formgen.GetControl(pagename, "listview") as ListView;
+            UserListPage userpage = Form1.formgen.GetPage("user.list") as UserListPage;
+            GameListPage gamepage = Form1.formgen.GetPage("game.list") as GameListPage;
+            if (listview == null || userpage == null || gamepage == null) return;
+
+            Regex regex = null;
+            try { regex = new Regex(@"" + filter, RegexOptions.IgnoreCase); }
+            catch { return; }
+
+            listview.Items.Clear();
+            if (typename == "user") {
+                foreach (KeyValuePair<string, User> user in Form1.context.users) {
+                    if (!user.Value.RegexMatch(regex)) continue;
+                    userpage.PopulateListItem(listview, user.Value);
+                }
+            } else if (typename == "game") {
+                foreach (KeyValuePair<string, Game> game in Form1.context.games) {
+                    if (!game.Value.RegexMatch(regex)) continue;
+                    gamepage.PopulateListItem(listview, game.Value);
+                }
+            }
         }
     }
     #endregion

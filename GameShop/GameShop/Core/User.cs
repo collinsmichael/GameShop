@@ -15,6 +15,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
@@ -66,6 +67,18 @@ namespace GameShop {
             password  = PassWord;
             firstname = FirstName;
             surname   = SurName;
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // pure virtuals                                                     //
+        // ----------------------------------------------------------------- //
+        public override bool RegexMatch(Regex regex) {
+            if (regex.Match(username).Success) return true;
+            if (regex.Match(password).Success) return true;
+            if (regex.Match(firstname).Success) return true;
+            if (regex.Match(surname).Success) return true;
+            return false;
         }
     }
 }
