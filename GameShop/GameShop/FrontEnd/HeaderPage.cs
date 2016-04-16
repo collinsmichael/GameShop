@@ -45,11 +45,11 @@ namespace GameShop {
         public override void DefinePage() {
             // header appears at the top of every form
             Dictionary<string, Widget> header = new Dictionary<string, Widget>();
-            header.Add("logged",  new WidgetLabel(800-32-256, 16, 128, 32,  "username"));
-            header.Add("logout",  new WidgetButton(800-32-128, 16, 128, 32, "Log Out", OnLogOut));
-            header.Add("games",   new WidgetRadio( 32, 16, 80, 32, "Games",  OnGamesClick));
-            header.Add("users",   new WidgetRadio(112, 16, 80, 32, "Users",  OnUsersClick));
-            header.Add("reports", new WidgetRadio(192, 16, 80, 32, "Report", OnGamesClick));
+            header.Add("logged", new WidgetLabel(800-32-256, 16, 128, 32,  "username"));
+            header.Add("logout", new WidgetButton(800-32-128, 16, 128, 32, "Log Out", OnLogOut));
+            header.Add("games",  new WidgetRadio( 32, 16, 80, 32, "Games",  OnGamesClick));
+            header.Add("users",  new WidgetRadio(112, 16, 80, 32, "Users",  OnUsersClick));
+            header.Add("orders", new WidgetRadio(192, 16, 80, 32, "Orders", OnOrdersClick));
 
             Form1.formgen.AddPage("header.page", header);
             Label label = Form1.formgen.GetControl("header.page", "logged") as Label;
@@ -59,8 +59,16 @@ namespace GameShop {
             if (games != null) games.Checked    = true;
             RadioButton users = Form1.formgen.GetControl("header.page", "users") as RadioButton;
             if (users != null) users.Appearance = Appearance.Button;
-            RadioButton reports = Form1.formgen.GetControl("header.page", "reports") as RadioButton;
-            if (reports != null) reports.Appearance = Appearance.Button;
+            RadioButton orders = Form1.formgen.GetControl("header.page", "orders") as RadioButton;
+            if (orders != null) orders.Appearance = Appearance.Button;
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // This method is invoked on display, now we perform any last second //
+        // adjustments to the controls associated with this page.            //
+        // ----------------------------------------------------------------- //
+        public override void DisplayPage() {
         }
 
 
@@ -79,6 +87,15 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         public void OnUsersClick(object sender, EventArgs e) {
             Form1.formgen.BuildPage("user.list");
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // This method gets invoked when the user presses the logout button. //
+        // Log on credentials are revoked and access is revoked.             //
+        // ----------------------------------------------------------------- //
+        public void OnOrdersClick(object sender, EventArgs e) {
+            Form1.formgen.BuildPage("order.list");
         }
 
 

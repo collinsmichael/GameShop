@@ -19,6 +19,10 @@
 //   x  Design Doc entries for FormGen and Context API's
 //   x  Regex Powered Search Bar
 //   x  Supplied some sample Regex in UserPage and GamePage
+//   x  Started work on Order class
+//   x  Define Order class
+//   x  Reserve copies of games
+//   x  Return copies of games
 
 
 // ToDo List:
@@ -26,8 +30,6 @@
 //   o  Proper game classes
 //   o  User account priveledges
 //   o  Report class implemenation
-//   o  Reserve copies of games
-//   o  Return copies of games
 //   o  Design Doc entries for Widget API's
-//   o  Design Doc entries for User/Game/Report classes
-//   x  Regex sanity check during Edit/Create objects
+//   o  Design Doc entries for User/Game/Order classes
+//   o  Regex sanity check during Edit/Create objects

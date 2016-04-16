@@ -163,6 +163,8 @@ namespace GameShop {
             }
 
             // activate new form layout
+            Page page = GetPage(pagename);
+            if (page != null) page.DisplayPage();
             Form1.form.ResumeLayout();
             return true;
         }
@@ -176,7 +178,7 @@ namespace GameShop {
         public FormGen() {
             control_dict = new Dictionary<string, Dictionary<string, Control>>();
             widgets_dict = new Dictionary<string, Dictionary<string, Widget>>();
-            page_dict = new Dictionary<string, Page>();
+            page_dict    = new Dictionary<string, Page>();
         }
 
 
@@ -220,6 +222,12 @@ namespace GameShop {
             page_dict.Add("game.edit",   new GameEditPage());
             page_dict.Add("game.make",   new GameMakePage());
             page_dict.Add("game.drop",   new GameDropPage());
+            page_dict.Add("order.list",  new OrderListPage());
+            page_dict.Add("order.form",  new OrderFormPage());
+            page_dict.Add("order.view",  new OrderViewPage());
+            page_dict.Add("order.edit",  new OrderEditPage());
+            page_dict.Add("order.make",  new OrderMakePage());
+            page_dict.Add("order.drop",  new OrderDropPage());
             foreach (KeyValuePair<string, Page> page in page_dict) {
                 page.Value.DefinePage();
             }

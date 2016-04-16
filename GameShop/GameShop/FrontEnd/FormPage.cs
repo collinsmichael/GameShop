@@ -41,6 +41,7 @@ namespace GameShop {
         // pure virtuals                                                     //
         // ----------------------------------------------------------------- //
         public abstract void DefinePage();
+        public abstract void DisplayPage();
 
 
         // ----------------------------------------------------------------- //
@@ -128,9 +129,9 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         public void OnListAddNewClick(object sender, EventArgs e) {
             string pagename = typename + ".make";
-            Form1.formgen.BuildPage(pagename);
             FormPage formpage = Form1.formgen.GetPage(typename + ".form") as FormPage;
             formpage.OnPopulateForm(pagename);
+            Form1.formgen.BuildPage(pagename);
         }
 
 

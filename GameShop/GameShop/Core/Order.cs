@@ -1,8 +1,9 @@
 ﻿// ========================================================================= //
-// File Name : Game.cs                                                       //
+// File Name : Order.cs                                                      //
 // File Date : 12 April 2016                                                 //
 // Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
-// File Info : The Game class is at the early stages of work in progress.    //
+// File Info : The order class is responsible for assigning copies of games  //
+//             to Member accounts.                                           //
 // ========================================================================= //
 
 using System;
@@ -22,47 +23,53 @@ using System.Windows.Forms;
 
 namespace GameShop {
     [Serializable]
-    public class Game : Entity {
+    public class Order : Entity {
+        protected string orderno;
+        protected string username;
         protected string title;
-        protected string genre;
-        protected string info;
-        protected int    stock;
+        protected string orderdate;
+        protected string returndate;
 
 
         // ----------------------------------------------------------------- //
         // Getters and Setters.                                              //
         // ----------------------------------------------------------------- //
-        public string GetTitle()             { return title;  }
-        public string GetGenre()             { return genre;  }
-        public string GetInfo()              { return info;   }
-        public int    GetStock()             { return stock;  }
+        public string GetOrderNo() { return orderno; }
+        public string GetUserName() { return username; }
+        public string GetTitle() { return title; }
+        public string GetOrderDate() { return orderdate; }
+        public string GetReturnDate() { return returndate; }
+        public void   SetOrderNo(string OrderNo) { orderno = OrderNo; }
+        public void   SetUserName(string UserName) { username = UserName; }
         public void   SetTitle(string Title) { title = Title; }
-        public void   SetGenre(string Genre) { genre = Genre; }
-        public void   SetInfo(string Info)   { info  = Info;  }
-        public void   SetStock(int Stock)    { stock = Stock; }
+        public void   SetOrderDate(string OrderDate) { orderdate = OrderDate; }
+        public void   SetReturnDate(string ReturnDate) { returndate = ReturnDate; }
 
 
         // ----------------------------------------------------------------- //
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
-        public Game()
-        : base("game") {
-            title = "";
-            genre = "";
-            stock = 0;
-            info  = "";
+        public Order()
+        : base("order") {
+            orderno    = "";
+            username   = "";
+            title      = "";
+            orderdate  = "";
+            returndate = "";
         }
 
 
         // ----------------------------------------------------------------- //
         // Factory constructor.                                              //
         // ----------------------------------------------------------------- //
-        public Game(string Title, string Genre, int Stock, string Info)
-        : base("game") {
-            title = Title;
-            genre = Genre;
-            stock = Stock;
-            info  = Info;
+        public Order(string OrderNo, string UserName, string Title,
+                     string OrderDate, string ReturnDate)
+        : base("order") {
+            orderno    = OrderNo;
+            username   = UserName;
+            title      = Title;
+            orderdate  = OrderDate;
+            returndate = ReturnDate;
         }
 
 
@@ -70,10 +77,11 @@ namespace GameShop {
         // pure virtuals                                                     //
         // ----------------------------------------------------------------- //
         public override bool RegexMatch(Regex regex) {
+            if (regex.Match(orderno).Success) return true;
+            if (regex.Match(username).Success) return true;
             if (regex.Match(title).Success) return true;
-            if (regex.Match(genre).Success) return true;
-            if (regex.Match(info).Success) return true;
-            if (regex.Match(stock.ToString()).Success) return true;
+            if (regex.Match(orderdate).Success) return true;
+            if (regex.Match(returndate).Success) return true;
             return false;
         }
     }

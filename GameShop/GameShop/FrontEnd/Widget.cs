@@ -39,7 +39,7 @@ namespace GameShop {
     #endregion
 
 
-    #region titlewidgets
+    #region title
     // --------------------------------------------------------------------- //
     // Widget Title Label Mockup class                                       //
     // --------------------------------------------------------------------- //
@@ -48,19 +48,19 @@ namespace GameShop {
         public string text;
 
         public WidgetTitle(string Text)
-        : base(Form1.form.Width/2, 80, 176, 32) {
+        : base(32, 80, Form1.form.Width-64, 32) {
             text = Text;
         }
 
 
         // build a form control from the widget mockup
         public override Control Build() {
-            Label label    = new Label();
-            label.Text     = text;
-            label.Font     = new Font("Verdana", 18.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            //label.Location = new Point(posx, posy);
-            label.Location = new Point(posx - (int)label.Font.SizeInPoints*text.Length/2, posy);
-            label.Size     = new Size(wide, high);
+            Label label     = new Label();
+            label.Text      = text;
+            label.Font      = new Font("Verdana", 18.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label.Location  = new Point(posx, posy);
+            label.Size      = new Size(wide, high);
+            label.TextAlign = ContentAlignment.MiddleCenter;
             return label as Control;
         }
     }

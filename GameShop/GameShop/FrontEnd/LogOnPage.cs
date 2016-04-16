@@ -56,6 +56,14 @@ namespace GameShop {
             widgets.Add("submit",   new WidgetButton(464, 320, 128, 32, "Submit", OnSubmit));
             widgets.Add("exit",     new WidgetButton(272, 320, 128, 32, "Exit", OnExit));
             Form1.formgen.AddPage("logon.page", widgets);
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // This method is invoked on display, now we perform any last second //
+        // adjustments to the controls associated with this page.            //
+        // ----------------------------------------------------------------- //
+        public override void DisplayPage() {
             attempts = 3;
         }
 

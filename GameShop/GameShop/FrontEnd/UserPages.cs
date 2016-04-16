@@ -46,14 +46,28 @@ namespace GameShop {
         public override void DefinePage() {
             // basic form fields
             Dictionary<string, Widget> form = new Dictionary<string, Widget>();
-            form.Add("label1",    new WidgetLabel(160, 196, 112, 32, "Username"));
-            form.Add("label2",    new WidgetLabel(160, 236, 112, 32, "Password"));
-            form.Add("label3",    new WidgetLabel(160, 276, 112, 32, "First Name"));
-            form.Add("label4",    new WidgetLabel(160, 316, 112, 32, "Surname"));
+            form.Add("label1",    new WidgetLabel(150, 196, 122, 32, "User Name"));
+            form.Add("label2",    new WidgetLabel(150, 236, 122, 32, "Password"));
+            form.Add("label3",    new WidgetLabel(150, 276, 122, 32, "First Name"));
+            form.Add("label4",    new WidgetLabel(150, 316, 122, 32, "Surname"));
+            form.Add("label5",    new WidgetLabel(150, 356, 122, 32, "Email"));
+            form.Add("label6",    new WidgetLabel(150, 396, 122, 32, "Phone No"));
+            form.Add("label7",    new WidgetLabel(150, 436, 122, 32, "Address"));
             form.Add("password",  new WidgetTextBox(272, 236, 320, 32, "", false, false, true));
             form.Add("firstname", new WidgetTextBox(272, 276, 320, 32, "", false, false, false));
             form.Add("surname",   new WidgetTextBox(272, 316, 320, 32, "", false, false, false));
+            form.Add("email",     new WidgetTextBox(272, 356, 320, 32, "", false, false, false));
+            form.Add("phone",     new WidgetTextBox(272, 396, 320, 32, "", false, false, false));
+            form.Add("address",   new WidgetTextBox(272, 436, 320, 64, "", false, true,  false));
             Form1.formgen.AddPage("user.form", form);
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // This method is invoked on display, now we perform any last second //
+        // adjustments to the controls associated with this page.            //
+        // ----------------------------------------------------------------- //
+        public override void DisplayPage() {
         }
 
 
@@ -70,6 +84,9 @@ namespace GameShop {
             (Form1.formgen.GetControl(page, "password")  as TextBox).Text = user.GetPassWord();
             (Form1.formgen.GetControl(page, "firstname") as TextBox).Text = user.GetFirstName();
             (Form1.formgen.GetControl(page, "surname")   as TextBox).Text = user.GetSurname();
+            (Form1.formgen.GetControl(page, "email")     as TextBox).Text = user.GetEmail();
+            (Form1.formgen.GetControl(page, "phone")     as TextBox).Text = user.GetPhoneNo();
+            (Form1.formgen.GetControl(page, "address")   as TextBox).Text = user.GetAddress();
         }
     }
     #endregion
@@ -94,9 +111,17 @@ namespace GameShop {
             Dictionary<string, Widget> view = new Dictionary<string, Widget>();
             view.Add("header",    new WidgetTitle("View User"));
             view.Add("username",  new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
-            view.Add("edit",      new WidgetButton(464, 388, 128, 32, "Edit", OnViewEditClick));
-            view.Add("cancel",   new WidgetButton(272, 388, 128, 32, "Cancel", OnCancelClick));
+            view.Add("edit",      new WidgetButton(464, 512, 128, 32, "Edit", OnViewEditClick));
+            view.Add("cancel",   new WidgetButton(272, 512, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("user.view", view);
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // This method is invoked on display, now we perform any last second //
+        // adjustments to the controls associated with this page.            //
+        // ----------------------------------------------------------------- //
+        public override void DisplayPage() {
         }
 
 
@@ -133,9 +158,17 @@ namespace GameShop {
             Dictionary<string, Widget> edit = new Dictionary<string, Widget>();
             edit.Add("header",    new WidgetTitle("Edit User"));
             edit.Add("username",  new WidgetTextBox(272, 196, 320, 32, "", true,  false, false));
-            edit.Add("submit",    new WidgetButton(464, 388, 128, 32, "Submit", OnEditSubmitClick));
-            edit.Add("cancel",    new WidgetButton(272, 388, 128, 32, "Cancel", OnCancelClick));
+            edit.Add("submit",    new WidgetButton(464, 512, 128, 32, "Submit", OnEditSubmitClick));
+            edit.Add("cancel",    new WidgetButton(272, 512, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("user.edit", edit);
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // This method is invoked on display, now we perform any last second //
+        // adjustments to the controls associated with this page.            //
+        // ----------------------------------------------------------------- //
+        public override void DisplayPage() {
         }
 
 
@@ -181,10 +214,13 @@ namespace GameShop {
             #endregion
 
             User user = Form1.context.GetUser(Form1.context.GetSelectedUser());
-            user.SetUserName((Form1.formgen.GetControl("user.edit", "username")  as TextBox).Text);
-            user.SetPassWord((Form1.formgen.GetControl("user.edit", "password")  as TextBox).Text);
+            user.SetUserName((Form1.formgen.GetControl("user.edit", "username") as TextBox).Text);
+            user.SetPassWord((Form1.formgen.GetControl("user.edit", "password") as TextBox).Text);
             user.SetFirstName((Form1.formgen.GetControl("user.edit", "firstname") as TextBox).Text);
-            user.SetSurname((Form1.formgen.GetControl("user.edit", "surname")   as TextBox).Text);
+            user.SetSurname((Form1.formgen.GetControl("user.edit", "surname") as TextBox).Text);
+            user.SetEmail((Form1.formgen.GetControl("user.edit", "email") as TextBox).Text);
+            user.SetPhoneNo((Form1.formgen.GetControl("user.edit", "phone") as TextBox).Text);
+            user.SetAddress((Form1.formgen.GetControl("user.edit", "address") as TextBox).Text);
 
             Form1.context.SetSelected("user", user.GetUserName());
             Form1.formgen.BuildPage("user.list");
@@ -212,9 +248,17 @@ namespace GameShop {
             Dictionary<string, Widget> make = new Dictionary<string, Widget>();
             make.Add("header",    new WidgetTitle("New User"));
             make.Add("username",  new WidgetTextBox(272, 196, 320, 32, "", false, false, false));
-            make.Add("submit",    new WidgetButton(464, 388, 128, 32, "Submit", OnMakeSubmitClick));
-            make.Add("cancel",    new WidgetButton(272, 388, 128, 32, "Cancel", OnCancelClick));
+            make.Add("submit",    new WidgetButton(464, 512, 128, 32, "Submit", OnMakeSubmitClick));
+            make.Add("cancel",    new WidgetButton(272, 512, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("user.make", make);
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // This method is invoked on display, now we perform any last second //
+        // adjustments to the controls associated with this page.            //
+        // ----------------------------------------------------------------- //
+        public override void DisplayPage() {
         }
 
 
@@ -260,10 +304,13 @@ namespace GameShop {
             #endregion
 
             User user = new User();
-            user.SetUserName((Form1.formgen.GetControl("user.make", "username")  as TextBox).Text);
-            user.SetPassWord((Form1.formgen.GetControl("user.make", "password")  as TextBox).Text);
+            user.SetUserName((Form1.formgen.GetControl("user.make", "username") as TextBox).Text);
+            user.SetPassWord((Form1.formgen.GetControl("user.make", "password") as TextBox).Text);
             user.SetFirstName((Form1.formgen.GetControl("user.make", "firstname") as TextBox).Text);
-            user.SetSurname((Form1.formgen.GetControl("user.make", "surname")   as TextBox).Text);
+            user.SetSurname((Form1.formgen.GetControl("user.make", "surname") as TextBox).Text);
+            user.SetEmail((Form1.formgen.GetControl("user.make", "email") as TextBox).Text);
+            user.SetPhoneNo((Form1.formgen.GetControl("user.make", "phone") as TextBox).Text);
+            user.SetAddress((Form1.formgen.GetControl("user.make", "address") as TextBox).Text);
 
             Form1.context.AddUser(user.GetUserName(), user);
             Form1.context.SetSelected("user", user.GetUserName());
@@ -292,9 +339,17 @@ namespace GameShop {
             Dictionary<string, Widget> drop = new Dictionary<string, Widget>();
             drop.Add("header",    new WidgetTitle("Delete User"));
             drop.Add("username",  new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
-            drop.Add("delete",    new WidgetButton(464, 388, 128, 32, "Delete", OnDropDeleteClick));
-            drop.Add("cancel",    new WidgetButton(272, 388, 128, 32, "Cancel", OnCancelClick));
+            drop.Add("delete",    new WidgetButton(464, 512, 128, 32, "Delete", OnDropDeleteClick));
+            drop.Add("cancel",    new WidgetButton(272, 512, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("user.drop", drop);
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // This method is invoked on display, now we perform any last second //
+        // adjustments to the controls associated with this page.            //
+        // ----------------------------------------------------------------- //
+        public override void DisplayPage() {
         }
 
 
@@ -350,6 +405,14 @@ namespace GameShop {
 
 
         // ----------------------------------------------------------------- //
+        // This method is invoked on display, now we perform any last second //
+        // adjustments to the controls associated with this page.            //
+        // ----------------------------------------------------------------- //
+        public override void DisplayPage() {
+        }
+
+
+        // ----------------------------------------------------------------- //
         // this method gets invoked automatically by the list view control   //
         // any time the list view needs to be updated.                       //
         // All this method does is to assign a name to each required column. //
@@ -361,6 +424,9 @@ namespace GameShop {
             listview.Columns.Add("UserName",  100);
             listview.Columns.Add("FirstName", 100);
             listview.Columns.Add("Surname",   100);
+            listview.Columns.Add("Email",     100);
+            listview.Columns.Add("Phone",     100);
+            listview.Columns.Add("Address",   100);
         }
 
 
@@ -385,7 +451,9 @@ namespace GameShop {
             // the number of values passed must match the number of columns
             // defined in PopulateListColumns
             string[] fields = new string[] {
-                user.GetUserName(), user.GetFirstName(), user.GetSurname()
+                user.GetUserName(), user.GetFirstName(),
+                user.GetSurname(), user.GetEmail(), user.GetPhoneNo(),
+                user.GetAddress()
             };
             listview.Items.Add(new ListViewItem(fields));
             return true;

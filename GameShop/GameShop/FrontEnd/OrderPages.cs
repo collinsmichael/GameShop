@@ -1,16 +1,16 @@
 ﻿// ========================================================================= //
-// File Name : GamePages.cs                                                  //
-// File Date : 12 April 2016                                                 //
+// File Name : OrderPages.cs                                                 //
+// File Date : 16 April 2016                                                 //
 // Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
-// File Info : The Game Pages are responsible for representing the Games in  //
-//             the form. There are a number of Game Pages each responsible   //
-//             for their own Form.                                           //
-//                 o game.list  (list box form)                              //
-//                 o game.form  (game member controls)                       //
-//                 o game.view  (edit cancel buttons on the view form)       //
-//                 o game.edit  (submit cancel buttons on the edit form)     //
-//                 o game.make  (submit cancel buttons on the make form)     //
-//                 o game.drop  (delete cancel buttons on the drop form)     //
+// File Info : The Order Pages are responsible for representing the Orders.  //
+//             Orders kee track of which members have reserved games. Orders //
+//             have a different page for each of the following tasks.        //
+//                 o order.list  (list box form)                             //
+//                 o order.form  (game member controls)                      //
+//                 o order.view  (edit cancel buttons on the view form)      //
+//                 o order.edit  (submit cancel buttons on the edit form)    //
+//                 o order.make  (submit cancel buttons on the make form)    //
+//                 o order.drop  (delete cancel buttons on the drop form)    //
 // ========================================================================= //
 
 using System;
@@ -31,12 +31,12 @@ using System.Windows.Forms;
 namespace GameShop {
     #region formpage
     [Serializable]
-    public class GameFormPage : FormPage {
+    public class OrderFormPage : FormPage {
         // ----------------------------------------------------------------- //
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
-        public GameFormPage()
-        : base("game", "game.form") { }
+        public OrderFormPage()
+        : base("order", "order.form") { }
 
 
         // ----------------------------------------------------------------- //
@@ -46,14 +46,16 @@ namespace GameShop {
         public override void DefinePage() {
             // basic form fields
             Dictionary<string, Widget> form = new Dictionary<string, Widget>();
-            form.Add("label1", new WidgetLabel(150, 196, 122, 32, "Title"));
-            form.Add("label2", new WidgetLabel(150, 236, 122, 32, "Genre"));
-            form.Add("label3", new WidgetLabel(150, 276, 122, 32, "Stock"));
-            form.Add("label4", new WidgetLabel(150, 316, 122, 32, "Info"));
-            form.Add("genre",  new WidgetTextBox(272, 236, 320, 32, "", true, false, false));
-            form.Add("stock",  new WidgetTextBox(272, 276, 320, 32, "", true, false, false));
-            form.Add("info",   new WidgetTextBox(272, 316, 320, 96, "", true, true,  false));
-            Form1.formgen.AddPage("game.form", form);
+            form.Add("label1", new WidgetLabel(150, 196, 122, 32, "Order No"));
+            form.Add("label2", new WidgetLabel(150, 236, 122, 32, "User Name"));
+            form.Add("label3", new WidgetLabel(150, 276, 122, 32, "Title"));
+            form.Add("label4", new WidgetLabel(150, 316, 122, 32, "Order Date"));
+            form.Add("label5", new WidgetLabel(150, 356, 122, 32, "Return Date"));
+            form.Add("username",   new WidgetTextBox(272, 236, 320, 32, "", true, false, false));
+            form.Add("title",      new WidgetTextBox(272, 276, 320, 32, "", true, false, false));
+            form.Add("orderdate",  new WidgetTextBox(272, 316, 320, 96, "", true, false, false));
+            form.Add("returndate", new WidgetTextBox(272, 356, 320, 96, "", true, false, false));
+            Form1.formgen.AddPage("order.form", form);
         }
 
 
@@ -70,14 +72,25 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         public override void OnPopulateForm(string page) {
             Form1.formgen.BuildPage(page);
-            Game game = new Game();
-            if (page != "game.make") {
-                game = Form1.context.GetGame(Form1.context.GetSelectedGame());
+            Order order = new Order();
+            if (page != "order.make") {
+                order = Form1.context.GetOrder(Form1.context.GetSelectedOrder());
             }
-            (Form1.formgen.GetControl(page, "title") as TextBox).Text = game.GetTitle();
-            (Form1.formgen.GetControl(page, "genre") as TextBox).Text = game.GetGenre();
-            (Form1.formgen.GetControl(page, "stock") as TextBox).Text = game.GetStock().ToString();
-            (Form1.formgen.GetControl(page, "info")  as TextBox).Text = game.GetInfo();
+            (Form1.formgen.GetControl(page, "orderno")    as TextBox).Text = order.GetOrderNo();
+            (Form1.formgen.GetControl(page, "username")   as TextBox).Text = order.GetUserName();
+            (Form1.formgen.GetControl(page, "title")      as TextBox).Text = order.GetTitle();
+            (Form1.formgen.GetControl(page, "orderdate")  as TextBox).Text = order.GetOrderDate();
+            (Form1.formgen.GetControl(page, "returndate") as TextBox).Text = order.GetReturnDate();
+
+            Button return_button = Form1.formgen.GetControl("order.view", "return") as Button;
+            Button cancel_button = Form1.formgen.GetControl("order.view", "cancel") as Button;
+            if (order.GetReturnDate() == "") {
+                return_button.Show();
+                cancel_button.Hide();
+            } else {
+                cancel_button.Show();
+                return_button.Hide();
+            }
         }
     }
     #endregion
@@ -85,12 +98,12 @@ namespace GameShop {
 
     #region viewpage
     [Serializable]
-    public class GameViewPage : Page {
+    public class OrderViewPage : Page {
         // ----------------------------------------------------------------- //
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
-        public GameViewPage()
-        : base("game", "game.view") { }
+        public OrderViewPage()
+        : base("order", "order.view") { }
 
 
         // ----------------------------------------------------------------- //
@@ -100,11 +113,12 @@ namespace GameShop {
         public override void DefinePage() {
             // extra fields for view page
             Dictionary<string, Widget> view = new Dictionary<string, Widget>();
-            view.Add("header", new WidgetTitle("View Game"));
-            view.Add("title",  new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
-            view.Add("edit",   new WidgetButton(464, 428, 128, 32, "Edit", OnViewEditClick));
-            view.Add("order",  new WidgetButton(272, 428, 128, 32, "Order", OnViewOrderClick));
-            Form1.formgen.AddPage("game.view", view);
+            view.Add("header",  new WidgetTitle("View Order"));
+            view.Add("orderno", new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
+            view.Add("edit",    new WidgetButton(464, 428, 128, 32, "Edit", OnViewEditClick));
+            view.Add("return",  new WidgetButton(272, 428, 128, 32, "Return", OnViewReturnClick));
+            view.Add("cancel",  new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
+            Form1.formgen.AddPage("order.view", view);
         }
 
 
@@ -132,13 +146,16 @@ namespace GameShop {
         // Clicking order on the view page will reroute the user to an order //
         // page and populate the form with the fields from the entity.       //
         // ----------------------------------------------------------------- //
-        public void OnViewOrderClick(object sender, EventArgs e) {
-            User user = Form1.context.GetSelected("user") as User;
-            Game game = Form1.context.GetSelected("game") as Game;
-            Form1.formgen.BuildPage("order.make");
-            FormPage formpage = Form1.formgen.GetPage("order.form") as FormPage;
-            (Form1.formgen.GetControl("order.make", "username") as TextBox).Text = user.GetUserName();
-            (Form1.formgen.GetControl("order.make", "title")    as TextBox).Text = game.GetTitle();
+        public void OnViewReturnClick(object sender, EventArgs e) {
+            Order order = Form1.context.GetSelected("order") as Order;
+            if (order == null || order.GetReturnDate() != "") return;
+            DateTime now = DateTime.Now;
+            order.SetReturnDate(now.ToShortDateString());
+
+            string pagename = typename + ".view";
+            Form1.formgen.BuildPage(pagename);
+            FormPage formpage = Form1.formgen.GetPage(typename + ".form") as FormPage;
+            formpage.OnPopulateForm(pagename);
         }
     }
     #endregion
@@ -146,12 +163,12 @@ namespace GameShop {
 
     #region editpage
     [Serializable]
-    public class GameEditPage : Page {
+    public class OrderEditPage : Page {
         // ----------------------------------------------------------------- //
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
-        public GameEditPage()
-        : base("game", "game.edit") { }
+        public OrderEditPage()
+        : base("order", "order.edit") { }
 
 
         // ----------------------------------------------------------------- //
@@ -161,11 +178,11 @@ namespace GameShop {
         public override void DefinePage() {
             // extra fields for edit page
             Dictionary<string, Widget> edit = new Dictionary<string, Widget>();
-            edit.Add("header", new WidgetTitle("Edit Game"));
-            edit.Add("title",  new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
-            edit.Add("submit", new WidgetButton(464, 428, 128, 32, "Submit", OnEditSubmitClick));
-            edit.Add("cancel", new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
-            Form1.formgen.AddPage("game.edit", edit);
+            edit.Add("header",  new WidgetTitle("Edit Order"));
+            edit.Add("orderno", new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
+            edit.Add("submit",  new WidgetButton(464, 428, 128, 32, "Submit", OnEditSubmitClick));
+            edit.Add("cancel",  new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
+            Form1.formgen.AddPage("order.edit", edit);
         }
 
 
@@ -181,6 +198,7 @@ namespace GameShop {
         // this method populates a game object from the fields within a form //
         // ----------------------------------------------------------------- //
         public void OnEditSubmitClick(object sender, EventArgs e) {
+            /*
             // TODO : Sanitize field data (use regular expression parsing)
             // TODO : If you're not using any of these please comment out
             //        rather than deleting these took a lot of time to build
@@ -218,13 +236,17 @@ namespace GameShop {
         	else                   MessageBox.Show("No Match");
             #endregion
 
-            Game game = Form1.context.GetGame(Form1.context.GetSelectedGame());
-            game.SetTitle((Form1.formgen.GetControl("game.edit", "title") as TextBox).Text);
-            game.SetGenre((Form1.formgen.GetControl("game.edit", "genre") as TextBox).Text);
-            game.SetInfo((Form1.formgen.GetControl("game.edit", "info") as TextBox).Text);
+            Order order = Form1.context.GetOrder(Form1.context.GetSelectedGame());
+            order.SetTitle((Form1.formgen.GetControl("order.edit", "title") as TextBox).Text);
+            order.SetGenre((Form1.formgen.GetControl("order.edit", "genre") as TextBox).Text);
+            order.SetInfo((Form1.formgen.GetControl("order.edit", "info") as TextBox).Text);
 
-            Form1.context.SetSelected("game", game.GetTitle());
-            Form1.formgen.BuildPage("game.list");
+            Form1.context.SetSelected("order", order.GetTitle());
+            Form1.formgen.BuildPage("order.list");
+
+            DateTime now = DateTime.Now;
+            order.SetReturnDate(now.ToShortDateString());
+            */
         }
     }
     #endregion
@@ -232,12 +254,12 @@ namespace GameShop {
 
     #region makepage
     [Serializable]
-    public class GameMakePage : Page {
+    public class OrderMakePage : Page {
         // ----------------------------------------------------------------- //
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
-        public GameMakePage()
-        : base("game", "game.make") { }
+        public OrderMakePage()
+        : base("order", "order.make") { }
 
 
         // ----------------------------------------------------------------- //
@@ -247,11 +269,11 @@ namespace GameShop {
         public override void DefinePage() {
             // extra fields for make page
             Dictionary<string, Widget> make = new Dictionary<string, Widget>();
-            make.Add("header", new WidgetTitle("New Game"));
-            make.Add("title",  new WidgetTextBox(272, 196, 320, 32, "", false, false, false));
-            make.Add("submit", new WidgetButton(464, 428, 128, 32, "Submit", OnMakeSubmitClick));
-            make.Add("cancel", new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
-            Form1.formgen.AddPage("game.make", make);
+            make.Add("header",  new WidgetTitle("New Order"));
+            make.Add("orderno", new WidgetTextBox(272, 196, 320, 32, "", false, false, false));
+            make.Add("submit",  new WidgetButton(464, 428, 128, 32, "Submit", OnMakeSubmitClick));
+            make.Add("cancel",  new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
+            Form1.formgen.AddPage("order.make", make);
         }
 
 
@@ -260,6 +282,13 @@ namespace GameShop {
         // adjustments to the controls associated with this page.            //
         // ----------------------------------------------------------------- //
         public override void DisplayPage() {
+            DateTime now = DateTime.Now;
+            string today   = now.ToShortDateString();
+            string orderno = "x" + Form1.context.orders.Count().ToString("000");
+
+            string pagename = typename + ".make";
+            (Form1.formgen.GetControl(pagename, "orderno")    as TextBox).Text = orderno;
+            (Form1.formgen.GetControl(pagename, "orderdate")  as TextBox).Text = today;
         }
 
 
@@ -267,6 +296,7 @@ namespace GameShop {
         // this method creates a game object from the fields within a form.  //
         // ----------------------------------------------------------------- //
         public void OnMakeSubmitClick(object sender, EventArgs e) {
+            /*
             // TODO : Sanitize field data (use regular expression parsing)
             // TODO : If you're not using any of these please comment out
             //        rather than deleting these took a lot of time to build
@@ -304,14 +334,25 @@ namespace GameShop {
         	else                   MessageBox.Show("No Match");
             #endregion
 
-            Game game = new Game();
-            game.SetTitle((Form1.formgen.GetControl("game.make", "title") as TextBox).Text);
-            game.SetGenre((Form1.formgen.GetControl("game.make", "genre") as TextBox).Text);
-            game.SetInfo((Form1.formgen.GetControl("game.make", "info") as TextBox).Text);
+            Order order = new Order();
+            order.SetTitle((Form1.formgen.GetControl("order.make", "title") as TextBox).Text);
+            order.SetGenre((Form1.formgen.GetControl("order.make", "genre") as TextBox).Text);
+            order.SetInfo((Form1.formgen.GetControl("order.make", "info") as TextBox).Text);
 
-            Form1.context.AddGame(game.GetTitle(), game);
-            Form1.context.SetSelected("game", game.GetTitle());
-            Form1.formgen.BuildPage("game.list");
+            Form1.context.AddOrder(order.GetTitle(), order);
+            Form1.context.SetSelected("order", order.GetTitle());
+            Form1.formgen.BuildPage("order.list");
+            */
+
+            Order order = new Order();
+            order.SetOrderNo((Form1.formgen.GetControl("order.make", "orderno") as TextBox).Text);
+            order.SetUserName((Form1.formgen.GetControl("order.make", "username") as TextBox).Text);
+            order.SetTitle((Form1.formgen.GetControl("order.make", "title") as TextBox).Text);
+            order.SetOrderDate((Form1.formgen.GetControl("order.make", "orderdate") as TextBox).Text);
+
+            Form1.context.AddOrder(order.GetOrderNo(), order);
+            Form1.context.SetSelected("order", order.GetOrderNo());
+            Form1.formgen.BuildPage("order.list");
         }
     }
     #endregion
@@ -319,12 +360,12 @@ namespace GameShop {
 
     #region droppage
     [Serializable]
-    public class GameDropPage : Page {
+    public class OrderDropPage : Page {
         // ----------------------------------------------------------------- //
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
-        public GameDropPage()
-        : base("game", "game.drop") { }
+        public OrderDropPage()
+        : base("order", "order.drop") { }
 
 
         // ----------------------------------------------------------------- //
@@ -334,11 +375,11 @@ namespace GameShop {
         public override void DefinePage() {
             // extra fields for drop page
             Dictionary<string, Widget> drop = new Dictionary<string, Widget>();
-            drop.Add("header", new WidgetTitle("Delete Game"));
-            drop.Add("title",  new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
-            drop.Add("delete", new WidgetButton(464, 428, 128, 32, "Delete", OnDropDeleteClick));
-            drop.Add("cancel", new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
-            Form1.formgen.AddPage("game.drop", drop);
+            drop.Add("header",  new WidgetTitle("Delete Order"));
+            drop.Add("orderno", new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
+            drop.Add("delete",  new WidgetButton(464, 428, 128, 32, "Delete", OnDropDeleteClick));
+            drop.Add("cancel",  new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
+            Form1.formgen.AddPage("order.drop", drop);
         }
 
 
@@ -354,16 +395,16 @@ namespace GameShop {
         // this method deletes a game object after warning the user.         //
         // ----------------------------------------------------------------- //
         public void OnDropDeleteClick(object sender, EventArgs e) {
-            string title = (Form1.formgen.GetControl("game.drop", "title") as TextBox).Text;
-            string genre = (Form1.formgen.GetControl("game.drop", "genre") as TextBox).Text;
+            //string title = (Form1.formgen.GetControl("order.drop", "title") as TextBox).Text;
+            //string genre = (Form1.formgen.GetControl("order.drop", "genre") as TextBox).Text;
 
-            string message = string.Format("Title = {0}\nGenre = {1}\nAre you sure you wish to\n"
-                                          +"delete this game form the database?", title, genre);
-            DialogResult result = MessageBox.Show(message, "Warning", MessageBoxButtons.YesNoCancel);
-            if (result == DialogResult.Yes) {
-                Form1.context.games.Remove(title);
-            }
-            Form1.formgen.BuildPage("game.list");
+            //string message = string.Format("Title = {0}\nGenre = {1}\nAre you sure you wish to\n"
+            //                              +"delete this game form the database?", title, genre);
+            //DialogResult result = MessageBox.Show(message, "Warning", MessageBoxButtons.YesNoCancel);
+            //if (result == DialogResult.Yes) {
+            //    Form1.context.orders.Remove(order);
+            //}
+            //Form1.formgen.BuildPage("order.list");
         }
     }
     #endregion
@@ -371,31 +412,31 @@ namespace GameShop {
 
     #region listpage
     [Serializable]
-    public class GameListPage : ListPage {
+    public class OrderListPage : ListPage {
         // ----------------------------------------------------------------- //
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
-        public GameListPage()
-        : base("game", "game.list") { }
+        public OrderListPage()
+        : base("order", "order.list") { }
 
 
         // ----------------------------------------------------------------- //
         // This method is invoked at startup. Here we define all of the form //
-        // controls associated with game objects.                            //
+        // controls associated with order objects.                           //
         // ----------------------------------------------------------------- //
         public override void DefinePage() {
-            // list games page
+            // list orders page
             Dictionary<string, Widget> list = new Dictionary<string, Widget>();
             list = new Dictionary<string, Widget>();
-            list.Add("header",    new WidgetTitle("Games"));
+            list.Add("header",    new WidgetTitle("Orders"));
             list.Add("listview",  new WidgetListView(32, 132, 800-64, 400-28, OnListRecordClick, ListViewMakeVisible));
             list.Add("label1",    new WidgetLabel(32, 536, 80, 32, "Search"));
             list.Add("search",    new WidgetTextBox(112, 534, 368, 32, "", false, false, false));
             list.Add("addnew",    new WidgetButton(800-32-128, 532, 128, 32, "Add New", OnListAddNewClick));
             list.Add("delete",    new WidgetButton(800-32-256-16, 532, 128, 32, "Delete",  OnListDeleteClick));
 
-            Form1.formgen.AddPage("game.list", list);
-            TextBox search = Form1.formgen.GetControl("game.list", "search") as TextBox;
+            Form1.formgen.AddPage("order.list", list);
+            TextBox search = Form1.formgen.GetControl("order.list", "search") as TextBox;
             if (search != null) search.TextChanged += OnUpdateSearch;
         }
 
@@ -417,20 +458,21 @@ namespace GameShop {
             // the number of columns defined must match the number of values
             // passed in PopulateListItem
             listview.Columns.Clear();
-            listview.Columns.Add("Title", 100);
-            listview.Columns.Add("Genre", 100);
-            listview.Columns.Add("Stock", 100);
-            listview.Columns.Add("Info",  200);
+            listview.Columns.Add("Order No",    100);
+            listview.Columns.Add("User Name",   100);
+            listview.Columns.Add("Title",       100);
+            listview.Columns.Add("Order Date",  100);
+            listview.Columns.Add("Return Date", 100);
         }
 
 
         // ----------------------------------------------------------------- //
-        // this method enumerates the game list and populates listview rows. //
+        // this method enumerates the order list and populates listview rows //
         // ----------------------------------------------------------------- //
         public override void OnPopulateListRecords(ListView listview) {
             listview.Items.Clear();
-            foreach (KeyValuePair<string, Game> game in Form1.context.games) {
-                PopulateListItem(listview, game.Value);
+            foreach (KeyValuePair<string, Order> order in Form1.context.orders) {
+                PopulateListItem(listview, order.Value);
             }
         }
 
@@ -441,18 +483,16 @@ namespace GameShop {
         // All this method does is to assign a values to each field in the   //
         // list view record.                                                 //
         // ----------------------------------------------------------------- //
-        public bool PopulateListItem(ListView listview, Game game) {
+        public bool PopulateListItem(ListView listview, Order order) {
             // the number of values passed must match the number of columns
             // defined in PopulateListColumns
             string[] fields = new[] {
-                game.GetTitle(), game.GetGenre(),
-                game.GetStock().ToString(), game.GetInfo()
+                order.GetOrderNo(), order.GetUserName(), order.GetTitle(),
+                order.GetOrderDate(), order.GetReturnDate()
             };
             listview.Items.Add(new ListViewItem(fields));
             return true;
         }
     }
     #endregion
-
-
 }
