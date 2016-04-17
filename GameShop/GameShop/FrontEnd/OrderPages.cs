@@ -6,7 +6,7 @@
 //             Orders kee track of which members have reserved games. Orders //
 //             have a different page for each of the following tasks.        //
 //                 o order.list  (list box form)                             //
-//                 o order.form  (game member controls)                      //
+//                 o order.form  (order member controls)                     //
 //                 o order.view  (edit cancel buttons on the view form)      //
 //                 o order.edit  (submit cancel buttons on the edit form)    //
 //                 o order.make  (submit cancel buttons on the make form)    //
@@ -56,14 +56,6 @@ namespace GameShop {
             form.Add("orderdate",  new WidgetTextBox(272, 316, 320, 96, "", true, false, false));
             form.Add("returndate", new WidgetTextBox(272, 356, 320, 96, "", true, false, false));
             Form1.formgen.AddPage("order.form", form);
-        }
-
-
-        // ----------------------------------------------------------------- //
-        // This method is invoked on display, now we perform any last second //
-        // adjustments to the controls associated with this page.            //
-        // ----------------------------------------------------------------- //
-        public override void DisplayPage() {
         }
 
 
@@ -123,26 +115,6 @@ namespace GameShop {
 
 
         // ----------------------------------------------------------------- //
-        // This method is invoked on display, now we perform any last second //
-        // adjustments to the controls associated with this page.            //
-        // ----------------------------------------------------------------- //
-        public override void DisplayPage() {
-        }
-
-
-        // ----------------------------------------------------------------- //
-        // Clicking edit on the view page will reroute the user to the edit  //
-        // page and populate the form with the fields from the entity.       //
-        // ----------------------------------------------------------------- //
-        public void OnViewEditClick(object sender, EventArgs e) {
-            string pagename = typename + ".edit";
-            Form1.formgen.BuildPage(pagename);
-            FormPage formpage = Form1.formgen.GetPage(typename + ".form") as FormPage;
-            formpage.OnPopulateForm(pagename);
-        }
-
-
-        // ----------------------------------------------------------------- //
         // Clicking order on the view page will reroute the user to an order //
         // page and populate the form with the fields from the entity.       //
         // ----------------------------------------------------------------- //
@@ -183,14 +155,6 @@ namespace GameShop {
             edit.Add("submit",  new WidgetButton(464, 428, 128, 32, "Submit", OnEditSubmitClick));
             edit.Add("cancel",  new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("order.edit", edit);
-        }
-
-
-        // ----------------------------------------------------------------- //
-        // This method is invoked on display, now we perform any last second //
-        // adjustments to the controls associated with this page.            //
-        // ----------------------------------------------------------------- //
-        public override void DisplayPage() {
         }
 
 
@@ -281,7 +245,7 @@ namespace GameShop {
         // This method is invoked on display, now we perform any last second //
         // adjustments to the controls associated with this page.            //
         // ----------------------------------------------------------------- //
-        public override void DisplayPage() {
+        public override void OnLoadPage() {
             DateTime now = DateTime.Now;
             string today   = now.ToShortDateString();
             string orderno = "x" + Form1.context.orders.Count().ToString("000");
@@ -384,14 +348,6 @@ namespace GameShop {
 
 
         // ----------------------------------------------------------------- //
-        // This method is invoked on display, now we perform any last second //
-        // adjustments to the controls associated with this page.            //
-        // ----------------------------------------------------------------- //
-        public override void DisplayPage() {
-        }
-
-
-        // ----------------------------------------------------------------- //
         // this method deletes a game object after warning the user.         //
         // ----------------------------------------------------------------- //
         public void OnDropDeleteClick(object sender, EventArgs e) {
@@ -438,14 +394,6 @@ namespace GameShop {
             Form1.formgen.AddPage("order.list", list);
             TextBox search = Form1.formgen.GetControl("order.list", "search") as TextBox;
             if (search != null) search.TextChanged += OnUpdateSearch;
-        }
-
-
-        // ----------------------------------------------------------------- //
-        // This method is invoked on display, now we perform any last second //
-        // adjustments to the controls associated with this page.            //
-        // ----------------------------------------------------------------- //
-        public override void DisplayPage() {
         }
 
 

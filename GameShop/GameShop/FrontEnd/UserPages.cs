@@ -64,14 +64,6 @@ namespace GameShop {
 
 
         // ----------------------------------------------------------------- //
-        // This method is invoked on display, now we perform any last second //
-        // adjustments to the controls associated with this page.            //
-        // ----------------------------------------------------------------- //
-        public override void DisplayPage() {
-        }
-
-
-        // ----------------------------------------------------------------- //
         // this method populates the fields within a form page.              //
         // ----------------------------------------------------------------- //
         public override void OnPopulateForm(string page) {
@@ -115,26 +107,6 @@ namespace GameShop {
             view.Add("cancel",   new WidgetButton(272, 512, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("user.view", view);
         }
-
-
-        // ----------------------------------------------------------------- //
-        // This method is invoked on display, now we perform any last second //
-        // adjustments to the controls associated with this page.            //
-        // ----------------------------------------------------------------- //
-        public override void DisplayPage() {
-        }
-
-
-        // ----------------------------------------------------------------- //
-        // Clicking edit on the view page will reroute the user to the edit  //
-        // page and populate the form with the fields from the entity.       //
-        // ----------------------------------------------------------------- //
-        public void OnViewEditClick(object sender, EventArgs e) {
-            string pagename = typename + ".edit";
-            Form1.formgen.BuildPage(pagename);
-            FormPage formpage = Form1.formgen.GetPage(typename + ".form") as FormPage;
-            formpage.OnPopulateForm(pagename);
-        }
     }
     #endregion
 
@@ -161,14 +133,6 @@ namespace GameShop {
             edit.Add("submit",    new WidgetButton(464, 512, 128, 32, "Submit", OnEditSubmitClick));
             edit.Add("cancel",    new WidgetButton(272, 512, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("user.edit", edit);
-        }
-
-
-        // ----------------------------------------------------------------- //
-        // This method is invoked on display, now we perform any last second //
-        // adjustments to the controls associated with this page.            //
-        // ----------------------------------------------------------------- //
-        public override void DisplayPage() {
         }
 
 
@@ -251,14 +215,6 @@ namespace GameShop {
             make.Add("submit",    new WidgetButton(464, 512, 128, 32, "Submit", OnMakeSubmitClick));
             make.Add("cancel",    new WidgetButton(272, 512, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("user.make", make);
-        }
-
-
-        // ----------------------------------------------------------------- //
-        // This method is invoked on display, now we perform any last second //
-        // adjustments to the controls associated with this page.            //
-        // ----------------------------------------------------------------- //
-        public override void DisplayPage() {
         }
 
 
@@ -346,14 +302,6 @@ namespace GameShop {
 
 
         // ----------------------------------------------------------------- //
-        // This method is invoked on display, now we perform any last second //
-        // adjustments to the controls associated with this page.            //
-        // ----------------------------------------------------------------- //
-        public override void DisplayPage() {
-        }
-
-
-        // ----------------------------------------------------------------- //
         // this method deletes a user object after warning the user.         //
         // ----------------------------------------------------------------- //
         public void OnDropDeleteClick(object sender, EventArgs e) {
@@ -405,14 +353,6 @@ namespace GameShop {
 
 
         // ----------------------------------------------------------------- //
-        // This method is invoked on display, now we perform any last second //
-        // adjustments to the controls associated with this page.            //
-        // ----------------------------------------------------------------- //
-        public override void DisplayPage() {
-        }
-
-
-        // ----------------------------------------------------------------- //
         // this method gets invoked automatically by the list view control   //
         // any time the list view needs to be updated.                       //
         // All this method does is to assign a name to each required column. //
@@ -460,6 +400,4 @@ namespace GameShop {
         }
     }
     #endregion
-
-
 }

@@ -174,7 +174,7 @@ namespace GameShop {
 
             // activate new form layout
             Page page = GetPage(pagename);
-            if (page != null) page.DisplayPage();
+            if (page != null) page.OnLoadPage();
             Form1.form.ResumeLayout();
             return true;
         }
@@ -276,7 +276,5 @@ namespace GameShop {
             return pagename;
         }
         #endregion
-
-
     }
 }

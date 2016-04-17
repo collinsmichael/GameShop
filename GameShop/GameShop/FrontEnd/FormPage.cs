@@ -41,7 +41,15 @@ namespace GameShop {
         // pure virtuals                                                     //
         // ----------------------------------------------------------------- //
         public abstract void DefinePage();
-        public abstract void DisplayPage();
+
+
+        // ----------------------------------------------------------------- //
+        // virtuals                                                          //
+        // ----------------------------------------------------------------- //
+        public virtual void OnLoadPage() {
+            // override this method to apply any last minute modifications
+            // to a page (setting the current date, or generating ids)
+        }
 
 
         // ----------------------------------------------------------------- //
@@ -51,6 +59,18 @@ namespace GameShop {
         public void OnCancelClick(object sender, EventArgs e) {
             string pagename = typename + ".list";
             Form1.formgen.BuildPage(pagename);
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // Clicking edit on the view page will reroute the user to the edit  //
+        // page and populate the form with the fields from the entity.       //
+        // ----------------------------------------------------------------- //
+        public void OnViewEditClick(object sender, EventArgs e) {
+            string pagename = typename + ".edit";
+            Form1.formgen.BuildPage(pagename);
+            FormPage formpage = Form1.formgen.GetPage(typename + ".form") as FormPage;
+            formpage.OnPopulateForm(pagename);
         }
     }
     #endregion
@@ -210,6 +230,4 @@ namespace GameShop {
         }
     }
     #endregion
-
-
 }

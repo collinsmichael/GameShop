@@ -65,14 +65,6 @@ namespace GameShop {
 
 
         // ----------------------------------------------------------------- //
-        // This method is invoked on display, now we perform any last second //
-        // adjustments to the controls associated with this page.            //
-        // ----------------------------------------------------------------- //
-        public override void DisplayPage() {
-        }
-
-
-        // ----------------------------------------------------------------- //
         // This method gets invoked when the user presses the logout button. //
         // Log on credentials are revoked and access is revoked.             //
         // ----------------------------------------------------------------- //
