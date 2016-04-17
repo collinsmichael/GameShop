@@ -23,12 +23,13 @@
 //   x  Define Order class
 //   x  Reserve copies of games
 //   x  Return copies of games
+//   x  User account priveledges (BlackList class)
 
 
 // ToDo List:
+//   o  Refactor code - eliminate redundent code in FormPage classes
 //   o  Proper user classes, with hierarchy
 //   o  Proper game classes
-//   o  User account priveledges
 //   o  Report class implemenation
 //   o  Design Doc entries for Widget API's
 //   o  Design Doc entries for User/Game/Order classes

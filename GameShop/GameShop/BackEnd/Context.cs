@@ -215,6 +215,11 @@ namespace GameShop {
             games  = new Dictionary<string, Game>();
             orders = new Dictionary<string, Order>();
 
+            logged_user    = "";
+            selected_user  = "mike";
+            selected_game  = "pacman";
+            selected_order = "x000";
+
             // mockup a logon page
             users = new Dictionary<string, User>();
             users.Add("mike",   new User("mike",   "letmein", "mike",   "collins", "mike@collins.com", "limerick", "061-123456"));
@@ -230,10 +235,6 @@ namespace GameShop {
             orders.Add("x000", new Order("x000", "mike",   "mario",     "01/04/2016", ""));
             orders.Add("x001", new Order("x001", "louise", "pacman",    "02/04/2016", ""));
             orders.Add("x002", new Order("x002", "alan",   "asteroids", "03/04/2016", ""));
-
-            selected_user  = "mike";
-            selected_game  = "pacman";
-            selected_order = "x000";
         }
 
 

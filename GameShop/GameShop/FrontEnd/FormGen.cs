@@ -27,6 +27,7 @@ namespace GameShop {
         public Dictionary<string, Dictionary<string, Control>> control_dict;
         public Dictionary<string, Dictionary<string, Widget>>  widgets_dict;
         public Dictionary<string, Page>  page_dict;
+        private BlackList blacklist;
 
 
         #region controliio
@@ -118,6 +119,7 @@ namespace GameShop {
         // the form.                                                         //
         // ----------------------------------------------------------------- //
         public bool BuildPage(string pagename) {
+            if (blacklist.IsBlackListed(pagename)) return false;
             string[] parts = pagename.Split(new char[] {'.'});
             string formname = GetFormName(pagename);
 
@@ -146,12 +148,20 @@ namespace GameShop {
 
             // populate the form
             foreach (KeyValuePair<string, Control> control in controls) {
+                string fullyqualified = pagename + "." + control.Key;
+                if (blacklist.IsBlackListed(fullyqualified)) {
+                    continue;
+                }
                 Form1.form.Controls.Add(control.Value);
             }
 
             Dictionary<string, Control> extras;
             control_dict.TryGetValue(pagename, out extras);
             foreach (KeyValuePair<string, Control> control in extras) {
+                string fullyqualified = pagename + "." + control.Key;
+                if (blacklist.IsBlackListed(fullyqualified)) {
+                    continue;
+                }
                 Form1.form.Controls.Add(control.Value);
             }
 
@@ -179,6 +189,7 @@ namespace GameShop {
             control_dict = new Dictionary<string, Dictionary<string, Control>>();
             widgets_dict = new Dictionary<string, Dictionary<string, Widget>>();
             page_dict    = new Dictionary<string, Page>();
+            blacklist    = new BlackList();
         }
 
 
