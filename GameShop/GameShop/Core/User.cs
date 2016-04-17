@@ -33,6 +33,7 @@ namespace GameShop {
         protected string email;
         protected string address;
         protected string phoneno;
+        protected string dateofbirth;
 
 
         // ----------------------------------------------------------------- //
@@ -45,6 +46,7 @@ namespace GameShop {
         public string GetEmail() { return email; }
         public string GetAddress() { return address; }
         public string GetPhoneNo() { return phoneno; }
+        public string GetDateOfBirth() { return dateofbirth; }
 
         public bool SetUserName(string UserName) {
             Regex regexusername = new Regex(@"^[a-zA-Z][a-zA-Z0-9_.-]{1,15}");
@@ -90,18 +92,27 @@ namespace GameShop {
         }
 
 
+        public bool SetDateOfBirth(string DateOfBirth) {
+            Regex regexdate = new Regex(@"^[0-9]{1,2}[-/.]{1}[0-9]{1,2}[-/.]{1}[0-9]{2,4}");
+        	if (regexdate.Match(DateOfBirth).Success) dateofbirth = DateOfBirth;
+            else MessageBox.Show("'" + DateOfBirth + "'\nIs not a valid date");
+            return regexdate.Match(DateOfBirth).Success;
+        }
+
+
         // ----------------------------------------------------------------- //
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
         public User()
         : base("user") {
-            username  = "";
-            password  = "";
-            firstname = "";
-            surname   = "";
-            email     = "";
-            address   = "";
-            phoneno   = "";
+            username    = "";
+            password    = "";
+            firstname   = "";
+            surname     = "";
+            email       = "";
+            address     = "";
+            phoneno     = "";
+            dateofbirth = "";
         }
 
 
@@ -110,7 +121,7 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         public User(string UserName, string PassWord,
                     string FirstName, string SurName, string Email,
-                    string Address, string PhoneNo)
+                    string Address, string PhoneNo, string DateOfBirth)
         : base("user") {
             SetUserName(UserName);
             SetPassWord(PassWord);
@@ -119,6 +130,7 @@ namespace GameShop {
             SetEmail(Email);
             SetAddress(Address);
             SetPhoneNo(PhoneNo);
+            SetDateOfBirth(DateOfBirth);
         }
 
 
@@ -133,6 +145,7 @@ namespace GameShop {
             if (regex.Match(email).Success) return true;
             if (regex.Match(address).Success) return true;
             if (regex.Match(phoneno).Success) return true;
+            if (regex.Match(dateofbirth).Success) return true;
             return false;
         }
     }

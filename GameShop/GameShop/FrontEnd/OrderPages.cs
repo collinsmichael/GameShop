@@ -46,15 +46,15 @@ namespace GameShop {
         public override void DefinePage() {
             // basic form fields
             Dictionary<string, Widget> form = new Dictionary<string, Widget>();
-            form.Add("label1", new WidgetLabel(150, 196, 122, 32, "Order No"));
-            form.Add("label2", new WidgetLabel(150, 236, 122, 32, "User Name"));
-            form.Add("label3", new WidgetLabel(150, 276, 122, 32, "Title"));
-            form.Add("label4", new WidgetLabel(150, 316, 122, 32, "Order Date"));
-            form.Add("label5", new WidgetLabel(150, 356, 122, 32, "Return Date"));
-            form.Add("username",   new WidgetTextBox(272, 236, 320, 32, "", true, false, false));
-            form.Add("title",      new WidgetTextBox(272, 276, 320, 32, "", true, false, false));
-            form.Add("orderdate",  new WidgetTextBox(272, 316, 320, 96, "", true, false, false));
-            form.Add("returndate", new WidgetTextBox(272, 356, 320, 96, "", true, false, false));
+            form.Add("label1",     new WidgetLabel(150, 156, 122, 32, "Order No"));
+            form.Add("label2",     new WidgetLabel(150, 196, 122, 32, "User Name"));
+            form.Add("label3",     new WidgetLabel(150, 236, 122, 32, "Title"));
+            form.Add("label4",     new WidgetLabel(150, 276, 122, 32, "Order Date"));
+            form.Add("label5",     new WidgetLabel(150, 316, 122, 32, "Return Date"));
+            form.Add("username",   new WidgetTextBox(272, 192, 320, 32, "", true, false, false));
+            form.Add("title",      new WidgetTextBox(272, 232, 320, 32, "", true, false, false));
+            form.Add("orderdate",  new WidgetTextBox(272, 272, 320, 96, "", true, false, false));
+            form.Add("returndate", new WidgetTextBox(272, 312, 320, 96, "", true, false, false));
             Form1.formgen.AddPage("order.form", form);
         }
 
@@ -106,7 +106,7 @@ namespace GameShop {
             // extra fields for view page
             Dictionary<string, Widget> view = new Dictionary<string, Widget>();
             view.Add("header",  new WidgetTitle("View Order"));
-            view.Add("orderno", new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
+            view.Add("orderno", new WidgetTextBox(272, 152, 320, 32, "", true, false, false));
             view.Add("edit",    new WidgetButton(464, 428, 128, 32, "Edit", OnViewEditClick));
             view.Add("return",  new WidgetButton(272, 428, 128, 32, "Return", OnViewReturnClick));
             view.Add("cancel",  new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
@@ -151,7 +151,7 @@ namespace GameShop {
             // extra fields for edit page
             Dictionary<string, Widget> edit = new Dictionary<string, Widget>();
             edit.Add("header",  new WidgetTitle("Edit Order"));
-            edit.Add("orderno", new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
+            edit.Add("orderno", new WidgetTextBox(272, 152, 320, 32, "", true, false, false));
             edit.Add("submit",  new WidgetButton(464, 428, 128, 32, "Submit", OnEditSubmitClick));
             edit.Add("cancel",  new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("order.edit", edit);
@@ -234,7 +234,7 @@ namespace GameShop {
             // extra fields for make page
             Dictionary<string, Widget> make = new Dictionary<string, Widget>();
             make.Add("header",  new WidgetTitle("New Order"));
-            make.Add("orderno", new WidgetTextBox(272, 196, 320, 32, "", false, false, false));
+            make.Add("orderno", new WidgetTextBox(272, 152, 320, 32, "", false, false, false));
             make.Add("submit",  new WidgetButton(464, 428, 128, 32, "Submit", OnMakeSubmitClick));
             make.Add("cancel",  new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("order.make", make);
@@ -340,7 +340,7 @@ namespace GameShop {
             // extra fields for drop page
             Dictionary<string, Widget> drop = new Dictionary<string, Widget>();
             drop.Add("header",  new WidgetTitle("Delete Order"));
-            drop.Add("orderno", new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
+            drop.Add("orderno", new WidgetTextBox(272, 152, 320, 32, "", true, false, false));
             drop.Add("delete",  new WidgetButton(464, 428, 128, 32, "Delete", OnDropDeleteClick));
             drop.Add("cancel",  new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("order.drop", drop);

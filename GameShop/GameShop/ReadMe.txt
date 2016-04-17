@@ -24,6 +24,7 @@
 //   x  Reserve copies of games
 //   x  Return copies of games
 //   x  User account priveledges (BlackList class)
+//   x  Added AgeRating member to Game, and DateOfBirth member to User
 
 
 // ToDo List:
@@ -34,3 +35,4 @@
 //   o  Design Doc entries for Widget API's
 //   o  Design Doc entries for User/Game/Order classes
 //   o  Regex sanity check during Edit/Create objects
+//   o  Use Game.AgeRating and Compare it to User.DateOfBirth when ordering a Game.

@@ -46,13 +46,15 @@ namespace GameShop {
         public override void DefinePage() {
             // basic form fields
             Dictionary<string, Widget> form = new Dictionary<string, Widget>();
-            form.Add("label1", new WidgetLabel(150, 196, 122, 32, "Title"));
-            form.Add("label2", new WidgetLabel(150, 236, 122, 32, "Genre"));
-            form.Add("label3", new WidgetLabel(150, 276, 122, 32, "Stock"));
-            form.Add("label4", new WidgetLabel(150, 316, 122, 32, "Info"));
-            form.Add("genre",  new WidgetTextBox(272, 236, 320, 32, "", true, false, false));
-            form.Add("stock",  new WidgetTextBox(272, 276, 320, 32, "", true, false, false));
-            form.Add("info",   new WidgetTextBox(272, 316, 320, 96, "", true, true,  false));
+            form.Add("label1",     new WidgetLabel(150, 156, 122, 32, "Title"));
+            form.Add("label2",     new WidgetLabel(150, 196, 122, 32, "Genre"));
+            form.Add("label3",     new WidgetLabel(150, 236, 122, 32, "Age Rating"));
+            form.Add("label4",     new WidgetLabel(150, 276, 122, 32, "Stock"));
+            form.Add("label5",     new WidgetLabel(150, 316, 122, 32, "Info"));
+            form.Add("genre",      new WidgetTextBox(272, 192, 320, 32, "", true, false, false));
+            form.Add("agerating",  new WidgetTextBox(272, 232, 320, 32, "", true, false, false));
+            form.Add("stock",      new WidgetTextBox(272, 272, 320, 32, "", true, false, false));
+            form.Add("info",       new WidgetTextBox(272, 312, 320, 96, "", true, true,  false));
             Form1.formgen.AddPage("game.form", form);
         }
 
@@ -66,10 +68,11 @@ namespace GameShop {
             if (page != "game.make") {
                 game = Form1.context.GetGame(Form1.context.GetSelectedGame());
             }
-            (Form1.formgen.GetControl(page, "title") as TextBox).Text = game.GetTitle();
-            (Form1.formgen.GetControl(page, "genre") as TextBox).Text = game.GetGenre();
-            (Form1.formgen.GetControl(page, "stock") as TextBox).Text = game.GetStock().ToString();
-            (Form1.formgen.GetControl(page, "info")  as TextBox).Text = game.GetInfo();
+            (Form1.formgen.GetControl(page, "title")     as TextBox).Text = game.GetTitle();
+            (Form1.formgen.GetControl(page, "genre")     as TextBox).Text = game.GetGenre();
+            (Form1.formgen.GetControl(page, "agerating") as TextBox).Text = game.GetAgeRating();
+            (Form1.formgen.GetControl(page, "stock")     as TextBox).Text = game.GetStock().ToString();
+            (Form1.formgen.GetControl(page, "info")      as TextBox).Text = game.GetInfo();
         }
     }
     #endregion
@@ -93,7 +96,7 @@ namespace GameShop {
             // extra fields for view page
             Dictionary<string, Widget> view = new Dictionary<string, Widget>();
             view.Add("header", new WidgetTitle("View Game"));
-            view.Add("title",  new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
+            view.Add("title",  new WidgetTextBox(272, 152, 320, 32, "", true, false, false));
             view.Add("edit",   new WidgetButton(464, 428, 128, 32, "Edit", OnViewEditClick));
             view.Add("order",  new WidgetButton(272, 428, 128, 32, "Order", OnViewOrderClick));
             Form1.formgen.AddPage("game.view", view);
@@ -134,7 +137,7 @@ namespace GameShop {
             // extra fields for edit page
             Dictionary<string, Widget> edit = new Dictionary<string, Widget>();
             edit.Add("header", new WidgetTitle("Edit Game"));
-            edit.Add("title",  new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
+            edit.Add("title",  new WidgetTextBox(272, 152, 320, 32, "", true, false, false));
             edit.Add("submit", new WidgetButton(464, 428, 128, 32, "Submit", OnEditSubmitClick));
             edit.Add("cancel", new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("game.edit", edit);
@@ -212,7 +215,7 @@ namespace GameShop {
             // extra fields for make page
             Dictionary<string, Widget> make = new Dictionary<string, Widget>();
             make.Add("header", new WidgetTitle("New Game"));
-            make.Add("title",  new WidgetTextBox(272, 196, 320, 32, "", false, false, false));
+            make.Add("title",  new WidgetTextBox(272, 152, 320, 32, "", false, false, false));
             make.Add("submit", new WidgetButton(464, 428, 128, 32, "Submit", OnMakeSubmitClick));
             make.Add("cancel", new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("game.make", make);
@@ -291,7 +294,7 @@ namespace GameShop {
             // extra fields for drop page
             Dictionary<string, Widget> drop = new Dictionary<string, Widget>();
             drop.Add("header", new WidgetTitle("Delete Game"));
-            drop.Add("title",  new WidgetTextBox(272, 196, 320, 32, "", true, false, false));
+            drop.Add("title",  new WidgetTextBox(272, 152, 320, 32, "", true, false, false));
             drop.Add("delete", new WidgetButton(464, 428, 128, 32, "Delete", OnDropDeleteClick));
             drop.Add("cancel", new WidgetButton(272, 428, 128, 32, "Cancel", OnCancelClick));
             Form1.formgen.AddPage("game.drop", drop);
@@ -357,10 +360,11 @@ namespace GameShop {
             // the number of columns defined must match the number of values
             // passed in PopulateListItem
             listview.Columns.Clear();
-            listview.Columns.Add("Title", 100);
-            listview.Columns.Add("Genre", 100);
-            listview.Columns.Add("Stock", 100);
-            listview.Columns.Add("Info",  200);
+            listview.Columns.Add("Title",      100);
+            listview.Columns.Add("Genre",      100);
+            listview.Columns.Add("Age Rating", 100);
+            listview.Columns.Add("Stock",      100);
+            listview.Columns.Add("Info",       200);
         }
 
 
@@ -385,7 +389,7 @@ namespace GameShop {
             // the number of values passed must match the number of columns
             // defined in PopulateListColumns
             string[] fields = new[] {
-                game.GetTitle(), game.GetGenre(),
+                game.GetTitle(), game.GetGenre(), game.GetAgeRating(),
                 game.GetStock().ToString(), game.GetInfo()
             };
             listview.Items.Add(new ListViewItem(fields));

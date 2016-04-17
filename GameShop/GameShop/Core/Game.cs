@@ -25,6 +25,7 @@ namespace GameShop {
     public class Game : Entity {
         protected string title;
         protected string genre;
+        protected string agerating;
         protected string info;
         protected int    stock;
 
@@ -32,14 +33,16 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         // Getters and Setters.                                              //
         // ----------------------------------------------------------------- //
-        public string GetTitle()             { return title;  }
-        public string GetGenre()             { return genre;  }
-        public string GetInfo()              { return info;   }
-        public int    GetStock()             { return stock;  }
+        public string GetTitle() { return title; }
+        public string GetGenre() { return genre; }
+        public int    GetStock() { return stock; }
+        public string GetAgeRating() { return agerating; }
+        public string GetInfo() { return info; }
         public void   SetTitle(string Title) { title = Title; }
         public void   SetGenre(string Genre) { genre = Genre; }
-        public void   SetInfo(string Info)   { info  = Info;  }
-        public void   SetStock(int Stock)    { stock = Stock; }
+        public void   SetStock(int Stock) { stock = Stock; }
+        public void   SetAgeRating(string AgeRating) { agerating = AgeRating; }
+        public void   SetInfo(string Info) { info = Info; }
 
 
         // ----------------------------------------------------------------- //
@@ -47,22 +50,25 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         public Game()
         : base("game") {
-            title = "";
-            genre = "";
-            stock = 0;
-            info  = "";
+            title     = "";
+            genre     = "";
+            stock     = 0;
+            agerating = "";
+            info      = "";
         }
 
 
         // ----------------------------------------------------------------- //
         // Factory constructor.                                              //
         // ----------------------------------------------------------------- //
-        public Game(string Title, string Genre, int Stock, string Info)
+        public Game(string Title, string Genre, string AgeRating, int Stock,
+                    string Info)
         : base("game") {
-            title = Title;
-            genre = Genre;
-            stock = Stock;
-            info  = Info;
+            title     = Title;
+            genre     = Genre;
+            stock     = Stock;
+            agerating = AgeRating;
+            info      = Info;
         }
 
 
@@ -72,8 +78,9 @@ namespace GameShop {
         public override bool RegexMatch(Regex regex) {
             if (regex.Match(title).Success) return true;
             if (regex.Match(genre).Success) return true;
-            if (regex.Match(info).Success) return true;
             if (regex.Match(stock.ToString()).Success) return true;
+            if (regex.Match(agerating).Success) return true;
+            if (regex.Match(info).Success) return true;
             return false;
         }
     }

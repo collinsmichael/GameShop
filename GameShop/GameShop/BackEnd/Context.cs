@@ -222,14 +222,14 @@ namespace GameShop {
 
             // mockup a logon page
             users = new Dictionary<string, User>();
-            users.Add("mike",   new User("mike",   "letmein", "mike",   "collins", "mike@collins.com", "limerick", "061-123456"));
-            users.Add("louise", new User("louise", "letmein", "louise", "mckeown", "louise@mckeown.com", "limerick", "087-9876543"));
-            users.Add("alan",   new User("alan",   "letmein", "alan",   "redding", "alan@redding.com", "limerick", "1800-555-12345"));
+            users.Add("mike",   new User("mike",   "letmein", "mike",   "collins", "mike@collins.com", "limerick", "061-123456", "01/01/1990"));
+            users.Add("louise", new User("louise", "letmein", "louise", "mckeown", "louise@mckeown.com", "limerick", "087-9876543", "01/01/1990"));
+            users.Add("alan",   new User("alan",   "letmein", "alan",   "redding", "alan@redding.com", "limerick", "1800-555-12345", "01/01/1990"));
 
             games = new Dictionary<string, Game>();
-            games.Add("mario",     new Game("mario",     "platform", 10, "can mario save the princess?"));
-            games.Add("pacman",    new Game("pacman",    "maze",     10, "help pacman get out of the ghost ridden maze"));
-            games.Add("asteroids", new Game("asteroids", "shooter",  10, "save the universe or die trying"));
+            games.Add("mario",     new Game("mario",     "platform", "12", 10, "can mario save the princess?"));
+            games.Add("pacman",    new Game("pacman",    "maze",     "12", 10, "help pacman get out of the ghost ridden maze"));
+            games.Add("asteroids", new Game("asteroids", "shooter",  "18", 10, "save the universe or die trying"));
 
             orders = new Dictionary<string, Order>();
             orders.Add("x000", new Order("x000", "mike",   "mario",     "01/04/2016", ""));

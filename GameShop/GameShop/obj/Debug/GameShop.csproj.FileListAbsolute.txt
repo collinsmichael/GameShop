@@ -78,3 +78,12 @@ C:\Users\cex123\Desktop\GroupProject\GameShop9\GameShop\obj\Debug\GameShop.Form1
 C:\Users\cex123\Desktop\GroupProject\GameShop9\GameShop\obj\Debug\GameShop.Properties.Resources.resources
 C:\Users\cex123\Desktop\GroupProject\GameShop9\GameShop\obj\Debug\GameShop.csproj.GenerateResource.Cache
 C:\Users\cex123\Desktop\GroupProject\GameShop9\GameShop\obj\Debug\GameShop.csprojResolveAssemblyReference.cache
+C:\Users\cex123\Desktop\GroupProject\GameShop10\GameShop\bin\Debug\GameShop.exe.config
+C:\Users\cex123\Desktop\GroupProject\GameShop10\GameShop\obj\Debug\GameShop.exe
+C:\Users\cex123\Desktop\GroupProject\GameShop10\GameShop\obj\Debug\GameShop.pdb
+C:\Users\cex123\Desktop\GroupProject\GameShop10\GameShop\obj\Debug\GameShop.csprojResolveAssemblyReference.cache
+C:\Users\cex123\Desktop\GroupProject\GameShop10\GameShop\obj\Debug\GameShop.Form1.resources
+C:\Users\cex123\Desktop\GroupProject\GameShop10\GameShop\obj\Debug\GameShop.Properties.Resources.resources
+C:\Users\cex123\Desktop\GroupProject\GameShop10\GameShop\obj\Debug\GameShop.csproj.GenerateResource.Cache
+C:\Users\cex123\Desktop\GroupProject\GameShop10\GameShop\bin\Debug\GameShop.exe
+C:\Users\cex123\Desktop\GroupProject\GameShop10\GameShop\bin\Debug\GameShop.pdb
