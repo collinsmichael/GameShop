@@ -351,6 +351,7 @@ namespace GameShop {
             list.Add("search",    new WidgetTextBox(112, 534, 368, 32, "", false, false, false));
             list.Add("addnew",    new WidgetButton(800-32-128, 532, 128, 32, "Add New", OnListAddNewClick));
             list.Add("delete",    new WidgetButton(800-32-256-16, 532, 128, 32, "Delete",  OnListDeleteClick));
+            list.Add("edit", new WidgetButton(800 - 32 - 256 - 16, 532, 128, 32, "Edit", OnListEditClick));
 
             Form1.formgen.AddPage("user.list", list);
             TextBox search = Form1.formgen.GetControl("user.list", "search") as TextBox;

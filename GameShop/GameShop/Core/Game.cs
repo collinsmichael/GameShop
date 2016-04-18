@@ -1,7 +1,7 @@
 ﻿// ========================================================================= //
 // File Name : Game.cs                                                       //
 // File Date : 12 April 2016                                                 //
-// Author(s) : Michael Collins, Louise McKeown, Alan Rowlands                //
+// Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
 // File Info : The Game class is at the early stages of work in progress.    //
 // ========================================================================= //
 

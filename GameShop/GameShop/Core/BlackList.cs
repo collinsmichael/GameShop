@@ -31,10 +31,10 @@ namespace GameShop {
             blacklists = new Dictionary<Type, List<string>>();
 
             List<string> userblacklist = new List<string> {
-                "user.drop",        // this will block the entire page from access
-                "user.list.delete", // this will block a specific control within the list page
-                "user.make",        // this will block the entire page from access
-                "user.list.addnew"  // this will block a specific control within the list page
+               // "user.drop",        // this will block the entire page from access
+               /// "user.list.delete", // this will block a specific control within the list page
+                //"user.make",        // this will block the entire page from access
+               // "user.list.addnew"  // this will block a specific control within the list page
             };
 
             blacklists.Add((new User()).GetType(), userblacklist);

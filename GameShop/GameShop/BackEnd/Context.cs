@@ -1,7 +1,7 @@
 ﻿// ========================================================================= //
 // File Name : Context.cs                                                    //
 // File Date : 12 April 2016                                                 //
-// Author(s) : Michael Collins, Louise McKeown, Alan Rowlands                //
+// Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
 // File Info : The Context class is responsible for maintaining the lists of //
 //             users and games. All object access must pass through Context. //
 // ========================================================================= //
@@ -25,10 +25,12 @@ namespace GameShop {
         public Dictionary<string, User>  users;  // list of all users
         public Dictionary<string, Game>  games;  // list of all games
         public Dictionary<string, Order> orders; // list of all orders
+        public Dictionary<string, Transaction> transactions;
         private string logged_user;              // user which is currently logged in
         private string selected_user;            // currently selected user
         private string selected_game;            // currently selected game
         private string selected_order;           // currently selected order
+        private string selected_transaction; 
 
 
         #region userio
@@ -134,7 +136,57 @@ namespace GameShop {
         }
         #endregion
 
-        
+
+        #region transactionio
+        // ----------------------------------------------------------------- //
+        // AddGame is used to add a defined game to the game list.           //
+        // Once a game has been added it can later be referred to by name.   //
+        // ----------------------------------------------------------------- //
+        public bool AddTransaction(string key, Transaction transaction)
+        {
+            if (transactions.ContainsKey(key)) transactions.Remove(key);
+            transactions.Add(key, transaction);
+            return true;
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // GetGame allows internal access to the contents of the game list.  //
+        // To access a game you must provide the title.                      //
+        // ----------------------------------------------------------------- //
+        public Transaction GetTransaction(string transactionId)
+        {
+            Transaction transaction = new Transaction();
+            if (!transactions.TryGetValue(transactionId, out transaction))
+            {
+                ///MessageBox.Show("Transaction '" + title + "' was not found!");
+                return transaction;
+            }
+            return transaction;
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // Returns the primary key of the currently selected game.           //
+        // ----------------------------------------------------------------- //
+        public string GetSelectedTransaction()
+        {
+            Transaction select_transaction = GetTransaction(selected_transaction);
+            if (select_transaction != null && select_transaction.GetTransactionId() == selected_transaction)
+            {
+                return selected_transaction;
+            }
+
+            foreach (KeyValuePair<string,Transaction> transaction in transactions)
+            {
+                selected_transaction = transaction.Key;
+                break;
+            }
+            return selected_transaction;
+        }
+        #endregion
+
+
         #region orderio
         // ----------------------------------------------------------------- //
         // AddOrder is used to add a defined order to the order list.        //
@@ -188,6 +240,7 @@ namespace GameShop {
             case "user":  return GetUser(Form1.context.GetSelectedUser());
             case "game":  return GetGame(Form1.context.GetSelectedGame());
             case "order": return GetOrder(Form1.context.GetSelectedOrder());
+            case "transaction": return GetTransaction(Form1.context.GetSelectedTransaction());
             }
             return null;
         }
@@ -201,6 +254,7 @@ namespace GameShop {
             case "user":  selected_user  = key; break;
             case "game":  selected_game  = key; break;
             case "order": selected_order = key; break;
+            case "transaction": selected_transaction = key; break;
             }
         }
         #endregion
@@ -224,15 +278,12 @@ namespace GameShop {
             users = new Dictionary<string, User>();
             users.Add("mike",   new User("mike",   "letmein", "mike",   "collins", "mike@collins.com", "limerick", "061-123456", "01/01/1990"));
             users.Add("louise", new User("louise", "letmein", "louise", "mckeown", "louise@mckeown.com", "limerick", "087-9876543", "01/01/1990"));
-            users.Add("alan",   new User("alan",   "letmein", "alan",   "rowlands", "alan@rowlands.com", "limerick", "1800-555-12345", "01/01/1990"));
+            users.Add("alan",   new User("alan",   "letmein", "alan",   "redding", "alan@redding.com", "limerick", "1800-555-12345", "01/01/1990"));
 
             games = new Dictionary<string, Game>();
             games.Add("mario",     new Game("mario",     "platform", "12", 10, "can mario save the princess?"));
             games.Add("pacman",    new Game("pacman",    "maze",     "12", 10, "help pacman get out of the ghost ridden maze"));
             games.Add("asteroids", new Game("asteroids", "shooter",  "18", 10, "save the universe or die trying"));
-            games.Add("fallout 4", new Game("fallout 4", "rpg",      "18", 10, "explore the post apocolyptic world after a nuclear fallout"));
-            games.Add("forza 2",   new Game("forza 2",   "racing",   "3",  10, "race over beautiful race tracks perfectly recreated from around the world in awide varity of cars"));
-            games.Add("minecraft", new Game("minecraft", "rpg",      "7",  10, "explore and build in a generated block world, let your imagination run wild"));
 
             orders = new Dictionary<string, Order>();
             orders.Add("x000", new Order("x000", "mike",   "mario",     "01/04/2016", ""));
