@@ -1,7 +1,7 @@
 ﻿// ========================================================================= //
 // File Name : Order.cs                                                      //
 // File Date : 12 April 2016                                                 //
-// Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
+// Author(s) : Michael Collins, Louise McKeown, Alan Rowlands                //
 // File Info : The order class is responsible for assigning copies of games  //
 //             to Member accounts.                                           //
 // ========================================================================= //

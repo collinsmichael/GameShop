@@ -1,7 +1,7 @@
 ﻿// ========================================================================= //
 // File Name : Context.cs                                                    //
 // File Date : 12 April 2016                                                 //
-// Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
+// Author(s) : Michael Collins, Louise McKeown, Alan Rowlands                //
 // File Info : The Context class is responsible for maintaining the lists of //
 //             users and games. All object access must pass through Context. //
 // ========================================================================= //
@@ -224,12 +224,15 @@ namespace GameShop {
             users = new Dictionary<string, User>();
             users.Add("mike",   new User("mike",   "letmein", "mike",   "collins", "mike@collins.com", "limerick", "061-123456", "01/01/1990"));
             users.Add("louise", new User("louise", "letmein", "louise", "mckeown", "louise@mckeown.com", "limerick", "087-9876543", "01/01/1990"));
-            users.Add("alan",   new User("alan",   "letmein", "alan",   "redding", "alan@redding.com", "limerick", "1800-555-12345", "01/01/1990"));
+            users.Add("alan",   new User("alan",   "letmein", "alan",   "rowlands", "alan@rowlands.com", "limerick", "1800-555-12345", "01/01/1990"));
 
             games = new Dictionary<string, Game>();
             games.Add("mario",     new Game("mario",     "platform", "12", 10, "can mario save the princess?"));
             games.Add("pacman",    new Game("pacman",    "maze",     "12", 10, "help pacman get out of the ghost ridden maze"));
             games.Add("asteroids", new Game("asteroids", "shooter",  "18", 10, "save the universe or die trying"));
+            games.Add("fallout 4", new Game("fallout 4", "rpg",      "18", 10, "explore the post apocolyptic world after a nuclear fallout"));
+            games.Add("forza 2",   new Game("forza 2",   "racing",   "3",  10, "race over beautiful race tracks perfectly recreated from around the world in awide varity of cars"));
+            games.Add("minecraft", new Game("minecraft", "rpg",      "7",  10, "explore and build in a generated block world, let your imagination run wild"));
 
             orders = new Dictionary<string, Order>();
             orders.Add("x000", new Order("x000", "mike",   "mario",     "01/04/2016", ""));
