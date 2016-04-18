@@ -1,7 +1,7 @@
 // ========================================================================= //
 // File Name : ReadMe.txt                                                    //
 // File Date : 12 April 2016                                                 //
-// Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
+// Author(s) : Michael Collins, Louise McKeown, Alan Rowlands                //
 // File Info : General ToDo lists, and progress status.                      //
 // ========================================================================= //
 
