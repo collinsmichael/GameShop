@@ -124,6 +124,15 @@ namespace GameShop {
             DateTime now = DateTime.Now;
             order.SetReturnDate(now.ToShortDateString());
 
+            //TODO: incerment stock
+            string title = (Form1.formgen.GetControl("order.view", "title") as TextBox).Text;
+            Game game = Form1.context.GetGame(title);
+            if (game == null) {
+                MessageBox.Show("Game not found! " + title);
+                return;
+            }
+            game.SetStock(game.GetStock()+1);
+
             string pagename = typename + ".view";
             Form1.formgen.BuildPage(pagename);
             FormPage formpage = Form1.formgen.GetPage(typename + ".form") as FormPage;
@@ -308,10 +317,23 @@ namespace GameShop {
             Form1.formgen.BuildPage("order.list");
             */
 
+            //TODO: decerment stock
+            string title = (Form1.formgen.GetControl("order.make", "title") as TextBox).Text;
+            Game game = Form1.context.GetGame(title);
+            if (game == null) {
+                MessageBox.Show("Game not found! " + title);
+                return;
+            }
+            if (game.GetStock() <= 0) {
+                MessageBox.Show("Game is out of stock! " + title);
+                return;
+            }
+            game.SetStock(game.GetStock()-1);
+
             Order order = new Order();
             order.SetOrderNo((Form1.formgen.GetControl("order.make", "orderno") as TextBox).Text);
             order.SetUserName((Form1.formgen.GetControl("order.make", "username") as TextBox).Text);
-            order.SetTitle((Form1.formgen.GetControl("order.make", "title") as TextBox).Text);
+            order.SetTitle(title);
             order.SetOrderDate((Form1.formgen.GetControl("order.make", "orderdate") as TextBox).Text);
 
             Form1.context.AddOrder(order.GetOrderNo(), order);

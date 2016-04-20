@@ -151,6 +151,7 @@ namespace GameShop {
             // TODO : Sanitize field data (use regular expression parsing)
             // TODO : If you're not using any of these please comment out
             //        rather than deleting these took a lot of time to build
+            /*
             #region sanitize
             Regex regexname = new Regex(@"^[A-Za-z]+", RegexOptions.IgnoreCase);
             Regex regexdate = new Regex(@"^[0-9]{1,2}[-/.]{1}[0-9]{1,2}[-/.]{1}[0-9]{2,4}");
@@ -184,11 +185,15 @@ namespace GameShop {
         	if (matchmail.Success) MessageBox.Show(matchmail.Value);
         	else                   MessageBox.Show("No Match");
             #endregion
-
-            Game game = Form1.context.GetGame(Form1.context.GetSelectedGame());
-            game.SetTitle((Form1.formgen.GetControl("game.edit", "title") as TextBox).Text);
-            game.SetGenre((Form1.formgen.GetControl("game.edit", "genre") as TextBox).Text);
-            game.SetInfo((Form1.formgen.GetControl("game.edit", "info") as TextBox).Text);
+            */
+            int stock = 0;
+            int.TryParse((Form1.formgen.GetControl("game.make", "stock") as TextBox).Text, out stock);
+            Game game = new Game();
+            game.SetTitle((Form1.formgen.GetControl("game.make", "title") as TextBox).Text);
+            game.SetGenre((Form1.formgen.GetControl("game.make", "genre") as TextBox).Text);
+            game.SetInfo((Form1.formgen.GetControl("game.make", "info") as TextBox).Text);
+            game.SetAgeRating((Form1.formgen.GetControl("game.make", "agerating") as TextBox).Text);
+            game.SetStock(stock);
 
             Form1.context.SetSelected("game", game.GetTitle());
             Form1.formgen.BuildPage("game.list");
@@ -229,6 +234,7 @@ namespace GameShop {
             // TODO : Sanitize field data (use regular expression parsing)
             // TODO : If you're not using any of these please comment out
             //        rather than deleting these took a lot of time to build
+            /*
             #region sanitize
             Regex regexname = new Regex(@"^[A-Za-z]+", RegexOptions.IgnoreCase);
             Regex regexdate = new Regex(@"^[0-9]{1,2}[-/.]{1}[0-9]{1,2}[-/.]{1}[0-9]{2,4}");
@@ -262,11 +268,15 @@ namespace GameShop {
         	if (matchmail.Success) MessageBox.Show(matchmail.Value);
         	else                   MessageBox.Show("No Match");
             #endregion
-
+            */
+            int stock = 0;
+            int.TryParse((Form1.formgen.GetControl("game.make", "stock") as TextBox).Text, out stock);
             Game game = new Game();
             game.SetTitle((Form1.formgen.GetControl("game.make", "title") as TextBox).Text);
             game.SetGenre((Form1.formgen.GetControl("game.make", "genre") as TextBox).Text);
             game.SetInfo((Form1.formgen.GetControl("game.make", "info") as TextBox).Text);
+            game.SetAgeRating((Form1.formgen.GetControl("game.make", "agerating") as TextBox).Text);
+            game.SetStock(stock);
 
             Form1.context.AddGame(game.GetTitle(), game);
             Form1.context.SetSelected("game", game.GetTitle());
