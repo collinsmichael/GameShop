@@ -344,6 +344,11 @@ namespace GameShop {
             orders.Add("x000", new Order("x000", "mike",   "mario",     "01/04/2016", ""));
             orders.Add("x001", new Order("x001", "louise", "pacman",    "02/04/2016", ""));
             orders.Add("x002", new Order("x002", "alan",   "asteroids", "03/04/2016", ""));
+
+            transactions = new Dictionary<string, Transaction>();
+            transactions.Add("z000", new Transaction(3, 1, 20, "mike",   "z000"));
+            transactions.Add("z001", new Transaction(3, 1, 20, "louise", "z001"));
+            transactions.Add("z002", new Transaction(3, 1, 20, "alan",   "z002"));
         }
 
 

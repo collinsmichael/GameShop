@@ -48,7 +48,6 @@ C:\Users\cex123\Documents\GitHub\GameShop\GameShop\GameShop\obj\Debug\GameShop.e
 C:\Users\cex123\Documents\GitHub\GameShop\GameShop\GameShop\obj\Debug\GameShop.pdb
 C:\Users\cex123\Documents\GitHub\GameShop\GameShop\GameShop\bin\Debug\GameShop.exe
 C:\Users\cex123\Documents\GitHub\GameShop\GameShop\GameShop\bin\Debug\GameShop.pdb
-C:\Users\cex123\Documents\GitHub\GameShop\GameShop\GameShop\obj\Debug\GameShop.csprojResolveAssemblyReference.cache
 C:\Users\cex123\Documents\GitHub\GameShop\GameShop\GameShop\obj\Debug\GameShop.Form1.resources
 C:\Users\cex123\Documents\GitHub\GameShop\GameShop\GameShop\obj\Debug\GameShop.Properties.Resources.resources
 C:\Users\cex123\Documents\GitHub\GameShop\GameShop\GameShop\obj\Debug\GameShop.csproj.GenerateResource.Cache
