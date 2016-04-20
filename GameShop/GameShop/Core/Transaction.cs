@@ -65,8 +65,7 @@ namespace GameShop
         // ----------------------------------------------------------------- //
         // pure virtuals                                                     //
         // ----------------------------------------------------------------- //
-        public override bool RegexMatch(Regex regex)
-        {
+        public override bool RegexMatch(Regex regex) {
             if (regex.Match(rentalFee.ToString()).Success) return true;
             if (regex.Match(lateReturnFee.ToString()).Success) return true;
             if (regex.Match(membershipFee.ToString()).Success) return true;
