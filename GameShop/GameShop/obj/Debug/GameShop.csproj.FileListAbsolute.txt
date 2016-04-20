@@ -95,3 +95,4 @@ C:\Users\Windows 8\Desktop\GameShopProject\GameShop-master\GameShop\GameShop\obj
 C:\Users\Windows 8\Desktop\GameShopProject\GameShop-master\GameShop\GameShop\obj\Debug\GameShop.Form1.resources
 C:\Users\Windows 8\Desktop\GameShopProject\GameShop-master\GameShop\GameShop\obj\Debug\GameShop.Properties.Resources.resources
 C:\Users\Windows 8\Desktop\GameShopProject\GameShop-master\GameShop\GameShop\obj\Debug\GameShop.csproj.GenerateResource.Cache
+C:\Users\cex123\Documents\GitHub\GameShop\GameShop\GameShop\obj\Debug\GameShop.csprojResolveAssemblyReference.cache
