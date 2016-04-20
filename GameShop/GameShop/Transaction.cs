@@ -43,6 +43,7 @@ namespace GameShop
         public Transaction()
             : base("transaction")
         {
+            transactionId = " ";
             rentalFee = 3;
             lateReturnFee = 1;//per day
             membershipFee = 20;
@@ -53,9 +54,10 @@ namespace GameShop
         // ----------------------------------------------------------------- //
         // Factory constructor.                                              //
         // ----------------------------------------------------------------- //
-        public Transaction(int RentalFee, int LateReturnFee, int MembershipFee,string Username)
+        public Transaction(int RentalFee, int LateReturnFee, int MembershipFee,string Username,string TransactionId)
             : base("transaction")
         {
+            transactionId = TransactionId;
             rentalFee = RentalFee;
             lateReturnFee = LateReturnFee;
             membershipFee = MembershipFee;
@@ -70,7 +72,6 @@ namespace GameShop
         {
             if (regex.Match(rentalFee.ToString()).Success) return true;
             if (regex.Match(lateReturnFee.ToString()).Success) return true;
-            if (regex.Match(membershipFee.ToString()).Success) return true;
             if (regex.Match(membershipFee.ToString()).Success) return true;
             if (regex.Match(username).Success) return true;
             return false;

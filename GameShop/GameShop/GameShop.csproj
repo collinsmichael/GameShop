@@ -72,8 +72,9 @@
     <Compile Include="FrontEnd\UserPages.cs" />
     <Compile Include="FrontEnd\Widget.cs" />
     <Compile Include="Staff.cs" />
+    <Compile Include="StaffFormPage.cs" />
     <Compile Include="Transaction.cs" />
-    <Compile Include="TransactionReportForm.cs" />
+    <Compile Include="FrontEnd\TransactionFormPage.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

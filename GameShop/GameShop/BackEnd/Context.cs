@@ -26,12 +26,13 @@ namespace GameShop {
         public Dictionary<string, Game>  games;  // list of all games
         public Dictionary<string, Order> orders; // list of all orders
         public Dictionary<string, Transaction> transactions;
+        public Dictionary<string, Staff> staffs;
         private string logged_user;              // user which is currently logged in
         private string selected_user;            // currently selected user
         private string selected_game;            // currently selected game
         private string selected_order;           // currently selected order
-        private string selected_transaction; 
-
+        private string selected_transaction;
+        private string selected_staff; 
 
         #region userio
         // ----------------------------------------------------------------- //
@@ -91,6 +92,72 @@ namespace GameShop {
             return GetUser(Form1.context.logged_user);
         }
         #endregion
+
+
+        #region staffio
+        // ----------------------------------------------------------------- //
+        // AddUser is used to add a defined user to the user list.           //
+        // Once a game has been added it can later be referred to by name.   //
+        // ----------------------------------------------------------------- //
+        public bool AddStaff(string key, Staff staff)
+        {
+            if (staffs.ContainsKey(key)) staffs.Remove(key);
+            staffs.Add(key, staff);
+            return true;
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // GetUser allows internal access to the contents of the user list.  //
+        // To access a user you must provide the username.                   //
+        // ----------------------------------------------------------------- //
+        public Staff GetStaff(string staffId)
+        {
+            Staff staff = new Staff();
+            if (!staffs.TryGetValue(staffId, out staff))
+            {
+                //MessageBox.Show("User '" + username + "' was not found!");
+                return staff;
+            }
+            return staff;
+        }
+
+       
+        // ----------------------------------------------------------------- //
+        // Returns the primary key of the currently selected user.           //
+        // ----------------------------------------------------------------- //
+        public string GetSelectedStaff()
+        {
+            Staff select_staff = GetStaff(selected_staff);
+            if (select_staff != null && select_staff.GetStaffId() == selected_staff)
+            {
+                return selected_staff;
+            }
+
+            foreach (KeyValuePair<string, Staff> staff in staffs)
+            {
+                selected_staff = staff.Key;
+                break;
+            }
+            return selected_staff;
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // Caches a local copy of the logged in users primary key            //
+        // ----------------------------------------------------------------- //
+     
+ //
+  
+        #endregion
+
+
+
+
+
+
+
+
 
 
         #region gameio
@@ -186,6 +253,9 @@ namespace GameShop {
         }
         #endregion
 
+  
+
+
 
         #region orderio
         // ----------------------------------------------------------------- //
@@ -254,6 +324,7 @@ namespace GameShop {
             case "user":  selected_user  = key; break;
             case "game":  selected_game  = key; break;
             case "order": selected_order = key; break;
+            case "staff": selected_staff = key; break;
             case "transaction": selected_transaction = key; break;
             }
         }
@@ -268,6 +339,8 @@ namespace GameShop {
             users  = new Dictionary<string, User>();
             games  = new Dictionary<string, Game>();
             orders = new Dictionary<string, Order>();
+            staffs = new Dictionary<string, Staff>();
+            transactions = new Dictionary<string, Transaction>();
 
             logged_user    = "";
             selected_user  = "mike";
@@ -289,6 +362,8 @@ namespace GameShop {
             orders.Add("x000", new Order("x000", "mike",   "mario",     "01/04/2016", ""));
             orders.Add("x001", new Order("x001", "louise", "pacman",    "02/04/2016", ""));
             orders.Add("x002", new Order("x002", "alan",   "asteroids", "03/04/2016", ""));
+
+            
         }
 
 
@@ -324,7 +399,29 @@ namespace GameShop {
             } catch {
                 MessageBox.Show("File not found! 'orders.bin'");
             }
+
+             try {
+                file = new FileStream("staffs.bin", FileMode.Open, FileAccess.Read);
+                formatter = new BinaryFormatter();
+                staffs = formatter.Deserialize(file) as Dictionary<string, Staff>;
+                file.Close();
+            } catch {
+                MessageBox.Show("File not found! 'staffs.bin'");
+            }
+
+             try
+             {
+                 file = new FileStream("transactions.bin", FileMode.Open, FileAccess.Read);
+                 formatter = new BinaryFormatter();
+                 transactions= formatter.Deserialize(file) as Dictionary<string, Transaction>;
+                 file.Close();
+             }
+             catch
+             {
+                 MessageBox.Show("File not found! 'transactions.bin'");
+             }
         }
+        
 
 
         // ----------------------------------------------------------------- //
@@ -348,6 +445,18 @@ namespace GameShop {
             formatter = new BinaryFormatter();
             formatter.Serialize(file, orders);
             file.Close();
+
+
+            file = new FileStream("staffs.bin", FileMode.OpenOrCreate, FileAccess.Write);
+            formatter = new BinaryFormatter();
+            formatter.Serialize(file, staffs);
+            file.Close();
+
+            file = new FileStream("transactions.bin", FileMode.OpenOrCreate, FileAccess.Write);
+            formatter = new BinaryFormatter();
+            formatter.Serialize(file, transactions);
+            file.Close();
+
         }
         #endregion
     }
