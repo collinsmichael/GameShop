@@ -106,6 +106,12 @@ namespace GameShop {
             }
 
             foreach (KeyValuePair<string, Control> control in controls) {
+                string fullyqualified = "header.page." + control.Key;
+                if (blacklist.IsBlackListed(fullyqualified)) {
+                    control.Value.Hide();
+                    continue;
+                }
+                control.Value.Show();
                 Form1.form.Controls.Add(control.Value);
             }
             return true;
@@ -150,8 +156,10 @@ namespace GameShop {
             foreach (KeyValuePair<string, Control> control in controls) {
                 string fullyqualified = pagename + "." + control.Key;
                 if (blacklist.IsBlackListed(fullyqualified)) {
+                    control.Value.Hide();
                     continue;
                 }
+                control.Value.Show();
                 Form1.form.Controls.Add(control.Value);
             }
 
@@ -239,6 +247,21 @@ namespace GameShop {
             page_dict.Add("order.edit",  new OrderEditPage());
             page_dict.Add("order.make",  new OrderMakePage());
             page_dict.Add("order.drop",  new OrderDropPage());
+
+            page_dict.Add("staff.list", new StaffListPage());
+            page_dict.Add("staff.form", new StaffFormPage());
+            page_dict.Add("staff.view", new StaffViewPage());
+            page_dict.Add("staff.edit", new StaffEditPage());
+            page_dict.Add("staff.make", new StaffMakePage());
+            page_dict.Add("staff.drop", new StaffDropPage());
+
+            page_dict.Add("transaction.list", new TransactionListPage());
+            page_dict.Add("transaction.form", new TransactionFormPage());
+            page_dict.Add("transaction.view", new TransactionViewPage());
+            page_dict.Add("transaction.edit", new TransactionEditPage());
+            page_dict.Add("transaction.make", new TransactionMakePage());
+           
+
             foreach (KeyValuePair<string, Page> page in page_dict) {
                 page.Value.DefinePage();
             }

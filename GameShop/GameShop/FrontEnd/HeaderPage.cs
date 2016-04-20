@@ -50,6 +50,8 @@ namespace GameShop {
             header.Add("games",  new WidgetRadio( 32, 16, 80, 32, "Games",  OnGamesClick));
             header.Add("users",  new WidgetRadio(112, 16, 80, 32, "Users",  OnUsersClick));
             header.Add("orders", new WidgetRadio(192, 16, 80, 32, "Orders", OnOrdersClick));
+            header.Add("transactions", new WidgetRadio(272, 16, 115, 32, "Transaction Report", OnTransactionsClick));
+            header.Add("staff", new WidgetRadio(387, 16, 80, 32, "Staff", OnStaffClick));
 
             Form1.formgen.AddPage("header.page", header);
             Label label = Form1.formgen.GetControl("header.page", "logged") as Label;
@@ -61,6 +63,10 @@ namespace GameShop {
             if (users != null) users.Appearance = Appearance.Button;
             RadioButton orders = Form1.formgen.GetControl("header.page", "orders") as RadioButton;
             if (orders != null) orders.Appearance = Appearance.Button;
+            RadioButton transactions = Form1.formgen.GetControl("header.page", "transactions") as RadioButton;
+            if (orders != null) transactions.Appearance = Appearance.Button;
+            RadioButton staff = Form1.formgen.GetControl("header.page", "staff") as RadioButton;
+            if (orders != null) staff.Appearance = Appearance.Button;
         }
 
 
@@ -86,11 +92,26 @@ namespace GameShop {
         // This method gets invoked when the user presses the logout button. //
         // Log on credentials are revoked and access is revoked.             //
         // ----------------------------------------------------------------- //
-        public void OnOrdersClick(object sender, EventArgs e) {
-            Form1.formgen.BuildPage("order.list");
+        public void OnTransactionsClick(object sender, EventArgs e) {
+            Form1.formgen.BuildPage("transaction.list");
         }
 
-
+        // ----------------------------------------------------------------- //
+        // This method gets invoked when the user presses the logout button. //
+        // Log on credentials are revoked and access is revoked.             //
+        // ----------------------------------------------------------------- //
+        public void OnStaffClick(object sender, EventArgs e)
+        {
+            Form1.formgen.BuildPage("staff.list");
+        }
+        // ----------------------------------------------------------------- //
+        // This method gets invoked when the user presses the logout button. //
+        // Log on credentials are revoked and access is revoked.             //
+        // ----------------------------------------------------------------- //
+        public void OnOrdersClick(object sender, EventArgs e)
+        {
+            Form1.formgen.BuildPage("order.list");
+        }
         // ----------------------------------------------------------------- //
         // This method gets invoked when the user presses the logout button. //
         // Log on credentials are revoked and access is revoked.             //

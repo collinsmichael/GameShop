@@ -24,20 +24,34 @@ using System.Windows.Forms;
 
 
 namespace GameShop {
-    class BlackList {
+    public class BlackList {
         private Dictionary<Type, List<string>> blacklists;
 
         public BlackList() {
             blacklists = new Dictionary<Type, List<string>>();
 
             List<string> userblacklist = new List<string> {
-                "user.drop",        // this will block the entire page from access
-                "user.list.delete", // this will block a specific control within the list page
-                "user.make",        // this will block the entire page from access
-                "user.list.addnew"  // this will block a specific control within the list page
+                "user.list",         "user.view",         "user.edit",         "user.make",         "user.drop",
+                "game.list",         "game.view",         "game.edit",         "game.make",         "game.drop",
+                "order.list",        "order.view",        "order.edit",        "order.make",        "order.drop",
+
+                "staff.list",        "staff.view",        "staff.edit",        "staff.make",        "staff.drop",
+                "transactions.list", "transactions.view", "transactions.edit", "transactions.make", "transactions.drop",
+                "header.page"
             };
 
+            List<string> staffblacklist = new List<string> {
+                "staff.list",        "staff.view",        "staff.edit",        "staff.make",        "staff.drop",
+                "game.drop",         "order.drop",        "transactions.drop",
+                "order.list.delete", "game.list.delete",
+                "header.page.staff"
+            };
+
+            List<string> managerblacklist = new List<string> { "" };
+
             blacklists.Add((new User()).GetType(), userblacklist);
+            blacklists.Add((new Staff()).GetType(), staffblacklist);
+            blacklists.Add((new Manager()).GetType(), managerblacklist);
         }
 
 
@@ -54,7 +68,6 @@ namespace GameShop {
             if (!blacklists.TryGetValue(logged.GetType(), out blacklist)) {
                 return false;
             }
-
             return blacklist.Contains(control);
         }
     }
