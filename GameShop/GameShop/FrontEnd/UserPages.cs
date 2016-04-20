@@ -1,7 +1,7 @@
 ﻿// ========================================================================= //
 // File Name : UserPages.cs                                                  //
 // File Date : 12 April 2016                                                 //
-// Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
+// Author(s) : Michael Collins, Louise McKeown, Alan Rowlands                //
 // File Info : The User Pages are responsible for representing the Users in  //
 //             the form. There are a number of User Pages each responsible   //
 //             for their own Form.                                           //
@@ -147,6 +147,16 @@ namespace GameShop {
             // TODO : Sanitize field data (use regular expression parsing)
             // TODO : If you're not using any of these please comment out
             //        rather than deleting these took a lot of time to build
+            User user = Form1.context.GetUser(Form1.context.GetSelectedUser());
+            string UserName = (Form1.formgen.GetControl("user.edit", "username") as TextBox).Text;
+            string FirstName =(Form1.formgen.GetControl("user.edit", "firstname") as TextBox).Text;
+            string Surname = (Form1.formgen.GetControl("user.edit", "surname") as TextBox).Text;
+            string Email = (Form1.formgen.GetControl("user.edit", "email") as TextBox).Text;
+            string SetPhoneNo = (Form1.formgen.GetControl("user.edit", "phone") as TextBox).Text;
+            string Address = (Form1.formgen.GetControl("user.edit", "address") as TextBox).Text;
+            string SetDateOfBirth = (Form1.formgen.GetControl("user.edit", "dateofbirth") as TextBox).Text;
+            string password = (Form1.formgen.GetControl("user.edit", "password") as TextBox).Text;
+
             #region sanitize
             Regex regexname = new Regex(@"^[A-Za-z]+", RegexOptions.IgnoreCase);
             Regex regexdate = new Regex(@"^[0-9]{1,2}[-/.]{1}[0-9]{1,2}[-/.]{1}[0-9]{2,4}");
@@ -189,7 +199,7 @@ namespace GameShop {
             user.SetPhoneNo((Form1.formgen.GetControl("user.edit", "phone") as TextBox).Text);
             user.SetAddress((Form1.formgen.GetControl("user.edit", "address") as TextBox).Text);
             user.SetDateOfBirth((Form1.formgen.GetControl("user.edit", "dateofbirth") as TextBox).Text);
-            user.SetPassWord((Form1.formgen.GetControl("user.edit", "password") as TextBox).Text);
+            user.SetPassWord(password);
 
             Form1.context.SetSelected("user", user.GetUserName());
             Form1.formgen.BuildPage("user.list");
@@ -351,7 +361,6 @@ namespace GameShop {
             list.Add("search",    new WidgetTextBox(112, 534, 368, 32, "", false, false, false));
             list.Add("addnew",    new WidgetButton(800-32-128, 532, 128, 32, "Add New", OnListAddNewClick));
             list.Add("delete",    new WidgetButton(800-32-256-16, 532, 128, 32, "Delete",  OnListDeleteClick));
-            list.Add("edit", new WidgetButton(800 - 32 - 256 - 16, 532, 128, 32, "Edit", OnListEditClick));
 
             Form1.formgen.AddPage("user.list", list);
             TextBox search = Form1.formgen.GetControl("user.list", "search") as TextBox;
@@ -384,8 +393,7 @@ namespace GameShop {
         public override void OnPopulateListRecords(ListView listview) {
             listview.Items.Clear();
             foreach (KeyValuePair<string, User> user in Form1.context.users) {
-                Member member = user.Value as Member;
-                if (member != null) PopulateListItem(listview, member);
+                PopulateListItem(listview, user.Value);
             }
         }
 

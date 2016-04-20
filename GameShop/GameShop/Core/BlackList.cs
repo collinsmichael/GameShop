@@ -1,7 +1,7 @@
 ﻿// ========================================================================= //
 // File Name : BlackList.cs                                                  //
 // File Date : 12 April 2016                                                 //
-// Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
+// Author(s) : Michael Collins, Louise McKeown, Alan Rowlands                //
 // File Info : The BlackList class is responsible for access permissions. No //
 //             Controls can be displayed in the form without first getting a //
 //             thumbs up from the BlackList.                                 //
@@ -31,27 +31,13 @@ namespace GameShop {
             blacklists = new Dictionary<Type, List<string>>();
 
             List<string> userblacklist = new List<string> {
-                "user.list",         "user.view",         "user.edit",         "user.make",         "user.drop",
-                "game.list",         "game.view",         "game.edit",         "game.make",         "game.drop",
-                "order.list",        "order.view",        "order.edit",        "order.make",        "order.drop",
-
-                "staff.list",        "staff.view",        "staff.edit",        "staff.make",        "staff.drop",
-                "transactions.list", "transactions.view", "transactions.edit", "transactions.make", "transactions.drop",
-                "header.page"
+                "user.drop",        // this will block the entire page from access
+                "user.list.delete", // this will block a specific control within the list page
+                "user.make",        // this will block the entire page from access
+                "user.list.addnew"  // this will block a specific control within the list page
             };
-
-            List<string> staffblacklist = new List<string> {
-                "staff.list",        "staff.view",        "staff.edit",        "staff.make",        "staff.drop",
-                "game.drop",         "order.drop",        "transactions.drop",
-                "order.list.delete", "game.list.delete",
-                "header.page.staff"
-            };
-
-            List<string> managerblacklist = new List<string> { "" };
 
             blacklists.Add((new User()).GetType(), userblacklist);
-            blacklists.Add((new Staff()).GetType(), staffblacklist);
-            blacklists.Add((new Manager()).GetType(), managerblacklist);
         }
 
 
