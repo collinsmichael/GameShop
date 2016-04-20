@@ -24,7 +24,7 @@ using System.Windows.Forms;
 
 
 namespace GameShop {
-    public class BlackList {
+    class BlackList {
         private Dictionary<Type, List<string>> blacklists;
 
         public BlackList() {
@@ -68,6 +68,7 @@ namespace GameShop {
             if (!blacklists.TryGetValue(logged.GetType(), out blacklist)) {
                 return false;
             }
+
             return blacklist.Contains(control);
         }
     }

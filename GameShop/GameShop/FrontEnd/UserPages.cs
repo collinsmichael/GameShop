@@ -384,8 +384,8 @@ namespace GameShop {
         public override void OnPopulateListRecords(ListView listview) {
             listview.Items.Clear();
             foreach (KeyValuePair<string, User> user in Form1.context.users) {
-                Member member = (user.Value) as Member;
-                if (member != null) PopulateListItem(listview, user.Value);
+                Member member = user.Value as Member;
+                if (member != null) PopulateListItem(listview, member);
             }
         }
 

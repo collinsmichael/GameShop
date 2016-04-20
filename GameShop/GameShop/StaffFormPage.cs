@@ -384,12 +384,11 @@ namespace GameShop
         // ----------------------------------------------------------------- //
         // this method enumerates the user list and populates listview rows. //
         // ----------------------------------------------------------------- //
-        public override void OnPopulateListRecords(ListView listview)
-        {
+        public override void OnPopulateListRecords(ListView listview) {
             listview.Items.Clear();
-            foreach (KeyValuePair<string, Staff> staff in Form1.context.staffs)
-            {
-                PopulateListItem(listview, staff.Value);
+            foreach (KeyValuePair<string, User> user in Form1.context.users) {
+                Staff staff = user.Value as Staff;
+                if (staff != null) PopulateListItem(listview, staff);
             }
         }
 
@@ -400,8 +399,7 @@ namespace GameShop
         // All this method does is to assign a values to each field in the   //
         // list view record.                                                 //
         // ----------------------------------------------------------------- //
-        public bool PopulateListItem(ListView listview, Staff staff)
-        {
+        public bool PopulateListItem(ListView listview, Staff staff) {
             // the number of values passed must match the number of columns
             // defined in PopulateListColumns
             string[] fields = new string[] {

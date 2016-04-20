@@ -64,16 +64,16 @@
     <Compile Include="FrontEnd\LogOnPage.cs" />
     <Compile Include="FrontEnd\HeaderPage.cs" />
     <Compile Include="FrontEnd\OrderPages.cs" />
-    <Compile Include="Core\Manager.cs" />
-    <Compile Include="Core\Member.cs" />
+    <Compile Include="Manager.cs" />
+    <Compile Include="Member.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core\User.cs" />
     <Compile Include="FrontEnd\UserPages.cs" />
     <Compile Include="FrontEnd\Widget.cs" />
-    <Compile Include="Core\Staff.cs" />
-    <Compile Include="FrontEnd\StaffFormPage.cs" />
-    <Compile Include="Core\Transaction.cs" />
+    <Compile Include="Staff.cs" />
+    <Compile Include="StaffFormPage.cs" />
+    <Compile Include="Transaction.cs" />
     <Compile Include="FrontEnd\TransactionFormPage.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

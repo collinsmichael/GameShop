@@ -26,7 +26,6 @@ namespace GameShop {
         public Dictionary<string, Game>  games;  // list of all games
         public Dictionary<string, Order> orders; // list of all orders
         public Dictionary<string, Transaction> transactions;
-        public Dictionary<string, Staff> staffs;
         private string logged_user;              // user which is currently logged in
         private string selected_user;            // currently selected user
         private string selected_game;            // currently selected game
@@ -99,10 +98,9 @@ namespace GameShop {
         // AddUser is used to add a defined user to the user list.           //
         // Once a game has been added it can later be referred to by name.   //
         // ----------------------------------------------------------------- //
-        public bool AddStaff(string key, Staff staff)
-        {
-            if (staffs.ContainsKey(key)) staffs.Remove(key);
-            staffs.Add(key, staff);
+        public bool AddStaff(string key, Staff staff) {
+            if (users.ContainsKey(key)) users.Remove(key);
+            users.Add(key, staff);
             return true;
         }
 
@@ -111,33 +109,31 @@ namespace GameShop {
         // GetUser allows internal access to the contents of the user list.  //
         // To access a user you must provide the username.                   //
         // ----------------------------------------------------------------- //
-        public Staff GetStaff(string staffId)
-        {
-            Staff staff = new Staff();
-            if (!staffs.TryGetValue(staffId, out staff))
-            {
+        public Staff GetStaff(string staffId) {
+            User staff = new Staff();
+            if (!users.TryGetValue(staffId, out staff)) {
                 //MessageBox.Show("User '" + username + "' was not found!");
-                return staff;
+                return staff as Staff;
             }
-            return staff;
+            return staff as Staff;
         }
 
        
         // ----------------------------------------------------------------- //
         // Returns the primary key of the currently selected user.           //
         // ----------------------------------------------------------------- //
-        public string GetSelectedStaff()
-        {
+        public string GetSelectedStaff() {
             Staff select_staff = GetStaff(selected_staff);
-            if (select_staff != null && select_staff.GetStaffId() == selected_staff)
-            {
+            if (select_staff != null && select_staff.GetStaffId() == selected_staff) {
                 return selected_staff;
             }
 
-            foreach (KeyValuePair<string, Staff> staff in staffs)
-            {
-                selected_staff = staff.Key;
-                break;
+            foreach (KeyValuePair<string, User> user in users) {
+                Staff staff = user.Value as Staff;
+                if (staff != null) {
+                    selected_staff = user.Key;
+                    break;
+                }
             }
             return selected_staff;
         }
@@ -146,18 +142,7 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         // Caches a local copy of the logged in users primary key            //
         // ----------------------------------------------------------------- //
-     
- //
-  
         #endregion
-
-
-
-
-
-
-
-
 
 
         #region gameio
@@ -209,8 +194,7 @@ namespace GameShop {
         // AddGame is used to add a defined game to the game list.           //
         // Once a game has been added it can later be referred to by name.   //
         // ----------------------------------------------------------------- //
-        public bool AddTransaction(string key, Transaction transaction)
-        {
+        public bool AddTransaction(string key, Transaction transaction) {
             if (transactions.ContainsKey(key)) transactions.Remove(key);
             transactions.Add(key, transaction);
             return true;
@@ -221,11 +205,9 @@ namespace GameShop {
         // GetGame allows internal access to the contents of the game list.  //
         // To access a game you must provide the title.                      //
         // ----------------------------------------------------------------- //
-        public Transaction GetTransaction(string transactionId)
-        {
+        public Transaction GetTransaction(string transactionId) {
             Transaction transaction = new Transaction();
-            if (!transactions.TryGetValue(transactionId, out transaction))
-            {
+            if (!transactions.TryGetValue(transactionId, out transaction)) {
                 ///MessageBox.Show("Transaction '" + title + "' was not found!");
                 return transaction;
             }
@@ -236,25 +218,19 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         // Returns the primary key of the currently selected game.           //
         // ----------------------------------------------------------------- //
-        public string GetSelectedTransaction()
-        {
+        public string GetSelectedTransaction() {
             Transaction select_transaction = GetTransaction(selected_transaction);
-            if (select_transaction != null && select_transaction.GetTransactionId() == selected_transaction)
-            {
+            if (select_transaction != null && select_transaction.GetTransactionId() == selected_transaction) {
                 return selected_transaction;
             }
 
-            foreach (KeyValuePair<string,Transaction> transaction in transactions)
-            {
+            foreach (KeyValuePair<string,Transaction> transaction in transactions) {
                 selected_transaction = transaction.Key;
                 break;
             }
             return selected_transaction;
         }
         #endregion
-
-  
-
 
 
         #region orderio
@@ -339,25 +315,25 @@ namespace GameShop {
             users  = new Dictionary<string, User>();
             games  = new Dictionary<string, Game>();
             orders = new Dictionary<string, Order>();
-            //staffs = new Dictionary<string, Staff>();
             transactions = new Dictionary<string, Transaction>();
 
             logged_user    = "";
             selected_user  = "mike";
+            selected_staff = "staff";
             selected_game  = "pacman";
             selected_order = "x000";
+            selected_transaction = "t000";
 
             // mockup a logon page
             users = new Dictionary<string, User>();
-            users.Add("mike",    new Manager("mike", "letmein", "mike", "collins", "mike@collins.com", "limerick", "061-123456", "01/01/1990"));
-            users.Add("louise",  new Manager("louise", "letmein", "louise", "mckeown", "louise@mckeown.com", "limerick", "087-9876543", "01/01/1990"));
-            users.Add("alan",    new Manager("alan", "letmein", "alan", "redding", "alan@redding.com", "limerick", "1800-555-12345", "01/01/1990"));
-            users.Add("staff",   new Staff("staff", "", "staff", "test", "staff@gameshop.com", "limerick", "067-555123", "01/01/1990"));
-            users.Add("manager", new Manager("manager", "", "manager", "test", "manager@gameshop.com", "limerick", "067-555123", "01/01/1990"));
-            users.Add("member",  new Member("member", "", "member", "test", "member@gameshop.com", "limerick", "067-555123", "01/01/1990"));
-            users.Add("john",    new Member("john", "", "john", "smith", "member@gameshop.com", "limerick", "067-555123", "01/01/1990"));
-            users.Add("mary",    new Member("mary", "", "mary", "jones", "member@gameshop.com", "limerick", "067-555123", "01/01/1990"));
-
+            users.Add("manager", new Manager("manager", "",        "manager", "test", "manager@gameshop.com", "limerick", "067-555123", "01/01/1990"));
+            users.Add("staff",   new Staff("staff",     "",        "staff",   "test", "staff@gameshop.com", "limerick", "067-555123", "01/01/1990"));
+            users.Add("member",  new Member("member",   "",        "member",  "test", "member@gameshop.com", "limerick", "067-555123", "01/01/1990"));
+            users.Add("john",    new Member("john",     "",        "john",    "smith", "member@gameshop.com", "limerick", "067-555123", "01/01/1990"));
+            users.Add("mary",    new Member("mary",     "",        "mary",    "jones", "member@gameshop.com", "limerick", "067-555123", "01/01/1990"));
+            users.Add("mike",    new Manager("mike",    "letmein", "mike",    "collins", "mike@collins.com", "limerick", "061-123456", "01/01/1990"));
+            users.Add("louise",  new Manager("louise",  "letmein", "louise",  "mckeown", "louise@mckeown.com", "limerick", "087-9876543", "01/01/1990"));
+            users.Add("alan",    new Manager("alan",    "letmein", "alan",    "redding", "alan@redding.com", "limerick", "1800-555-12345", "01/01/1990"));
 
             games = new Dictionary<string, Game>();
             games.Add("mario",     new Game("mario",     "platform", "12", 10, "can mario save the princess?"));
@@ -368,8 +344,6 @@ namespace GameShop {
             orders.Add("x000", new Order("x000", "mike",   "mario",     "01/04/2016", ""));
             orders.Add("x001", new Order("x001", "louise", "pacman",    "02/04/2016", ""));
             orders.Add("x002", new Order("x002", "alan",   "asteroids", "03/04/2016", ""));
-
-            
         }
 
 
@@ -406,24 +380,12 @@ namespace GameShop {
                 MessageBox.Show("File not found! 'orders.bin'");
             }
 
-            // try {
-            //    file = new FileStream("staffs.bin", FileMode.Open, FileAccess.Read);
-            //    formatter = new BinaryFormatter();
-            //    staffs = formatter.Deserialize(file) as Dictionary<string, Staff>;
-            //    file.Close();
-            //} catch {
-            //    MessageBox.Show("File not found! 'staffs.bin'");
-            //}
-
-             try
-             {
+            try {
                  file = new FileStream("transactions.bin", FileMode.Open, FileAccess.Read);
                  formatter = new BinaryFormatter();
                  transactions= formatter.Deserialize(file) as Dictionary<string, Transaction>;
                  file.Close();
-             }
-             catch
-             {
+             } catch {
                  MessageBox.Show("File not found! 'transactions.bin'");
              }
         }
@@ -451,12 +413,6 @@ namespace GameShop {
             formatter = new BinaryFormatter();
             formatter.Serialize(file, orders);
             file.Close();
-
-
-            //file = new FileStream("staffs.bin", FileMode.OpenOrCreate, FileAccess.Write);
-            //formatter = new BinaryFormatter();
-            //formatter.Serialize(file, staffs);
-            //file.Close();
 
             file = new FileStream("transactions.bin", FileMode.OpenOrCreate, FileAccess.Write);
             formatter = new BinaryFormatter();
