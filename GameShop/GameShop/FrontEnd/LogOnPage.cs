@@ -1,7 +1,7 @@
 ﻿// ========================================================================= //
 // File Name : LogOn.cs                                                      //
 // File Date : 12 April 2016                                                 //
-// Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
+// Author(s) : Michael Collins, Louise McKeown, Alan Rowlands                //
 // File Info : The LogOn class is responsible for user account verification. //
 //             Users of the system must supply valid log in credentials to   //
 //             gain access to the system. The LogOn class also releases a    //

@@ -1,7 +1,7 @@
 ﻿// ========================================================================= //
 // File Name : Entity.cs                                                     //
 // File Date : 12 April 2016                                                 //
-// Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
+// Author(s) : Michael Collins, Louise McKeown, Alan Rowlands                //
 // File Info : The Entity class is an abstraction that allows the context to //
 //             generate forms without regard to the content being presented. //
 //             In this manner both games and users can be treated the same   //

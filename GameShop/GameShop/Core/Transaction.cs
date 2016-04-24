@@ -15,8 +15,7 @@ using System.Windows.Forms;
 namespace GameShop
 {
     [Serializable]
-    public class Transaction:Entity
-    {
+    public class Transaction : Entity {
         private string transactionId;
         private int rentalFee;
         private int lateReturnFee;
@@ -41,8 +40,7 @@ namespace GameShop
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
         public Transaction()
-            : base("transaction")
-        {
+        : base("transaction") {
             transactionId = " ";
             rentalFee = 3;
             lateReturnFee = 1;//per day
@@ -55,8 +53,7 @@ namespace GameShop
         // Factory constructor.                                              //
         // ----------------------------------------------------------------- //
         public Transaction(int RentalFee, int LateReturnFee, int MembershipFee,string Username,string TransactionId)
-            : base("transaction")
-        {
+        : base("transaction") {
             transactionId = TransactionId;
             rentalFee = RentalFee;
             lateReturnFee = LateReturnFee;
@@ -68,8 +65,7 @@ namespace GameShop
         // ----------------------------------------------------------------- //
         // pure virtuals                                                     //
         // ----------------------------------------------------------------- //
-        public override bool RegexMatch(Regex regex)
-        {
+        public override bool RegexMatch(Regex regex) {
             if (regex.Match(rentalFee.ToString()).Success) return true;
             if (regex.Match(lateReturnFee.ToString()).Success) return true;
             if (regex.Match(membershipFee.ToString()).Success) return true;

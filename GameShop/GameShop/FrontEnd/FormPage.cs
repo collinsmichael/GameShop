@@ -1,7 +1,7 @@
 ﻿// ========================================================================= //
 // File Name : FormPage.cs                                                   //
 // File Date : 12 April 2016                                                 //
-// Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
+// Author(s) : Michael Collins, Louise McKeown, Alan Rowlands                //
 // File Info : The FormPage Manager super class, contains generic methods.   //
 // ========================================================================= //
 
@@ -60,12 +60,6 @@ namespace GameShop {
             string pagename = typename + ".list";
             Form1.formgen.BuildPage(pagename);
         }
-
-        //public void OnEditClick(object sender, EventArgs e)
-        //{
-        //    string pagename = typename + ".list";
-        //    Form1.formgen.BuildPage(pagename);
-        //}
 
 
         // ----------------------------------------------------------------- //
@@ -173,22 +167,6 @@ namespace GameShop {
             FormPage formpage = Form1.formgen.GetPage(typename + ".form") as FormPage;
             formpage.OnPopulateForm(pagename);
         }
-
-        // ----------------------------------------------------------------- //
-        // Clicking edit on the list page will reroute the user to the       //
-        // edit page and populate the form with the fields from the entity   //
-        // the user can then make changes to a field or fields and save      //
-        // the changes                                                       //
-        // ----------------------------------------------------------------- //
-        public void OnListEditClick(object sender, EventArgs e)
-        {
-            string pagename = typename + ".edit";
-            Form1.formgen.BuildPage(pagename);
-            FormPage formpage = Form1.formgen.GetPage(typename + ".form") as FormPage;
-            formpage.OnPopulateForm(pagename);
-            Form1.formgen.BuildPage(pagename);
-        }
-
 
 
         // ----------------------------------------------------------------- //

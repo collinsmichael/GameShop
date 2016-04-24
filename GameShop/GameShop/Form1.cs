@@ -1,7 +1,7 @@
 ﻿// ========================================================================= //
 // File Name : Form1.cs                                                      //
 // File Date : 12 April 2016                                                 //
-// Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
+// Author(s) : Michael Collins, Louise McKeown, Alan Rowlands                //
 // File Info : The Form may be blank at compile time but it is truly dynamic //
 //             at runtime. The Context class is the interface used to manage //
 //             all the dynamic form controls.                                //

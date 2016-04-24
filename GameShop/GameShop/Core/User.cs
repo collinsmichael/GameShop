@@ -1,7 +1,7 @@
 ﻿// ========================================================================= //
 // File Name : User.cs                                                       //
 // File Date : 12 April 2016                                                 //
-// Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
+// Author(s) : Michael Collins, Louise McKeown, Alan Rowlands                //
 // File Info : The User super class is an abstraction that encases Managers, //
 //             Members, and Staff. Depending on the User Type the system may //
 //             restrict some functionality.                                  //

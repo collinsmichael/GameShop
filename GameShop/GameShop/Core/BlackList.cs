@@ -1,7 +1,7 @@
 ﻿// ========================================================================= //
 // File Name : BlackList.cs                                                  //
 // File Date : 12 April 2016                                                 //
-// Author(s) : Michael Collins, Louise McKeown, Alan Redding                 //
+// Author(s) : Michael Collins, Louise McKeown, Alan Rowlands                //
 // File Info : The BlackList class is responsible for access permissions. No //
 //             Controls can be displayed in the form without first getting a //
 //             thumbs up from the BlackList.                                 //
@@ -31,10 +31,10 @@ namespace GameShop {
             blacklists = new Dictionary<Type, List<string>>();
 
             List<string> userblacklist = new List<string> {
-               // "user.drop",        // this will block the entire page from access
-               /// "user.list.delete", // this will block a specific control within the list page
-                //"user.make",        // this will block the entire page from access
-               // "user.list.addnew"  // this will block a specific control within the list page
+                "user.drop",        // this will block the entire page from access
+                "user.list.delete", // this will block a specific control within the list page
+                "user.make",        // this will block the entire page from access
+                "user.list.addnew"  // this will block a specific control within the list page
             };
 
             blacklists.Add((new User()).GetType(), userblacklist);

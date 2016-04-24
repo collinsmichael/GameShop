@@ -4,20 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameShop
-{
+namespace GameShop {
     [Serializable]
-    public class Manager : User
-    {
+    public class Manager : User {
         public Manager(string username, string password, string firstname, string surname, string email, string address, string phoneno, string dateofbirth)
-            : base(username, password, firstname, surname, email, address, phoneno, dateofbirth)
+        : base(username, password, firstname, surname, email, address, phoneno, dateofbirth)
         { }
 
 
-        ~Manager()
-        {
-
-        }
-
+        public Manager()
+        : base()
+        { }
     }
 }
