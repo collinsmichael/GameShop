@@ -370,14 +370,14 @@ namespace GameShop
             // the number of columns defined must match the number of values
             // passed in PopulateListItem
             listview.Columns.Clear();
-            listview.Columns.Add("StaffId", 100);
-            listview.Columns.Add("UserName", 100);
-            listview.Columns.Add("FirstName", 100);
+            listview.Columns.Add("Staff Id", 80);
+            listview.Columns.Add("Username", 100);
+            listview.Columns.Add("First Name", 120);
             listview.Columns.Add("Surname", 100);
-            listview.Columns.Add("Email", 100);
-            listview.Columns.Add("Phone", 100);
+            listview.Columns.Add("Email", 80);
+            listview.Columns.Add("Phone", 80);
             listview.Columns.Add("Address", 100);
-            listview.Columns.Add("DateOfBirth", 100);
+            listview.Columns.Add("DOB", 60);
         }
 
 

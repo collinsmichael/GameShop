@@ -156,9 +156,14 @@ namespace GameShop
             //Form1.context.AddTransaction(transaction.GetTransactionId(), transaction);
             //Form1.context.SetSelected("transaction", transaction.GetTransactionId());
             //Form1.formgen.BuildPage("transaction.list");
-        }
-    }
+        
+    
             #endregion
+    }
+
+    #endregion
+   }
+
 
     #region editpage
     [Serializable]
@@ -230,11 +235,12 @@ namespace GameShop
             if (matchmail.Success) MessageBox.Show(matchmail.Value);
             else MessageBox.Show("No Match");
 
-
+            #endregion
 
         }
+        #endregion
     }
-            #endregion
+            
 
     #region makepage
     [Serializable]
@@ -403,11 +409,11 @@ namespace GameShop
             // the number of columns defined must match the number of values
             // passed in PopulateListItem
             listview.Columns.Clear();
-            listview.Columns.Add("Transaction ID", 100);
-            listview.Columns.Add("User Name", 100);
-            listview.Columns.Add("Membership Fee", 100);
-            listview.Columns.Add("Rental Fee", 100);
-            listview.Columns.Add("Late Return Fee", 100);
+            listview.Columns.Add("Transaction ID", 150);
+            listview.Columns.Add("User Name", 120);
+            listview.Columns.Add("Membership Fee", 10);
+            listview.Columns.Add("Rental Fee", 120);
+            listview.Columns.Add("Late Return Fee", 150);
         }
 
 
@@ -428,23 +434,22 @@ namespace GameShop
         // this method gets invoked automatically by the list view control   //
         // any time the list view needs to be updated.                       //
         // All this method does is to assign a values to each field in the   //
-        // list view record.                                                 //
-        // ----------------------------------------------------------------- //
-        //public bool PopulateListItem(ListView listview, Transaction transaction)
-        //{
-        //    // the number of values passed must match the number of columns
-        //    // defined in PopulateListColumns
-        //    string[] fields = new[] {
-        //        transaction.GetTransactionId(), transaction.GetUsername(), transaction.GetMembershipFee(),
-        //        transaction.GetRentalFee(), transaction.GetLateReturnFee()
-        //    };
-        //    listview.Items.Add(new ListViewItem(fields));
-        //    return true;
-        //}
+         //list view record.                                                 //
+         //  ----------------------------------------------------------------- //
+        public bool PopulateListItem(ListView listview, Transaction transaction)
+        {
+            // the number of values passed must match the number of columns
+            // defined in PopulateListColumns
+            string[] fields = new string[] {
+                transaction.GetTransactionId(), transaction.GetUsername(), transaction.GetMembershipFee().ToString(),
+                transaction.GetRentalFee().ToString(), transaction.GetLateReturnFee().ToString()
+            };
+            listview.Items.Add(new ListViewItem(fields));
+            return true;
+        }
 
     }
 
     #endregion
 }
-    #endregion
-    #endregion
+    

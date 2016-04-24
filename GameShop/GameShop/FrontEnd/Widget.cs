@@ -59,7 +59,7 @@ namespace GameShop {
             label.Text      = text;
             label.Font      = new Font("Verdana", 18.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label.Location  = new Point(posx, posy);
-            label.Size      = new Size(wide, high);
+            label.Size      = new Size(wide, high+4);
             label.TextAlign = ContentAlignment.MiddleCenter;
             return label as Control;
         }
@@ -86,8 +86,8 @@ namespace GameShop {
             Label label    = new Label();
             label.Text     = text;
             label.Font     = new Font("Verdana", 12.75F);
-            label.Location = new Point(posx, posy);
-            label.Size     = new Size(wide, high);
+            label.Location = new Point(posx-32, posy);
+            label.Size     = new Size(wide, high-4);
             return label as Control;
         }
     }

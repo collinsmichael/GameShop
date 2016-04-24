@@ -407,10 +407,10 @@ namespace GameShop {
             // passed in PopulateListItem
             listview.Columns.Clear();
             listview.Columns.Add("Order No",    100);
-            listview.Columns.Add("User Name",   100);
+            listview.Columns.Add("User Name",   120);
             listview.Columns.Add("Title",       100);
-            listview.Columns.Add("Order Date",  100);
-            listview.Columns.Add("Return Date", 100);
+            listview.Columns.Add("Order Date",  120);
+            listview.Columns.Add("Return Date", 120);
         }
 
 

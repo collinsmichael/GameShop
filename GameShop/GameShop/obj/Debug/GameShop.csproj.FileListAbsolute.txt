@@ -96,3 +96,12 @@ C:\Users\Windows 8\Desktop\GameShopProject\GameShop-master\GameShop\GameShop\obj
 C:\Users\Windows 8\Desktop\GameShopProject\GameShop-master\GameShop\GameShop\obj\Debug\GameShop.Form1.resources
 C:\Users\Windows 8\Desktop\GameShopProject\GameShop-master\GameShop\GameShop\obj\Debug\GameShop.Properties.Resources.resources
 C:\Users\Windows 8\Desktop\GameShopProject\GameShop-master\GameShop\GameShop\obj\Debug\GameShop.csproj.GenerateResource.Cache
+C:\Users\Windows 8\Desktop\GameShop2\GameShop-master\GameShop\GameShop\bin\Debug\GameShop.exe.config
+C:\Users\Windows 8\Desktop\GameShop2\GameShop-master\GameShop\GameShop\obj\Debug\GameShop.exe
+C:\Users\Windows 8\Desktop\GameShop2\GameShop-master\GameShop\GameShop\obj\Debug\GameShop.pdb
+C:\Users\Windows 8\Desktop\GameShop2\GameShop-master\GameShop\GameShop\bin\Debug\GameShop.exe
+C:\Users\Windows 8\Desktop\GameShop2\GameShop-master\GameShop\GameShop\bin\Debug\GameShop.pdb
+C:\Users\Windows 8\Desktop\GameShop2\GameShop-master\GameShop\GameShop\obj\Debug\GameShop.csprojResolveAssemblyReference.cache
+C:\Users\Windows 8\Desktop\GameShop2\GameShop-master\GameShop\GameShop\obj\Debug\GameShop.Form1.resources
+C:\Users\Windows 8\Desktop\GameShop2\GameShop-master\GameShop\GameShop\obj\Debug\GameShop.Properties.Resources.resources
+C:\Users\Windows 8\Desktop\GameShop2\GameShop-master\GameShop\GameShop\obj\Debug\GameShop.csproj.GenerateResource.Cache

@@ -362,9 +362,9 @@ namespace GameShop {
             listview.Columns.Clear();
             listview.Columns.Add("Title",      100);
             listview.Columns.Add("Genre",      100);
-            listview.Columns.Add("Age Rating", 100);
-            listview.Columns.Add("Stock",      100);
-            listview.Columns.Add("Info",       200);
+            listview.Columns.Add("Age Rating", 120);
+            listview.Columns.Add("Stock",      80);
+            listview.Columns.Add("Info",       300);
         }
 
 

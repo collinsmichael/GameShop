@@ -371,10 +371,10 @@ namespace GameShop {
             listview.Columns.Add("UserName",    100);
             listview.Columns.Add("FirstName",   100);
             listview.Columns.Add("Surname",     100);
-            listview.Columns.Add("Email",       100);
-            listview.Columns.Add("Phone",       100);
+            listview.Columns.Add("Email",       80);
+            listview.Columns.Add("Phone",       80);
             listview.Columns.Add("Address",     100);
-            listview.Columns.Add("DateOfBirth", 100);
+            listview.Columns.Add("DOB", 100);
         }
 
 
