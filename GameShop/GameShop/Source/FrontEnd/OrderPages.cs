@@ -342,6 +342,36 @@ namespace GameShop {
             listview.Columns.Add("Title",       100);
             listview.Columns.Add("Order Date",  100);
             listview.Columns.Add("Return Date", 100);
+            listview.MouseClick += OnMouseClick;
+        }
+        private void OnMouseClick(object sender, MouseEventArgs e) {
+            if (e.Button != MouseButtons.Right) return;
+            ListView listview = sender as ListView;
+            if (sender == null) return;;
+
+            ContextMenu cm = new ContextMenu();
+            cm.MenuItems.Add("View",    new EventHandler(OnClickView));
+            cm.MenuItems.Add("Edit",    new EventHandler(OnClickEdit));
+            cm.MenuItems.Add("Add New", new EventHandler(OnClickMake));
+            listview.ContextMenu = cm;
+        }
+        private void OnClickView(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("order.list");
+            FormPage formpage = Form1.formgen.GetPage("order.form") as FormPage;
+            formpage.OnPopulateForm("order.view");
+            Form1.formgen.BuildPage("order.view");
+        }
+        private void OnClickEdit(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("order.list");
+            FormPage formpage = Form1.formgen.GetPage("order.form") as FormPage;
+            formpage.OnPopulateForm("order.edit");
+            Form1.formgen.BuildPage("order.edit");
+        }
+        private void OnClickMake(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("order.list");
+            FormPage formpage = Form1.formgen.GetPage("order.form") as FormPage;
+            formpage.OnPopulateForm("order.make");
+            Form1.formgen.BuildPage("order.make");
         }
 
 

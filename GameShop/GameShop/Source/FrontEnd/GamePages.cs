@@ -312,8 +312,44 @@ namespace GameShop {
             listview.Columns.Add("Age Rating", 120);
             listview.Columns.Add("Stock",      80);
             listview.Columns.Add("Info",       300);
+            listview.MouseClick += OnMouseClick;
         }
+        private void OnMouseClick(object sender, MouseEventArgs e) {
+            if (e.Button != MouseButtons.Right) return;
+            ListView listview = sender as ListView;
+            if (sender == null) return;;
 
+            ContextMenu cm = new ContextMenu();
+            cm.MenuItems.Add("View",    new EventHandler(OnClickView));
+            cm.MenuItems.Add("Edit",    new EventHandler(OnClickEdit));
+            cm.MenuItems.Add("Add New", new EventHandler(OnClickMake));
+            cm.MenuItems.Add("Delete",  new EventHandler(OnClickDrop));
+            listview.ContextMenu = cm;
+        }
+        private void OnClickView(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("game.list");
+            FormPage formpage = Form1.formgen.GetPage("game.form") as FormPage;
+            formpage.OnPopulateForm("game.view");
+            Form1.formgen.BuildPage("game.view");
+        }
+        private void OnClickEdit(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("game.list");
+            FormPage formpage = Form1.formgen.GetPage("game.form") as FormPage;
+            formpage.OnPopulateForm("game.edit");
+            Form1.formgen.BuildPage("game.edit");
+        }
+        private void OnClickMake(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("game.list");
+            FormPage formpage = Form1.formgen.GetPage("game.form") as FormPage;
+            formpage.OnPopulateForm("game.make");
+            Form1.formgen.BuildPage("game.make");
+        }
+        private void OnClickDrop(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("game.list");
+            FormPage formpage = Form1.formgen.GetPage("game.form") as FormPage;
+            formpage.OnPopulateForm("game.drop");
+            Form1.formgen.BuildPage("game.drop");
+        }
 
         // ----------------------------------------------------------------- //
         // this method enumerates the game list and populates listview rows. //

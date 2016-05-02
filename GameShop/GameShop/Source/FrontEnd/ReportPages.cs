@@ -330,7 +330,37 @@ namespace GameShop {
             listview.Columns.Add("Member Fees", 120);
             listview.Columns.Add("Rental Fees", 120);
             listview.Columns.Add("Late Fees",  150);
+            listview.MouseClick += OnMouseClick;
        }
+        private void OnMouseClick(object sender, MouseEventArgs e) {
+            if (e.Button != MouseButtons.Right) return;
+            ListView listview = sender as ListView;
+            if (sender == null) return;;
+
+            ContextMenu cm = new ContextMenu();
+            cm.MenuItems.Add("View",    new EventHandler(OnClickView));
+            cm.MenuItems.Add("Edit",    new EventHandler(OnClickEdit));
+            cm.MenuItems.Add("Add New", new EventHandler(OnClickMake));
+            listview.ContextMenu = cm;
+        }
+        private void OnClickView(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("report.list");
+            FormPage formpage = Form1.formgen.GetPage("report.form") as FormPage;
+            formpage.OnPopulateForm("report.view");
+            Form1.formgen.BuildPage("report.view");
+        }
+        private void OnClickEdit(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("report.list");
+            FormPage formpage = Form1.formgen.GetPage("report.form") as FormPage;
+            formpage.OnPopulateForm("report.edit");
+            Form1.formgen.BuildPage("report.edit");
+        }
+        private void OnClickMake(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("report.list");
+            FormPage formpage = Form1.formgen.GetPage("report.form") as FormPage;
+            formpage.OnPopulateForm("report.make");
+            Form1.formgen.BuildPage("report.make");
+        }
 
 
         // ----------------------------------------------------------------- //

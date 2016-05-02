@@ -360,6 +360,44 @@ namespace GameShop {
             listview.Columns.Add("Phone",      80);
             listview.Columns.Add("Address",   100);
             listview.Columns.Add("DOB",       100);
+            listview.MouseClick += OnMouseClick;
+        }
+
+        private void OnMouseClick(object sender, MouseEventArgs e) {
+            if (e.Button != MouseButtons.Right) return;
+            ListView listview = sender as ListView;
+            if (sender == null) return;;
+
+            ContextMenu cm = new ContextMenu();
+            cm.MenuItems.Add("View",    new EventHandler(OnClickView));
+            cm.MenuItems.Add("Edit",    new EventHandler(OnClickEdit));
+            cm.MenuItems.Add("Add New", new EventHandler(OnClickMake));
+            cm.MenuItems.Add("Delete",  new EventHandler(OnClickDrop));
+            listview.ContextMenu = cm;
+        }
+        private void OnClickView(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("user.list");
+            FormPage formpage = Form1.formgen.GetPage("user.form") as FormPage;
+            formpage.OnPopulateForm("user.view");
+            Form1.formgen.BuildPage("user.view");
+        }
+        private void OnClickEdit(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("user.list");
+            FormPage formpage = Form1.formgen.GetPage("user.form") as FormPage;
+            formpage.OnPopulateForm("user.edit");
+            Form1.formgen.BuildPage("user.edit");
+        }
+        private void OnClickMake(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("user.list");
+            FormPage formpage = Form1.formgen.GetPage("user.form") as FormPage;
+            formpage.OnPopulateForm("user.make");
+            Form1.formgen.BuildPage("user.make");
+        }
+        private void OnClickDrop(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("user.list");
+            FormPage formpage = Form1.formgen.GetPage("user.form") as FormPage;
+            formpage.OnPopulateForm("user.drop");
+            Form1.formgen.BuildPage("user.drop");
         }
 
 

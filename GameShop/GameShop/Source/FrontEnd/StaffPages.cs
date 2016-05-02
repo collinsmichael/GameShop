@@ -314,6 +314,43 @@ namespace GameShop {
             listview.Columns.Add("Phone", 80);
             listview.Columns.Add("Address", 100);
             listview.Columns.Add("DOB", 60);
+            listview.MouseClick += OnMouseClick;
+        }
+        private void OnMouseClick(object sender, MouseEventArgs e) {
+            if (e.Button != MouseButtons.Right) return;
+            ListView listview = sender as ListView;
+            if (sender == null) return;;
+
+            ContextMenu cm = new ContextMenu();
+            cm.MenuItems.Add("View",    new EventHandler(OnClickView));
+            cm.MenuItems.Add("Edit",    new EventHandler(OnClickEdit));
+            cm.MenuItems.Add("Add New", new EventHandler(OnClickMake));
+            cm.MenuItems.Add("Delete",  new EventHandler(OnClickDrop));
+            listview.ContextMenu = cm;
+        }
+        private void OnClickView(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("staff.list");
+            FormPage formpage = Form1.formgen.GetPage("staff.form") as FormPage;
+            formpage.OnPopulateForm("staff.view");
+            Form1.formgen.BuildPage("staff.view");
+        }
+        private void OnClickEdit(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("staff.list");
+            FormPage formpage = Form1.formgen.GetPage("staff.form") as FormPage;
+            formpage.OnPopulateForm("staff.edit");
+            Form1.formgen.BuildPage("staff.edit");
+        }
+        private void OnClickMake(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("staff.list");
+            FormPage formpage = Form1.formgen.GetPage("staff.form") as FormPage;
+            formpage.OnPopulateForm("staff.make");
+            Form1.formgen.BuildPage("staff.make");
+        }
+        private void OnClickDrop(object sender, EventArgs e) {
+            Form1.formgen.ClearPage("staff.list");
+            FormPage formpage = Form1.formgen.GetPage("staff.form") as FormPage;
+            formpage.OnPopulateForm("staff.drop");
+            Form1.formgen.BuildPage("staff.drop");
         }
 
 

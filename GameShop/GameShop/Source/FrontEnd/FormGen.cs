@@ -120,6 +120,20 @@ namespace GameShop {
         }
 
 
+        public void ClearPage(string pagename) {
+            string[] parts = pagename.Split(new char[] {'.'});
+            if (parts[0] == "logon") Form1.form.Controls.Clear();
+            else BuildHeader();
+            
+            List<Control> droplist = new List<Control>();
+            foreach (Control control in Form1.form.Controls) {
+                if (!control.Name.StartsWith("header")) droplist.Add(control);
+            }
+            foreach (Control control in droplist) {
+                Form1.form.Controls.Remove(control);
+            }
+        }
+
         // ----------------------------------------------------------------- //
         // BuildPage is responsible for dynamic runtime form generation.     //
         // Form widgets_dict are identified by name. This name is used as a key to  //
@@ -151,16 +165,7 @@ namespace GameShop {
 
             // clear the form
             Form1.form.SuspendLayout();
-            if (parts[0] == "logon") Form1.form.Controls.Clear();
-            else BuildHeader();
-            
-            List<Control> droplist = new List<Control>();
-            foreach (Control control in Form1.form.Controls) {
-                if (!control.Name.StartsWith("header")) droplist.Add(control);
-            }
-            foreach (Control control in droplist) {
-                Form1.form.Controls.Remove(control);
-            }
+            ClearPage(pagename);
 
             // populate the form
             foreach (KeyValuePair<string, Control> control in controls) {
