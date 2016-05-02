@@ -74,6 +74,18 @@ namespace GameShop {
         }
         
 
+        public override string Read() {
+            string text = "\n Transaction";
+            text = text + "\n ReportId    = "+reportid.ToString();
+            text = text + "\n UserName    = "+username.ToString();
+            text = text + "\n ReportDate  = "+reportdate.ToString();
+            text = text + "\n Rental Fees = "+rentalfees.ToString();
+            text = text + "\n Late Fees   = "+latefees.ToString();
+            text = text + "\n Member Fees = "+memberfees.ToString();
+            return text + "\n";
+        }
+
+
         // ----------------------------------------------------------------- //
         // pure virtuals                                                     //
         // ----------------------------------------------------------------- //

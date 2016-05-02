@@ -138,6 +138,7 @@ namespace GameShop {
             User user = Form1.context.GetSelected("user") as User;
             Game game = Form1.context.GetSelected("game") as Game;
             Form1.formgen.BuildPage("order.make");
+            Form1.formgen.BuildPage("order.make");
             FormPage formpage = Form1.formgen.GetPage("order.form") as FormPage;
             (Form1.formgen.GetControl("order.make", "username") as TextBox).Text = user.GetUserName();
             (Form1.formgen.GetControl("order.make", "title")    as TextBox).Text = game.GetTitle();

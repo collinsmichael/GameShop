@@ -201,11 +201,10 @@ namespace GameShop {
         // fill the ListView with everything you possibly can.               //
         // ----------------------------------------------------------------- //
         public void EmptySearch() {
-            ListView listview = Form1.formgen.GetControl(pagename, "listview") as ListView;
-            if (listview == null) return;
-
+            ListView listview;
             switch (typename) {
             case "user": case "member":
+                listview = Form1.formgen.GetControl("user.list", "listview") as ListView;
                 UserListPage userpage = Form1.formgen.GetPage(typename+".list") as UserListPage;
                 if (userpage == null) return;
                 listview.Items.Clear();
@@ -214,16 +213,16 @@ namespace GameShop {
                 }
                 break;
             case "staff": case "manager":
+                listview = Form1.formgen.GetControl("staff.list", "listview") as ListView;
                 StaffListPage staffpage = Form1.formgen.GetPage(typename+".list") as StaffListPage;
                 if (staffpage == null) return;
                 listview.Items.Clear();
-                foreach (KeyValuePair<string, User> user in Form1.context.users) {
-                    Staff staff = user.Value as Staff;
-                    if (staff == null) continue;
-                    staffpage.PopulateListItem(listview, staff);
+                foreach (KeyValuePair<string, Staff> staff in Form1.context.staffs) {
+                    staffpage.PopulateListItem(listview, staff.Value);
                 }
                 break;
             case "game":
+                listview = Form1.formgen.GetControl("game.list", "listview") as ListView;
                 GameListPage gamepage = Form1.formgen.GetPage("game.list") as GameListPage;
                 if (gamepage == null) return;
                 listview.Items.Clear();
@@ -232,6 +231,7 @@ namespace GameShop {
                 }
                 break;
             case "report":
+                listview = Form1.formgen.GetControl("report.list", "listview") as ListView;
                 ReportListPage reportpage = Form1.formgen.GetPage("report.list") as ReportListPage;
                 if (reportpage == null) return;
                 listview.Items.Clear();
@@ -247,15 +247,15 @@ namespace GameShop {
         // filter the ListView powered by regular expression.                //
         // ----------------------------------------------------------------- //
         public void RegexSearch(string filter) {
-            ListView listview = Form1.formgen.GetControl(pagename, "listview") as ListView;
-            if (listview == null) return;
-
+            ListView listview;
             Regex regex = null;
             try { regex = new Regex(@"" + filter, RegexOptions.IgnoreCase); }
             catch { return; }
 
             switch (typename) {
-            case "user": case "member": case "staff": case "manager":
+            case "user": case "member":
+                listview = Form1.formgen.GetControl("user.list", "listview") as ListView;
+                if (listview == null) return;
                 UserListPage userpage = Form1.formgen.GetPage("user.list") as UserListPage;
                 if (userpage == null) return;
                 listview.Items.Clear();
@@ -264,7 +264,18 @@ namespace GameShop {
                     userpage.PopulateListItem(listview, user.Value);
                 }
                 break;
+            case "staff": case "manager":
+                listview = Form1.formgen.GetControl("staff.list", "listview") as ListView;
+                StaffListPage staffpage = Form1.formgen.GetPage("staff.list") as StaffListPage;
+                if (staffpage == null) return;
+                listview.Items.Clear();
+                foreach (KeyValuePair<string, Staff> staff in Form1.context.staffs) {
+                    if (!staff.Value.RegexMatch(regex)) continue;
+                    staffpage.PopulateListItem(listview, staff.Value);
+                }
+                break;
             case "game":
+                listview = Form1.formgen.GetControl("game.list", "listview") as ListView;
                 GameListPage gamepage = Form1.formgen.GetPage("game.list") as GameListPage;
                 if (gamepage == null) return;
                 listview.Items.Clear();
@@ -274,6 +285,7 @@ namespace GameShop {
                 }
                 break;
             case "report":
+                listview = Form1.formgen.GetControl("report.list", "listview") as ListView;
                 ReportListPage reportpage = Form1.formgen.GetPage("report.list") as ReportListPage;
                 if (reportpage == null) return;
                 listview.Items.Clear();

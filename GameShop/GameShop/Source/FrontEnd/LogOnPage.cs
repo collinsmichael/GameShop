@@ -95,7 +95,7 @@ namespace GameShop {
             TextBox password = Form1.formgen.GetControl("logon.page", "password") as TextBox;
             Label   nickname = Form1.formgen.GetControl("header.page", "logged") as Label;
 
-            Staff logged = Form1.context.GetUser(username.Text) as Staff;
+            Staff logged = Form1.context.GetStaff(username.Text);
             if (logged == null || logged.GetUserName() != username.Text) {
                 MessageBox.Show(message);
                 return;

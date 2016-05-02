@@ -72,6 +72,16 @@ namespace GameShop {
         }
 
 
+        public override string Read() {
+            string text = "\n Game";
+            text = text + "\n Title     = "+title.ToString();
+            text = text + "\n Genre     = "+genre.ToString();
+            text = text + "\n Stock     = "+stock.ToString();
+            text = text + "\n AgeRating = "+agerating.ToString();
+            text = text + "\n Info      = "+info.ToString();
+            return text + "\n";
+        }
+
         // ----------------------------------------------------------------- //
         // pure virtuals                                                     //
         // ----------------------------------------------------------------- //

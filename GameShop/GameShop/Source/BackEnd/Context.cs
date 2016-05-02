@@ -23,10 +23,11 @@ using System.Windows.Forms;
 namespace GameShop {
     public class Context {
         public Dictionary<string, User>  users;  // list of all users
+        public Dictionary<string, Staff> staffs; // list of all users
         public Dictionary<string, Game>  games;  // list of all games
         public Dictionary<string, Order> orders; // list of all orders
         public Dictionary<string, Report> reports;
-        private string logged_user;              // user which is currently logged in
+        private string logged_staff;             // user which is currently logged in
         private string selected_user;            // currently selected user
         private string selected_game;            // currently selected game
         private string selected_order;           // currently selected order
@@ -36,7 +37,7 @@ namespace GameShop {
         #region userio
         // ----------------------------------------------------------------- //
         // AddUser is used to add a defined user to the user list.           //
-        // Once a game has been added it can later be referred to by name.   //
+        // Once a user has been added it can later be referred to by name.   //
         // ----------------------------------------------------------------- //
         public bool AddUser(string key, User user) {
             if (users.ContainsKey(key)) users.Remove(key);
@@ -74,21 +75,64 @@ namespace GameShop {
             }
             return selected_user;
         }
+        #endregion
+
+
+        #region staffio
+        // ----------------------------------------------------------------- //
+        // AddUser is used to add a defined user to the user list.           //
+        // Once a user has been added it can later be referred to by name.   //
+        // ----------------------------------------------------------------- //
+        public bool AddStaff(string key, Staff staff) {
+            if (staffs.ContainsKey(key)) staffs.Remove(key);
+            staffs.Add(key, staff);
+            return true;
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // GetUser allows internal access to the contents of the user list.  //
+        // To access a user you must provide the username.                   //
+        // ----------------------------------------------------------------- //
+        public Staff GetStaff(string username) {
+            Staff staff = new Staff();
+            if (!staffs.TryGetValue(username, out staff)) {
+                return staff;
+            }
+            return staff;
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // Returns the primary key of the currently selected user.           //
+        // ----------------------------------------------------------------- //
+        public string GetSelectedStaff() {
+            Staff select_staff = GetStaff(selected_staff);
+            if (select_staff != null && select_staff.GetUserName() == selected_staff) {
+                return selected_staff;
+            }
+
+            foreach (KeyValuePair<string, Staff> staff in staffs) {
+                selected_staff = staff.Key;
+                break;
+            }
+            return selected_staff;
+        }
 
 
         // ----------------------------------------------------------------- //
         // Caches a local copy of the logged in users primary key            //
         // ----------------------------------------------------------------- //
         public void SetLogged(string key) {
-            logged_user = key;
+            logged_staff = key;
         }
 
 
         // ----------------------------------------------------------------- //
         // Gets the logged in user                                           //
         // ----------------------------------------------------------------- //
-        public Entity GetLogged(string type) {
-            return GetUser(Form1.context.logged_user);
+        public Staff GetLogged(string type) {
+            return GetStaff(Form1.context.logged_staff);
         }
         #endregion
 
@@ -232,6 +276,7 @@ namespace GameShop {
         public Entity GetSelected(string type) {
             switch (type.ToLower()) {
             case "user":  return GetUser(Form1.context.GetSelectedUser());
+            case "staff": return GetStaff(Form1.context.GetSelectedStaff());
             case "game":  return GetGame(Form1.context.GetSelectedGame());
             case "order": return GetOrder(Form1.context.GetSelectedOrder());
             case "report": return GetReport(Form1.context.GetSelectedReport());
@@ -260,28 +305,32 @@ namespace GameShop {
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
         public Context() {
-            users  = new Dictionary<string, User>();
-            games  = new Dictionary<string, Game>();
-            orders = new Dictionary<string, Order>();
+            users   = new Dictionary<string, User>();
+            staffs  = new Dictionary<string, Staff>();
+            games   = new Dictionary<string, Game>();
+            orders  = new Dictionary<string, Order>();
             reports = new Dictionary<string, Report>();
 
-            logged_user    = "";
+            logged_staff   = "";
             selected_user  = "mike";
             selected_staff = "staff";
             selected_game  = "pacman";
             selected_order = "x000";
             selected_report = "t000";
 
+            staffs = new Dictionary<string, Staff>();
+            staffs.Add("manager", new Manager("x101", "manager",  "",       "manager", "test",    "manager@gameshop.com", "limerick", "067-555123",     "01/01/1990"));
+            staffs.Add("staff",   new Staff(  "x102", "staff",    "",       "staff",   "test",    "staff@gameshop.com",   "limerick", "067-555123",     "01/01/1990"));
+            staffs.Add("mike",    new Manager("x007", "mike",    "letmein", "mike",    "collins", "mike@collins.com",     "limerick", "061-123456",     "01/01/1990"));
+            staffs.Add("louise",  new Manager("x008", "louise",  "letmein", "louise",  "mckeown", "louise@mckeown.com",   "limerick", "087-9876543",    "01/01/1990"));
+            staffs.Add("alan",    new Manager("x009", "alan",    "letmein", "alan",    "redding", "alan@redding.com",     "limerick", "1800-555-12345", "01/01/1990"));
+
             users = new Dictionary<string, User>();
-            users.Add("manager", new Manager("x101", "manager",  "",       "manager", "test",    "manager@gameshop.com", "limerick", "067-555123",     "01/01/1990"));
-            users.Add("staff",   new Staff(  "x102", "staff",    "",       "staff",   "test",    "staff@gameshop.com",   "limerick", "067-555123",     "01/01/1990"));
             users.Add("member",  new Member(         "member",             "member",  "test",    "member@gameshop.com",  "limerick", "067-555123",     "01/01/1990"));
             users.Add("john",    new Member(         "john",               "john",    "smith",   "john@gameshop.com",    "limerick", "067-555123",     "01/01/1990"));
             users.Add("mary",    new Member(         "mary",               "mary",    "jones",   "mary@gameshop.com",    "limerick", "067-555123",     "01/01/1990"));
-            users.Add("mike",    new Manager("x007", "mike",    "letmein", "mike",    "collins", "mike@collins.com",     "limerick", "061-123456",     "01/01/1990"));
-            users.Add("louise",  new Manager("x008", "louise",  "letmein", "louise",  "mckeown", "louise@mckeown.com",   "limerick", "087-9876543",    "01/01/1990"));
-            users.Add("alan",    new Manager("x009", "alan",    "letmein", "alan",    "redding", "alan@redding.com",     "limerick", "1800-555-12345", "01/01/1990"));
-
+            users.Add("lisa",    new Member(         "lisa",               "lisa",    "o' dea",  "lisa@gameshop.com",    "limerick", "067-555123",     "01/01/1990"));
+ 
             games = new Dictionary<string, Game>();
             games.Add("mario",     new Game("mario",     "platform", "12", 10, "can mario save the princess?"));
             games.Add("pacman",    new Game("pacman",    "maze",     "12", 10, "help pacman get out of the ghost ridden maze"));
@@ -310,6 +359,15 @@ namespace GameShop {
         public void OnLoad() {
             FileStream file;
             BinaryFormatter formatter;
+            try {
+                file = new FileStream("staff.bin", FileMode.Open, FileAccess.Read);
+                formatter = new BinaryFormatter();
+                staffs = formatter.Deserialize(file) as Dictionary<string, Staff>;
+                file.Close();
+            } catch {
+                MessageBox.Show("File not found! 'staff.bin'");
+            }
+
             try {
                 file = new FileStream("users.bin", FileMode.Open, FileAccess.Read);
                 formatter = new BinaryFormatter();
@@ -355,6 +413,20 @@ namespace GameShop {
         public void OnExit() {
             FileStream file;
             BinaryFormatter formatter = new BinaryFormatter();
+
+            string state = "";
+            foreach (KeyValuePair<string, User>   user   in users)  state = state + user.Value.Read();
+            foreach (KeyValuePair<string, Staff>  staff  in staffs) state = state + staff.Value.Read();
+            foreach (KeyValuePair<string, Game>   game   in games)  state = state + game.Value.Read();
+            foreach (KeyValuePair<string, Order>  order  in orders) state = state + order.Value.Read();
+            foreach (KeyValuePair<string, Report> report in reports) state = state + report.Value.Read();
+            
+            System.IO.File.WriteAllLines("logfile.txt", state.Split(new char[] { '\n' }));
+
+
+            file = new FileStream("staff.bin", FileMode.OpenOrCreate, FileAccess.Write);
+            formatter.Serialize(file, staffs);
+            file.Close();
 
             file = new FileStream("users.bin", FileMode.OpenOrCreate, FileAccess.Write);
             formatter.Serialize(file, users);

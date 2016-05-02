@@ -134,7 +134,6 @@ namespace GameShop {
             Form1.context.AddOrder(orderno, order);
             Form1.context.SetSelected("order", orderno);
             User user = Form1.context.GetUser(username);
-            user.AddOrder(orderno);
             return true;
         }
     }

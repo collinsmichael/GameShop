@@ -33,19 +33,7 @@ namespace GameShop {
         protected string address;
         protected string phoneno;
         protected string dateofbirth;
-        protected List<string> orders;
 
-
-        // ----------------------------------------------------------------- //
-        // Getters and Setters.                                              //
-        // ----------------------------------------------------------------- //
-        public string GetUserName() { return username; }
-        public string GetFirstName() { return firstname; }
-        public string GetSurname() { return surname; }
-        public string GetEmail() { return email; }
-        public string GetAddress() { return address; }
-        public string GetPhoneNo() { return phoneno; }
-        public string GetDateOfBirth() { return dateofbirth; }
 
         // ----------------------------------------------------------------- //
         // Default constructor.                                              //
@@ -59,7 +47,6 @@ namespace GameShop {
             address     = "";
             phoneno     = "";
             dateofbirth = "";
-            orders = new List<string>();
         }
 
 
@@ -76,16 +63,35 @@ namespace GameShop {
             SetAddress(Address);
             SetPhoneNo(PhoneNo);
             SetDateOfBirth(DateOfBirth);
-            orders = new List<string>();
+        }
+
+        // ----------------------------------------------------------------- //
+        // Factory constructor.                                              //
+        // ----------------------------------------------------------------- //
+        public override string Read() {
+            string text = "\n User";
+            text = text + "\n UserName    = "+username.ToString();
+            text = text + "\n FirstName   = "+firstname.ToString();
+            text = text + "\n Surname     = "+surname.ToString();
+            text = text + "\n Email       = "+email.ToString();
+            text = text + "\n Address     = "+address.ToString();
+            text = text + "\n PhoneNo     = "+phoneno.ToString();
+            text = text + "\n DateOfBirth = "+dateofbirth.ToString();
+            return text + "\n";
         }
 
 
-        public void AddOrder(string OrderNo) {
-            if (!orders.Contains(OrderNo)) {
-                orders.Add(OrderNo);
-            }
-        }
 
+        // ----------------------------------------------------------------- //
+        // Getters and Setters.                                              //
+        // ----------------------------------------------------------------- //
+        public string GetUserName() { return username; }
+        public string GetFirstName() { return firstname; }
+        public string GetSurname() { return surname; }
+        public string GetEmail() { return email; }
+        public string GetAddress() { return address; }
+        public string GetPhoneNo() { return phoneno; }
+        public string GetDateOfBirth() { return dateofbirth; }
 
         public void SetUserName(string UserName) { username = UserName; }
         public void SetFirstName(string FirstName) { firstname  = FirstName; }

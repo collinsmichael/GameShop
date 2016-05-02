@@ -47,13 +47,13 @@ namespace GameShop {
             // basic form fields
             Dictionary<string, Widget> form = new Dictionary<string, Widget>();
 
-            form.Add("label1",      new WidgetLabel(150, 156, 122, 32, "User Name"));
-            form.Add("label2",      new WidgetLabel(150, 196, 122, 32, "First Name"));
-            form.Add("label3",      new WidgetLabel(150, 236, 122, 32, "Surname"));
-            form.Add("label4",      new WidgetLabel(150, 276, 122, 32, "Email"));
-            form.Add("label5",      new WidgetLabel(150, 316, 122, 32, "Phone No"));
-            form.Add("label6",      new WidgetLabel(150, 356, 122, 32, "Address"));
-            form.Add("label7",      new WidgetLabel(150, 436, 122, 32, "Birth Date"));
+            form.Add("label1",      new WidgetLabel(140, 156, 132, 32, "User Name"));
+            form.Add("label2",      new WidgetLabel(140, 196, 132, 32, "First Name"));
+            form.Add("label3",      new WidgetLabel(140, 236, 132, 32, "Surname"));
+            form.Add("label4",      new WidgetLabel(140, 276, 132, 32, "Email"));
+            form.Add("label5",      new WidgetLabel(140, 316, 132, 32, "Phone No"));
+            form.Add("label6",      new WidgetLabel(140, 356, 132, 32, "Address"));
+            form.Add("label7",      new WidgetLabel(140, 436, 132, 32, "Birth Date"));
             form.Add("firstname",   new WidgetTextBox(272, 192, 320, 32, "", false, false, false, 1));
             form.Add("surname",     new WidgetTextBox(272, 232, 320, 32, "", false, false, false, 2));
             form.Add("email",       new WidgetTextBox(272, 272, 320, 32, "", false, false, false, 3));
@@ -71,7 +71,8 @@ namespace GameShop {
             Form1.formgen.BuildPage(page);
             User user = new User();
             if (page != "user.make") {
-                user = Form1.context.GetUser(Form1.context.GetSelectedUser());
+                //user = Form1.context.GetUser(Form1.context.GetSelectedUser());
+                user = Form1.context.GetSelected("user") as User;
             }
             (Form1.formgen.GetControl(page, "username")    as TextBox).Text = user.GetUserName();
             (Form1.formgen.GetControl(page, "firstname")   as TextBox).Text = user.GetFirstName();
@@ -144,9 +145,48 @@ namespace GameShop {
             Dictionary<string, Widget> view = new Dictionary<string, Widget>();
             view.Add("header",    new WidgetTitle("View User"));
             view.Add("username",  new WidgetTextBox(272, 152, 320, 32, "", true, false, false, 0));
-            view.Add("edit",      new WidgetButton(464, 532, 128, 32, "Edit", OnViewEditClick, 7));
-            view.Add("cancel",   new WidgetButton(272, 532, 128, 32, "Cancel", OnCancelClick, 8));
+            view.Add("orders",    new WidgetButton(400-70-128, 532, 128, 32, "Orders", OnOrdersClick, 7));
+            view.Add("report",    new WidgetButton(400-64,    532, 128, 32, "Reports", OnReportsClick, 8));
+            view.Add("edit",      new WidgetButton(400+70,    532, 128, 32, "Edit", OnViewEditClick, 9));
             Form1.formgen.AddPage("user.view", view);
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // this method populates an order list specific to the user          //
+        // ----------------------------------------------------------------- //
+        public void OnOrdersClick(object sender, EventArgs e) {
+            Form1.formgen.BuildPage("order.list");
+            Form1.formgen.BuildPage("order.list");
+
+            User user = Form1.context.GetSelected("user") as User;
+            string username = user.GetUserName();
+
+            string pattern = "^"+username+"$";
+            TextBox search = Form1.formgen.GetControl("order.list", "search") as TextBox;
+            search.Text = pattern;
+
+            OrderListPage orderlist = Form1.formgen.GetPage("order.list") as OrderListPage;
+            orderlist.RegexSearch(pattern);
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // this method populates a report list specific to the user          //
+        // ----------------------------------------------------------------- //
+        public void OnReportsClick(object sender, EventArgs e) {
+            Form1.formgen.BuildPage("report.list");
+            Form1.formgen.BuildPage("report.list");
+
+            User user = Form1.context.GetSelected("user") as User;
+            string username = user.GetUserName();
+
+            string pattern = "^"+username+"$";
+            TextBox search = Form1.formgen.GetControl("report.list", "search") as TextBox;
+            search.Text = pattern;
+
+            ReportListPage reportlist = Form1.formgen.GetPage("report.list") as ReportListPage;
+            reportlist.RegexSearch(pattern);
         }
     }
     #endregion
@@ -329,8 +369,7 @@ namespace GameShop {
         public override void OnPopulateListRecords(ListView listview) {
             listview.Items.Clear();
             foreach (KeyValuePair<string, User> user in Form1.context.users) {
-                Member member = user.Value as Member;
-                if (member != null) PopulateListItem(listview, member);
+                PopulateListItem(listview, user.Value);
             }
         }
 

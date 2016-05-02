@@ -21,21 +21,78 @@ using System.Windows.Forms;
 
 namespace GameShop {
     [Serializable]
-    public class Staff:User {
-        public string staffid;
-        public string password;
+    public class Staff : Entity {
+        protected string staffid;
+        protected string password;
+        protected string username;
+        protected string firstname;
+        protected string surname;
+        protected string email;
+        protected string address;
+        protected string phoneno;
+        protected string dateofbirth;
          
-        public Staff(string StaffId, string username, string password, string firstname,
-                     string surname, string email, string address, string phoneno, string dateofbirth)
-        : base(username, firstname, surname, email, address, phoneno, dateofbirth)
+        public Staff(string StaffId, string UserName, string PassWord, string FirstName,
+                     string SurName, string Email, string Address, string PhoneNo, string DateOfBirth)
+        : base("staff")
         {
-            SetPassWord(password);
             SetStaffId(StaffId);
+            SetPassWord(PassWord);
+            SetUserName(UserName);
+            SetFirstName(FirstName);
+            SetSurname(SurName);
+            SetEmail(Email);
+            SetAddress(Address);
+            SetPhoneNo(PhoneNo);
+            SetDateOfBirth(DateOfBirth);
         }
 
         public Staff()
-        : base() { }
+        : base("staff") {
+            staffid     = "";
+            password    = "";
+            username    = "";
+            firstname   = "";
+            surname     = "";
+            email       = "";
+            address     = "";
+            phoneno     = "";
+            dateofbirth = "";
+        }
 
+        public override string Read() {
+            string text = "\n Staff";
+            text = text + "\n StaffId     = "+staffid.ToString();
+            text = text + "\n UserName    = "+username.ToString();
+            text = text + "\n FirstName   = "+firstname.ToString();
+            text = text + "\n Surname     = "+surname.ToString();
+            text = text + "\n Email       = "+email.ToString();
+            text = text + "\n Address     = "+address.ToString();
+            text = text + "\n PhoneNo     = "+phoneno.ToString();
+            text = text + "\n DateOfBirth = "+dateofbirth.ToString();
+            return text + "\n";
+        }
+
+
+
+        // ----------------------------------------------------------------- //
+        // Getters and Setters.                                              //
+        // ----------------------------------------------------------------- //
+        public string GetUserName() { return username; }
+        public string GetFirstName() { return firstname; }
+        public string GetSurname() { return surname; }
+        public string GetEmail() { return email; }
+        public string GetAddress() { return address; }
+        public string GetPhoneNo() { return phoneno; }
+        public string GetDateOfBirth() { return dateofbirth; }
+
+        public void SetUserName(string UserName) { username = UserName; }
+        public void SetFirstName(string FirstName) { firstname  = FirstName; }
+        public void SetSurname(string Surname) { surname  = Surname; }
+        public void SetAddress(string Address) { address = Address; }
+        public void SetEmail(string Email) { email = Email; }
+        public void SetPhoneNo(string PhoneNo) { phoneno = PhoneNo; }
+        public void SetDateOfBirth(string DateOfBirth) { dateofbirth = DateOfBirth; }
         public string GetStaffId() { return staffid; }
         public string GetPassWord() { return password; }
         public void SetStaffId(string StaffId) { staffid = StaffId; }
@@ -44,7 +101,14 @@ namespace GameShop {
         public override bool RegexMatch(Regex regex) {
             if (!regex.Match(staffid).Success) return false;
             if (regex.Match(password).Success) return true;
-            return base.RegexMatch(regex);
+            if (regex.Match(username).Success) return true;
+            if (regex.Match(firstname).Success) return true;
+            if (regex.Match(surname).Success) return true;
+            if (regex.Match(email).Success) return true;
+            if (regex.Match(address).Success) return true;
+            if (regex.Match(phoneno).Success) return true;
+            if (regex.Match(dateofbirth).Success) return true;
+            return false;
         }
     }
 }

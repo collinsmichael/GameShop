@@ -73,6 +73,16 @@ namespace GameShop {
         }
 
 
+        public override string Read() {
+            string text = "\n Order";
+            text = text + "\n OrderNo     = "+orderno.ToString();
+            text = text + "\n UserName    = "+username.ToString();
+            text = text + "\n Title       = "+title.ToString();
+            text = text + "\n OrderDate   = "+orderdate.ToString();
+            text = text + "\n Return Date = "+returndate.ToString();
+            return text + "\n";
+        }
+
         // ----------------------------------------------------------------- //
         // pure virtuals                                                     //
         // ----------------------------------------------------------------- //

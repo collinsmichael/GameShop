@@ -41,5 +41,6 @@ namespace GameShop {
         // pure virtuals                                                     //
         // ----------------------------------------------------------------- //
         public abstract bool RegexMatch(Regex regex);
+        public abstract string Read();
     }
 }
