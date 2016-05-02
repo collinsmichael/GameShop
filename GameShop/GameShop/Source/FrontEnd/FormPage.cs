@@ -125,6 +125,20 @@ namespace GameShop {
             OnPopulateListColumns(listview);
             OnPopulateListRecords(listview);
             Form1.form.ResumeLayout();
+            listview.ItemSelectionChanged += OnListSelectionChanged;
+        }
+
+
+        // ----------------------------------------------------------------- //
+        // Clicking a record on the list page will reroute the user to the   //
+        // view page and populate the contents of the form.                  //
+        // ----------------------------------------------------------------- //
+        public void OnListSelectionChanged(object sender, EventArgs e) {
+            ListView listview = sender as ListView;
+            if (listview.SelectedItems.Count > 0) {
+                string itemname = listview.SelectedItems[0].Text;
+                Form1.context.SetSelected(typename, itemname);
+            }
         }
 
 
@@ -135,9 +149,8 @@ namespace GameShop {
         public void OnListRecordClick(object sender, EventArgs e) {
             ListView listview = sender as ListView;
             string pagename = typename + ".view";
-            string itemname = listview.SelectedItems[0].Text;
-
-            Form1.context.SetSelected(typename, itemname);
+            //string itemname = listview.SelectedItems[0].Text;
+            //Form1.context.SetSelected(typename, itemname);
             //Entity entity = Form1.context.GetSelected(typename);
             Form1.formgen.BuildPage(pagename);
             FormPage formpage = Form1.formgen.GetPage(typename + ".form") as FormPage;
