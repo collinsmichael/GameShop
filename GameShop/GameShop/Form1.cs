@@ -59,12 +59,14 @@ namespace GameShop {
         // Allows Forms with no TitleBar to be moved by mouse control        //
         // ----------------------------------------------------------------- //
         protected override void WndProc(ref Message m) {
-            const int WM_NCHITTEST  = 0x84;  // NON CLIENT HIT TEST (MouseDown)
-            const int WM_ENDSESSION = 0x16;  // Dispatched when Power Off Button pressed
-            const int WM_CLOSE      = 0x10;  // Dispatched when close or ALT+F4 pressed
+            const int WM_NCHITTEST     = 0x0084;  // NON CLIENT HIT TEST (MouseDown)
+            const int WM_ENDSESSION    = 0x0016;  // Dispatched when Power Off Button pressed
+            const int WM_CLOSE         = 0x0010;  // Dispatched when close or ALT+F4 pressed
+            const int WM_LBUTTONDBLCLK = 0x00A3;  // Disabling WM_MAXIMIZE requires Handling Left Click
 
-            IntPtr HTCAPTION = (IntPtr)0x02; // Event occurred in TitleBar
-            IntPtr HTCLIENT  = (IntPtr)0x01; // Event occurred in Client Area
+            IntPtr HTCAPTION   = (IntPtr)0x02;   // Event occurred in TitleBar
+            IntPtr HTCLIENT    = (IntPtr)0x01;   // Event occurred in Client Area
+            if (m.Msg == WM_LBUTTONDBLCLK) return;
 
             base.WndProc(ref m);             // Let Windows do its own thing
             switch (m.Msg) {                 // Handle messages of interest

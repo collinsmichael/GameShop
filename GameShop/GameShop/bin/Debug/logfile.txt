@@ -138,28 +138,28 @@
 
  Order
  OrderNo     = x000
- UserName    = mike
+ UserName    = john
  Title       = mario
  OrderDate   = 01/04/2016
  Return Date = 
 
  Order
  OrderNo     = x001
- UserName    = louise
+ UserName    = mary
  Title       = pacman
  OrderDate   = 02/04/2016
  Return Date = 
 
  Order
  OrderNo     = x002
- UserName    = alan
+ UserName    = lisa
  Title       = asteroids
  OrderDate   = 03/04/2016
  Return Date = 
 
  Transaction
  ReportId    = z000
- UserName    = mike
+ UserName    = john
  ReportDate  = 4/4/2016
  Rental Fees = 3
  Late Fees   = 1
@@ -167,7 +167,7 @@
 
  Transaction
  ReportId    = z001
- UserName    = louise
+ UserName    = mary
  ReportDate  = 4/4/2016
  Rental Fees = 3
  Late Fees   = 1
@@ -175,7 +175,7 @@
 
  Transaction
  ReportId    = z002
- UserName    = alan
+ UserName    = lisa
  ReportDate  = 4/4/2016
  Rental Fees = 3
  Late Fees   = 1

@@ -362,16 +362,16 @@ namespace GameShop {
 
             staffs = new Dictionary<string, Staff>();
             staffs.Add("manager", new Manager("manager",  "",       "manager", "test",    "manager@gameshop.com", "limerick", "067-555123",     "01/01/1990"));
-            staffs.Add("staff",   new Staff("staff",    "",       "staff",   "test",    "staff@gameshop.com",   "limerick", "067-555123",     "01/01/1990"));
-            staffs.Add("mike",    new Manager("mike",    "letmein", "mike",    "collins", "mike@collins.com",     "limerick", "061-123456",     "01/01/1990"));
-            staffs.Add("louise",  new Manager("louise",  "letmein", "louise",  "mckeown", "louise@mckeown.com",   "limerick", "087-9876543",    "01/01/1990"));
-            staffs.Add("alan",    new Manager("alan",    "letmein", "alan",    "redding", "alan@redding.com",     "limerick", "1800-555-12345", "01/01/1990"));
+            staffs.Add("staff",   new Staff("staff",      "",       "staff",   "test",    "staff@gameshop.com",   "limerick", "067-555123",     "01/01/1990"));
+            staffs.Add("mike",    new Manager("mike",     "letmein", "mike",   "collins", "mike@collins.com",     "limerick", "061-123456",     "01/01/1990"));
+            staffs.Add("louise",  new Manager("louise",   "letmein", "louise", "mckeown", "louise@mckeown.com",   "limerick", "087-9876543",    "01/01/1990"));
+            staffs.Add("alan",    new Manager("alan",     "letmein", "alan",   "redding", "alan@redding.com",     "limerick", "1800-555-12345", "01/01/1990"));
 
             members = new Dictionary<string, Member>();
-            members.Add("member",  new Member(         "member",             "member",  "test",    "member@gameshop.com",  "limerick", "067-555123",     "01/01/1990"));
-            members.Add("john",    new Member(         "john",               "john",    "smith",   "john@gameshop.com",    "limerick", "067-555123",     "01/01/1990"));
-            members.Add("mary",    new Member(         "mary",               "mary",    "jones",   "mary@gameshop.com",    "limerick", "067-555123",     "01/01/1990"));
-            members.Add("lisa",    new Member(         "lisa",               "lisa",    "o' dea",  "lisa@gameshop.com",    "limerick", "067-555123",     "01/01/1990"));
+            members.Add("member",  new Member("member", "member", "test",    "member@gameshop.com",  "limerick", "067-555123", "01/01/1990"));
+            members.Add("john",    new Member("john",   "john",   "smith",   "john@gameshop.com",    "limerick", "067-555123", "01/01/1990"));
+            members.Add("mary",    new Member("mary",   "mary",   "jones",   "mary@gameshop.com",    "limerick", "067-555123", "01/01/1990"));
+            members.Add("lisa",    new Member("lisa",   "lisa",   "o' dea",  "lisa@gameshop.com",    "limerick", "067-555123", "01/01/1990"));
  
             games = new Dictionary<string, Game>();
             games.Add("mario",     new Game("mario",     "platform", "12", 10, "can mario save the princess?"));
@@ -384,14 +384,14 @@ namespace GameShop {
             games.Add("fifa 16", new Game("fifa 16", "sports", "3", 10, "play as some of your favourite teams across a wide varity of different stadiums and competitions")); 
 
             orders = new Dictionary<string, Order>();
-            orders.Add("x000", new Order("x000", "mike",   "mario",     "01/04/2016", ""));
-            orders.Add("x001", new Order("x001", "louise", "pacman",    "02/04/2016", ""));
-            orders.Add("x002", new Order("x002", "alan",   "asteroids", "03/04/2016", ""));
+            orders.Add("x000", new Order("x000", "john", "mario",     "01/04/2016", ""));
+            orders.Add("x001", new Order("x001", "mary", "pacman",    "02/04/2016", ""));
+            orders.Add("x002", new Order("x002", "lisa", "asteroids", "03/04/2016", ""));
 
             reports = new Dictionary<string, Report>();
-            reports.Add("z000", new Report("z000", "mike",   "4/4/2016", 3, 1, 20));
-            reports.Add("z001", new Report("z001", "louise", "4/4/2016", 3, 1, 20));
-            reports.Add("z002", new Report("z002", "alan",   "4/4/2016", 3, 1, 20));
+            reports.Add("z000", new Report("z000", "john", "4/4/2016", 3, 1, 20));
+            reports.Add("z001", new Report("z001", "mary", "4/4/2016", 3, 1, 20));
+            reports.Add("z002", new Report("z002", "lisa", "4/4/2016", 3, 1, 20));
         }
 
 
