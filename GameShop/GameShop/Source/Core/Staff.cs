@@ -22,7 +22,6 @@ using System.Windows.Forms;
 namespace GameShop {
     [Serializable]
     public class Staff : Entity {
-        protected string staffid;
         protected string password;
         protected string username;
         protected string firstname;
@@ -32,11 +31,10 @@ namespace GameShop {
         protected string phoneno;
         protected string dateofbirth;
          
-        public Staff(string StaffId, string UserName, string PassWord, string FirstName,
+        public Staff(string UserName, string PassWord, string FirstName,
                      string SurName, string Email, string Address, string PhoneNo, string DateOfBirth)
         : base("staff")
         {
-            SetStaffId(StaffId);
             SetPassWord(PassWord);
             SetUserName(UserName);
             SetFirstName(FirstName);
@@ -49,7 +47,6 @@ namespace GameShop {
 
         public Staff()
         : base("staff") {
-            staffid     = "";
             password    = "";
             username    = "";
             firstname   = "";
@@ -62,7 +59,6 @@ namespace GameShop {
 
         public override string Read() {
             string text = "\n Staff";
-            text = text + "\n StaffId     = "+staffid.ToString();
             text = text + "\n UserName    = "+username.ToString();
             text = text + "\n FirstName   = "+firstname.ToString();
             text = text + "\n Surname     = "+surname.ToString();
@@ -93,13 +89,10 @@ namespace GameShop {
         public void SetEmail(string Email) { email = Email; }
         public void SetPhoneNo(string PhoneNo) { phoneno = PhoneNo; }
         public void SetDateOfBirth(string DateOfBirth) { dateofbirth = DateOfBirth; }
-        public string GetStaffId() { return staffid; }
         public string GetPassWord() { return password; }
-        public void SetStaffId(string StaffId) { staffid = StaffId; }
         public void SetPassWord(string PassWord) { password = PassWord; }
         
         public override bool RegexMatch(Regex regex) {
-            if (!regex.Match(staffid).Success) return false;
             if (regex.Match(password).Success) return true;
             if (regex.Match(username).Success) return true;
             if (regex.Match(firstname).Success) return true;

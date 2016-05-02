@@ -262,7 +262,7 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         public override void OnLoadPage() {
             string reportid = "z" + Form1.context.reports.Count().ToString("000");
-            string username = Form1.context.GetSelectedUser();
+            string username = Form1.context.GetSelectedMember();
 
             string pagename = typename + ".make";
             (Form1.formgen.GetControl(pagename, "reportid") as TextBox).Text = reportid;

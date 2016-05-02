@@ -221,8 +221,8 @@ namespace GameShop {
                 UserListPage userpage = Form1.formgen.GetPage(typename+".list") as UserListPage;
                 if (userpage == null) return;
                 listview.Items.Clear();
-                foreach (KeyValuePair<string, User> user in Form1.context.users) {
-                    userpage.PopulateListItem(listview, user.Value);
+                foreach (KeyValuePair<string, Member> member in Form1.context.members) {
+                    userpage.PopulateListItem(listview, member.Value);
                 }
                 break;
             case "staff": case "manager":
@@ -272,9 +272,9 @@ namespace GameShop {
                 UserListPage userpage = Form1.formgen.GetPage("user.list") as UserListPage;
                 if (userpage == null) return;
                 listview.Items.Clear();
-                foreach (KeyValuePair<string, User> user in Form1.context.users) {
-                    if (!user.Value.RegexMatch(regex)) continue;
-                    userpage.PopulateListItem(listview, user.Value);
+                foreach (KeyValuePair<string, Member> member in Form1.context.members) {
+                    if (!member.Value.RegexMatch(regex)) continue;
+                    userpage.PopulateListItem(listview, member.Value);
                 }
                 break;
             case "staff": case "manager":

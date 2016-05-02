@@ -22,26 +22,34 @@ using System.Windows.Forms;
 
 namespace GameShop {
     public class Context {
-        public Dictionary<string, User>  users;  // list of all users
-        public Dictionary<string, Staff> staffs; // list of all users
-        public Dictionary<string, Game>  games;  // list of all games
-        public Dictionary<string, Order> orders; // list of all orders
+        public Dictionary<string, Member>  members;  // list of all users
+        public Dictionary<string, Staff> staffs;     // list of all users
+        public Dictionary<string, Game>  games;      // list of all games
+        public Dictionary<string, Order> orders;     // list of all orders
         public Dictionary<string, Report> reports;
         private string logged_staff;             // user which is currently logged in
-        private string selected_user;            // currently selected user
+        private string selected_member;          // currently selected user
         private string selected_game;            // currently selected game
         private string selected_order;           // currently selected order
         private string selected_report;
         private string selected_staff; 
 
-        #region userio
+        #region memberio
         // ----------------------------------------------------------------- //
         // AddUser is used to add a defined user to the user list.           //
         // Once a user has been added it can later be referred to by name.   //
         // ----------------------------------------------------------------- //
-        public bool AddUser(string key, User user) {
-            if (users.ContainsKey(key)) users.Remove(key);
-            users.Add(key, user);
+        public bool AddMember(string key, Member member) {
+            if (members.ContainsKey(key)) {
+                string message = "Member "+key+" Already exists!\n Replace existing member?";
+                DialogResult result = MessageBox.Show(message, "Warning", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes) {
+                    members.Remove(key);
+                    members.Add(key, member);
+                }
+            } else {
+                members.Add(key, member);
+            }
             return true;
         }
 
@@ -50,30 +58,30 @@ namespace GameShop {
         // GetUser allows internal access to the contents of the user list.  //
         // To access a user you must provide the username.                   //
         // ----------------------------------------------------------------- //
-        public User GetUser(string username) {
-            User user = new User();
-            if (!users.TryGetValue(username, out user)) {
-                //MessageBox.Show("User '" + username + "' was not found!");
-                return user;
+        public Member GetMember(string username) {
+            Member member = new Member();
+            if (!members.TryGetValue(username, out member)) {
+                MessageBox.Show("Member '" + username + "' was not found!");
+                return member;
             }
-            return user;
+            return member;
         }
 
 
         // ----------------------------------------------------------------- //
         // Returns the primary key of the currently selected user.           //
         // ----------------------------------------------------------------- //
-        public string GetSelectedUser() {
-            User select_user = GetUser(selected_user);
-            if (select_user != null && select_user.GetUserName() == selected_user) {
-                return selected_user;
+        public string GetSelectedMember() {
+            User select_member = GetMember(selected_member);
+            if (select_member != null && select_member.GetUserName() == selected_member) {
+                return selected_member;
             }
 
-            foreach (KeyValuePair<string, User> user in users) {
-                selected_user = user.Key;
+            foreach (KeyValuePair<string, Member> member in members) {
+                selected_member = member.Key;
                 break;
             }
-            return selected_user;
+            return selected_member;
         }
         #endregion
 
@@ -275,10 +283,11 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         public Entity GetSelected(string type) {
             switch (type.ToLower()) {
-            case "user":  return GetUser(Form1.context.GetSelectedUser());
-            case "staff": return GetStaff(Form1.context.GetSelectedStaff());
-            case "game":  return GetGame(Form1.context.GetSelectedGame());
-            case "order": return GetOrder(Form1.context.GetSelectedOrder());
+            case "user":
+            case "member": return GetMember(Form1.context.GetSelectedMember());
+            case "staff":  return GetStaff(Form1.context.GetSelectedStaff());
+            case "game":   return GetGame(Form1.context.GetSelectedGame());
+            case "order":  return GetOrder(Form1.context.GetSelectedOrder());
             case "report": return GetReport(Form1.context.GetSelectedReport());
             }
             return null;
@@ -290,10 +299,11 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         public void SetSelected(string type, string key) {
             switch (type.ToLower()) {
-            case "user":  selected_user  = key; break;
-            case "game":  selected_game  = key; break;
-            case "order": selected_order = key; break;
-            case "staff": selected_staff = key; break;
+            case "user":
+            case "member": selected_member = key; break;
+            case "game":   selected_game   = key; break;
+            case "order":  selected_order  = key; break;
+            case "staff":  selected_staff  = key; break;
             case "report": selected_report = key; break;
             }
         }
@@ -305,31 +315,31 @@ namespace GameShop {
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
         public Context() {
-            users   = new Dictionary<string, User>();
+            members = new Dictionary<string, Member>();
             staffs  = new Dictionary<string, Staff>();
             games   = new Dictionary<string, Game>();
             orders  = new Dictionary<string, Order>();
             reports = new Dictionary<string, Report>();
 
-            logged_staff   = "";
-            selected_user  = "mike";
-            selected_staff = "staff";
-            selected_game  = "pacman";
-            selected_order = "x000";
+            logged_staff    = "";
+            selected_member = "member";
+            selected_staff  = "staff";
+            selected_game   = "pacman";
+            selected_order  = "x000";
             selected_report = "t000";
 
             staffs = new Dictionary<string, Staff>();
-            staffs.Add("manager", new Manager("x101", "manager",  "",       "manager", "test",    "manager@gameshop.com", "limerick", "067-555123",     "01/01/1990"));
-            staffs.Add("staff",   new Staff(  "x102", "staff",    "",       "staff",   "test",    "staff@gameshop.com",   "limerick", "067-555123",     "01/01/1990"));
-            staffs.Add("mike",    new Manager("x007", "mike",    "letmein", "mike",    "collins", "mike@collins.com",     "limerick", "061-123456",     "01/01/1990"));
-            staffs.Add("louise",  new Manager("x008", "louise",  "letmein", "louise",  "mckeown", "louise@mckeown.com",   "limerick", "087-9876543",    "01/01/1990"));
-            staffs.Add("alan",    new Manager("x009", "alan",    "letmein", "alan",    "redding", "alan@redding.com",     "limerick", "1800-555-12345", "01/01/1990"));
+            staffs.Add("manager", new Manager("manager",  "",       "manager", "test",    "manager@gameshop.com", "limerick", "067-555123",     "01/01/1990"));
+            staffs.Add("staff",   new Staff("staff",    "",       "staff",   "test",    "staff@gameshop.com",   "limerick", "067-555123",     "01/01/1990"));
+            staffs.Add("mike",    new Manager("mike",    "letmein", "mike",    "collins", "mike@collins.com",     "limerick", "061-123456",     "01/01/1990"));
+            staffs.Add("louise",  new Manager("louise",  "letmein", "louise",  "mckeown", "louise@mckeown.com",   "limerick", "087-9876543",    "01/01/1990"));
+            staffs.Add("alan",    new Manager("alan",    "letmein", "alan",    "redding", "alan@redding.com",     "limerick", "1800-555-12345", "01/01/1990"));
 
-            users = new Dictionary<string, User>();
-            users.Add("member",  new Member(         "member",             "member",  "test",    "member@gameshop.com",  "limerick", "067-555123",     "01/01/1990"));
-            users.Add("john",    new Member(         "john",               "john",    "smith",   "john@gameshop.com",    "limerick", "067-555123",     "01/01/1990"));
-            users.Add("mary",    new Member(         "mary",               "mary",    "jones",   "mary@gameshop.com",    "limerick", "067-555123",     "01/01/1990"));
-            users.Add("lisa",    new Member(         "lisa",               "lisa",    "o' dea",  "lisa@gameshop.com",    "limerick", "067-555123",     "01/01/1990"));
+            members = new Dictionary<string, Member>();
+            members.Add("member",  new Member(         "member",             "member",  "test",    "member@gameshop.com",  "limerick", "067-555123",     "01/01/1990"));
+            members.Add("john",    new Member(         "john",               "john",    "smith",   "john@gameshop.com",    "limerick", "067-555123",     "01/01/1990"));
+            members.Add("mary",    new Member(         "mary",               "mary",    "jones",   "mary@gameshop.com",    "limerick", "067-555123",     "01/01/1990"));
+            members.Add("lisa",    new Member(         "lisa",               "lisa",    "o' dea",  "lisa@gameshop.com",    "limerick", "067-555123",     "01/01/1990"));
  
             games = new Dictionary<string, Game>();
             games.Add("mario",     new Game("mario",     "platform", "12", 10, "can mario save the princess?"));
@@ -369,12 +379,12 @@ namespace GameShop {
             }
 
             try {
-                file = new FileStream("users.bin", FileMode.Open, FileAccess.Read);
+                file = new FileStream("members.bin", FileMode.Open, FileAccess.Read);
                 formatter = new BinaryFormatter();
-                users = formatter.Deserialize(file) as Dictionary<string, User>;
+                members = formatter.Deserialize(file) as Dictionary<string, Member>;
                 file.Close();
             } catch {
-                MessageBox.Show("File not found! 'users.bin'");
+                MessageBox.Show("File not found! 'members.bin'");
             }
 
             try {
@@ -415,10 +425,10 @@ namespace GameShop {
             BinaryFormatter formatter = new BinaryFormatter();
 
             string state = "";
-            foreach (KeyValuePair<string, User>   user   in users)  state = state + user.Value.Read();
-            foreach (KeyValuePair<string, Staff>  staff  in staffs) state = state + staff.Value.Read();
-            foreach (KeyValuePair<string, Game>   game   in games)  state = state + game.Value.Read();
-            foreach (KeyValuePair<string, Order>  order  in orders) state = state + order.Value.Read();
+            foreach (KeyValuePair<string, Member> member in members) state = state + member.Value.Read();
+            foreach (KeyValuePair<string, Staff>  staff  in staffs)  state = state + staff.Value.Read();
+            foreach (KeyValuePair<string, Game>   game   in games)   state = state + game.Value.Read();
+            foreach (KeyValuePair<string, Order>  order  in orders)  state = state + order.Value.Read();
             foreach (KeyValuePair<string, Report> report in reports) state = state + report.Value.Read();
             
             System.IO.File.WriteAllLines("logfile.txt", state.Split(new char[] { '\n' }));
@@ -428,8 +438,8 @@ namespace GameShop {
             formatter.Serialize(file, staffs);
             file.Close();
 
-            file = new FileStream("users.bin", FileMode.OpenOrCreate, FileAccess.Write);
-            formatter.Serialize(file, users);
+            file = new FileStream("members.bin", FileMode.OpenOrCreate, FileAccess.Write);
+            formatter.Serialize(file, members);
             file.Close();
 
             file = new FileStream("games.bin", FileMode.OpenOrCreate, FileAccess.Write);

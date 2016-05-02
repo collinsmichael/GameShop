@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 namespace GameShop {
     [Serializable]
     public class Manager : Staff {
-        public Manager(string StaffId, string username, string password, string firstname, string surname,
+        public Manager(string username, string password, string firstname, string surname,
                        string email, string address, string phoneno, string dateofbirth)
-        : base(StaffId, username, password, firstname, surname, email, address, phoneno, dateofbirth)
+        : base(username, password, firstname, surname, email, address, phoneno, dateofbirth)
         { }
 
 
@@ -26,7 +26,6 @@ namespace GameShop {
 
         public override string Read() {
             string text = "\n Manager";
-            text = text + "\n StaffId     = "+staffid.ToString();
             text = text + "\n UserName    = "+username.ToString();
             text = text + "\n FirstName   = "+firstname.ToString();
             text = text + "\n Surname     = "+surname.ToString();

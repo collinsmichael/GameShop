@@ -8,8 +8,34 @@
  PhoneNo     = 067-555123
  DateOfBirth = 01/01/1990
 
+ Member
+ UserName    = lisa
+ FirstName   = lisa
+ Surname     = o' dea
+ Email       = lisa@gameshop.com
+ Address     = limerick
+ PhoneNo     = 067-555123
+ DateOfBirth = 01/01/1990
+
  Manager
- StaffId     = x007
+ UserName    = manager
+ FirstName   = manager
+ Surname     = test
+ Email       = manager@gameshop.com
+ Address     = limerick
+ PhoneNo     = 067-555123
+ DateOfBirth = 01/01/1990
+
+ Staff
+ UserName    = staff
+ FirstName   = staff
+ Surname     = test
+ Email       = staff@gameshop.com
+ Address     = limerick
+ PhoneNo     = 067-555123
+ DateOfBirth = 01/01/1990
+
+ Manager
  UserName    = mike
  FirstName   = mike
  Surname     = collins
@@ -19,7 +45,6 @@
  DateOfBirth = 01/01/1990
 
  Manager
- StaffId     = x008
  UserName    = louise
  FirstName   = louise
  Surname     = mckeown
@@ -29,7 +54,6 @@
  DateOfBirth = 01/01/1990
 
  Manager
- StaffId     = x009
  UserName    = alan
  FirstName   = alan
  Surname     = redding
@@ -37,6 +61,13 @@
  Address     = limerick
  PhoneNo     = 1800-555-12345
  DateOfBirth = 01/01/1990
+
+ Game
+ Title     = mario
+ Genre     = platform
+ Stock     = 10
+ AgeRating = 12
+ Info      = can mario save the princess?
 
  Game
  Title     = pacman
@@ -53,11 +84,39 @@
  Info      = save the universe or die trying
 
  Game
+ Title     = fallout 4
+ Genre     = rpg
+ Stock     = 10
+ AgeRating = 18
+ Info      = explore the post apocolyptic world after a nuclear fallout
+
+ Game
+ Title     = forza 2
+ Genre     = racing
+ Stock     = 10
+ AgeRating = 3
+ Info      = race over beautiful race tracks perfectly recreated from around the world in awide varity of cars
+
+ Game
+ Title     = minecraft
+ Genre     = rpg
+ Stock     = 10
+ AgeRating = 7
+ Info      = explore and build in a generated block world, let your imagination run wild
+
+ Game
  Title     = the division
  Genre     = rpg
  Stock     = 10
  AgeRating = 16
  Info      = save a devastated new york city from the dollar flu that has infected the city into a quarintine zone
+
+ Game
+ Title     = fifa 16
+ Genre     = sports
+ Stock     = 10
+ AgeRating = 3
+ Info      = play as some of your favourite teams across a wide varity of different stadiums and competitions
 
  Order
  OrderNo     = x000
@@ -78,13 +137,6 @@
  UserName    = alan
  Title       = asteroids
  OrderDate   = 03/04/2016
- Return Date = 
-
- Order
- OrderNo     = x003
- UserName    = lisa
- Title       = mario
- OrderDate   = 25/04/2016
  Return Date = 
 
  Transaction

@@ -35,24 +35,22 @@ namespace GameShop {
             // basic form fields
             Dictionary<string, Widget> form = new Dictionary<string, Widget>();
 
-            form.Add("label1", new WidgetLabel(140, 146, 132, 32, "Staff Id"));
-            form.Add("label2", new WidgetLabel(140, 186, 132, 32, "User Name"));
-            form.Add("label3", new WidgetLabel(140, 226, 132, 32, "First Name"));
-            form.Add("label4", new WidgetLabel(140, 266, 132, 32, "Surname"));
-            form.Add("label5", new WidgetLabel(140, 306, 132, 32, "Email"));
-            form.Add("label6", new WidgetLabel(140, 346, 132, 32, "Phone No"));
-            form.Add("label8", new WidgetLabel(140, 386, 132, 32, "Date of Birth"));
-            form.Add("label7", new WidgetLabel(140, 426, 132, 32, "Address"));
-            form.Add("label9", new WidgetLabel(140, 516, 132, 32, "Password"));
+            form.Add("label2", new WidgetLabel(140, 146, 132, 32, "User Name"));
+            form.Add("label3", new WidgetLabel(140, 186, 132, 32, "First Name"));
+            form.Add("label4", new WidgetLabel(140, 226, 132, 32, "Surname"));
+            form.Add("label5", new WidgetLabel(140, 266, 132, 32, "Email"));
+            form.Add("label6", new WidgetLabel(140, 306, 132, 32, "Phone No"));
+            form.Add("label8", new WidgetLabel(140, 346, 132, 32, "Date of Birth"));
+            form.Add("label7", new WidgetLabel(140, 386, 132, 32, "Address"));
+            form.Add("label9", new WidgetLabel(140, 476, 132, 32, "Password"));
             
-            form.Add("username",    new WidgetTextBox(272, 182, 320, 32, "", false, false, false, 1));
-            form.Add("firstname",   new WidgetTextBox(272, 222, 320, 32, "", false, false, false, 2));
-            form.Add("surname",     new WidgetTextBox(272, 262, 320, 32, "", false, false, false, 3));
-            form.Add("email",       new WidgetTextBox(272, 302, 320, 32, "", false, false, false, 4));
-            form.Add("phone",       new WidgetTextBox(272, 342, 320, 32, "", false, false, false, 5));
-            form.Add("dateofbirth", new WidgetTextBox(272, 382, 320, 32, "", false, false, false, 6));
-            form.Add("address",     new WidgetTextBox(272, 422, 320, 64, "", false, true, false, 7));
-            form.Add("password",    new WidgetTextBox(272, 512, 320, 32, "", false, false, true, 8));
+            form.Add("firstname",   new WidgetTextBox(272, 182, 320, 32, "", false, false, false, 2));
+            form.Add("surname",     new WidgetTextBox(272, 222, 320, 32, "", false, false, false, 3));
+            form.Add("email",       new WidgetTextBox(272, 262, 320, 32, "", false, false, false, 4));
+            form.Add("phone",       new WidgetTextBox(272, 302, 320, 32, "", false, false, false, 5));
+            form.Add("dateofbirth", new WidgetTextBox(272, 342, 320, 32, "", false, false, false, 6));
+            form.Add("address",     new WidgetTextBox(272, 382, 320, 64, "", false, true, false, 7));
+            form.Add("password",    new WidgetTextBox(272, 472, 320, 32, "", false, false, true, 8));
             Form1.formgen.AddPage("staff.form", form);
         }
 
@@ -67,7 +65,6 @@ namespace GameShop {
                 staff = Form1.context.GetSelected("staff") as Staff;
             }
 
-            (Form1.formgen.GetControl(page, "staffid")     as TextBox).Text = staff.GetStaffId();
             (Form1.formgen.GetControl(page, "username")    as TextBox).Text = staff.GetUserName();
             (Form1.formgen.GetControl(page, "firstname")   as TextBox).Text = staff.GetFirstName();
             (Form1.formgen.GetControl(page, "surname")     as TextBox).Text = staff.GetSurname();
@@ -114,8 +111,8 @@ namespace GameShop {
             #endregion
             
             // if you get this far, then everything is golden
-            Staff staff = new Staff(staffid, username, password, firstname, surname, email, address, phoneno, dateofbirth);
-            Form1.context.AddStaff(staffid, staff);
+            Staff staff = new Staff(username, password, firstname, surname, email, address, phoneno, dateofbirth);
+            Form1.context.AddStaff(username, staff);
             Form1.context.SetSelected("staff", username);
             return true;
         }
@@ -141,7 +138,7 @@ namespace GameShop {
             // extra fields for view page
             Dictionary<string, Widget> view = new Dictionary<string, Widget>();
             view.Add("header", new WidgetTitle("View Staff"));
-            view.Add("staffid", new WidgetTextBox(272, 142, 320, 32, "", true, false, false, 0));
+            view.Add("username", new WidgetTextBox(272, 142, 320, 32, "", true, false, false, 0));
             view.Add("edit", new WidgetButton(464, 552, 128, 32, "Edit", OnViewEditClick, 9));
             view.Add("cancel", new WidgetButton(272, 552, 128, 32, "Cancel", OnCancelClick, 10));
             Form1.formgen.AddPage("staff.view", view);
@@ -168,7 +165,7 @@ namespace GameShop {
             // extra fields for edit page
             Dictionary<string, Widget> edit = new Dictionary<string, Widget>();
             edit.Add("header", new WidgetTitle("Edit Staff"));
-            edit.Add("staffid", new WidgetTextBox(272, 142, 320, 32, "", true, false, false, 0));
+            edit.Add("username", new WidgetTextBox(272, 142, 320, 32, "", true, false, false, 0));
             edit.Add("submit", new WidgetButton(464, 552, 128, 32, "Submit", OnEditSubmitClick, 9));
             edit.Add("cancel", new WidgetButton(272, 552, 128, 32, "Cancel", OnCancelClick, 10));
             Form1.formgen.AddPage("staff.edit", edit);
@@ -206,7 +203,7 @@ namespace GameShop {
             // extra fields for make page
             Dictionary<string, Widget> make = new Dictionary<string, Widget>();
             make.Add("header", new WidgetTitle("New Staff"));
-            make.Add("staffid", new WidgetTextBox(272, 142, 320, 32, "", false, false, false, 0));
+            make.Add("username", new WidgetTextBox(272, 142, 320, 32, "", false, false, false, 0));
             make.Add("submit", new WidgetButton(464, 552, 128, 32, "Submit", OnMakeSubmitClick, 9));
             make.Add("cancel", new WidgetButton(272, 552, 128, 32, "Cancel", OnCancelClick, 10));
             Form1.formgen.AddPage("staff.make", make);
@@ -256,7 +253,7 @@ namespace GameShop {
             // extra fields for drop page
             Dictionary<string, Widget> drop = new Dictionary<string, Widget>();
             drop.Add("header", new WidgetTitle("Delete Staff"));
-            drop.Add("staffid", new WidgetTextBox(272, 142, 320, 32, "", true, false, false, 0));
+            drop.Add("username", new WidgetTextBox(272, 142, 320, 32, "", true, false, false, 0));
             drop.Add("delete", new WidgetButton(464, 552, 128, 32, "Delete", OnDropDeleteClick, 9));
             drop.Add("cancel", new WidgetButton(272, 552, 128, 32, "Cancel", OnCancelClick, 10));
             Form1.formgen.AddPage("staff.drop", drop);
@@ -323,7 +320,6 @@ namespace GameShop {
             // the number of columns defined must match the number of values
             // passed in PopulateListItem
             listview.Columns.Clear();
-            listview.Columns.Add("Staff Id", 80);
             listview.Columns.Add("Username", 100);
             listview.Columns.Add("First Name", 120);
             listview.Columns.Add("Surname", 100);
@@ -355,7 +351,7 @@ namespace GameShop {
             // the number of values passed must match the number of columns
             // defined in PopulateListColumns
             string[] fields = new string[] {
-                staff.GetStaffId(), staff.GetUserName(), staff.GetFirstName(),
+                staff.GetUserName(), staff.GetFirstName(),
                 staff.GetSurname(), staff.GetEmail(), staff.GetPhoneNo(),
                 staff.GetAddress(), staff.GetDateOfBirth()
             };

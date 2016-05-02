@@ -117,8 +117,8 @@ namespace GameShop {
             }
 
             // does the email look valid?
-            if (Form1.context.GetUser(username) == null) {
-                MessageBox.Show("User not found!");
+            if (Form1.context.GetMember(username) == null) {
+                MessageBox.Show("Member not found!");
                 return false;
             }
 
@@ -133,7 +133,7 @@ namespace GameShop {
             Order order = new Order(orderno, username, title, orderdate, returndate);
             Form1.context.AddOrder(orderno, order);
             Form1.context.SetSelected("order", orderno);
-            User user = Form1.context.GetUser(username);
+            User user = Form1.context.GetMember(username);
             return true;
         }
     }

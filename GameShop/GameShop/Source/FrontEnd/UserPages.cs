@@ -117,9 +117,9 @@ namespace GameShop {
             #endregion
             
             // if you get this far, then everything is golden
-            User user = new User(username, firstname, surname, email, address, phoneno, dateofbirth);
-            Form1.context.AddUser(username, user);
-            Form1.context.SetSelected("user", username);
+            Member member = new Member(username, firstname, surname, email, address, phoneno, dateofbirth);
+            Form1.context.AddMember(username, member);
+            Form1.context.SetSelected("member", username);
             return true;
         }
     }
@@ -143,7 +143,7 @@ namespace GameShop {
         public override void DefinePage() {
             // extra fields for view page
             Dictionary<string, Widget> view = new Dictionary<string, Widget>();
-            view.Add("header",    new WidgetTitle("View User"));
+            view.Add("header",    new WidgetTitle("View Member"));
             view.Add("username",  new WidgetTextBox(272, 152, 320, 32, "", true, false, false, 0));
             view.Add("orders",    new WidgetButton(400-70-128, 532, 128, 32, "Orders", OnOrdersClick, 7));
             view.Add("report",    new WidgetButton(400-64,    532, 128, 32, "Reports", OnReportsClick, 8));
@@ -209,7 +209,7 @@ namespace GameShop {
         public override void DefinePage() {
             // extra fields for edit page
             Dictionary<string, Widget> edit = new Dictionary<string, Widget>();
-            edit.Add("header",    new WidgetTitle("Edit User"));
+            edit.Add("header",    new WidgetTitle("Edit Member"));
             edit.Add("username",  new WidgetTextBox(272, 152, 320, 32, "", true,  false, false, 0));
             edit.Add("submit",    new WidgetButton(464, 532, 128, 32, "Submit", OnEditSubmitClick, 7));
             edit.Add("cancel",    new WidgetButton(272, 532, 128, 32, "Cancel", OnCancelClick, 8));
@@ -247,7 +247,7 @@ namespace GameShop {
         public override void DefinePage() {
             // extra fields for make page
             Dictionary<string, Widget> make = new Dictionary<string, Widget>();
-            make.Add("header",    new WidgetTitle("New User"));
+            make.Add("header",    new WidgetTitle("New Member"));
             make.Add("username",  new WidgetTextBox(272, 152, 320, 32, "", false, false, false, 0));
             make.Add("submit",    new WidgetButton(464, 532, 128, 32, "Submit", OnMakeSubmitClick, 7));
             make.Add("cancel",    new WidgetButton(272, 532, 128, 32, "Cancel", OnCancelClick, 8));
@@ -285,7 +285,7 @@ namespace GameShop {
         public override void DefinePage() {
             // extra fields for drop page
             Dictionary<string, Widget> drop = new Dictionary<string, Widget>();
-            drop.Add("header",    new WidgetTitle("Delete User"));
+            drop.Add("header",    new WidgetTitle("Delete Member"));
             drop.Add("username",  new WidgetTextBox(272, 152, 320, 32, "", true, false, false, 0));
             drop.Add("delete",    new WidgetButton(464, 532, 128, 32, "Delete", OnDropDeleteClick, 7));
             drop.Add("cancel",    new WidgetButton(272, 532, 128, 32, "Cancel", OnCancelClick, 8));
@@ -306,7 +306,7 @@ namespace GameShop {
                                           +"database?", username, firstname, surname);
             DialogResult result = MessageBox.Show(message, "Warning", MessageBoxButtons.YesNoCancel);
             if (result == DialogResult.Yes) {
-                Form1.context.users.Remove(username);
+                Form1.context.members.Remove(username);
             }
             Form1.formgen.BuildPage("user.list");
         }
@@ -331,7 +331,7 @@ namespace GameShop {
         public override void DefinePage() {
             // list games page
             Dictionary<string, Widget> list = new Dictionary<string, Widget>();
-            list.Add("header",    new WidgetTitle("Users"));
+            list.Add("header",    new WidgetTitle("Members"));
             list.Add("listview",  new WidgetListView(32, 132, 800-64, 400-28, OnListRecordClick, ListViewMakeVisible));
             list.Add("label1",    new WidgetLabel(32, 536, 80, 32, "Search"));
             list.Add("search",    new WidgetTextBox(112, 534, 368, 32, "", false, false, false, 0));
@@ -368,8 +368,8 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         public override void OnPopulateListRecords(ListView listview) {
             listview.Items.Clear();
-            foreach (KeyValuePair<string, User> user in Form1.context.users) {
-                PopulateListItem(listview, user.Value);
+            foreach (KeyValuePair<string, Member> member in Form1.context.members) {
+                PopulateListItem(listview, member.Value);
             }
         }
 
