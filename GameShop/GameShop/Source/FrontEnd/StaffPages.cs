@@ -89,7 +89,6 @@ namespace GameShop {
             string phoneno     = (Form1.formgen.GetControl(page, "phone")       as TextBox).Text;
             string address     = (Form1.formgen.GetControl(page, "address")     as TextBox).Text;
             string dateofbirth = (Form1.formgen.GetControl(page, "dateofbirth") as TextBox).Text;
-            string staffid     = (Form1.formgen.GetControl(page, "staffid")     as TextBox).Text;
             string password    = (Form1.formgen.GetControl(page, "password")    as TextBox).Text;
             
             #region sanitize
@@ -207,18 +206,6 @@ namespace GameShop {
             make.Add("submit", new WidgetButton(464, 552, 128, 32, "Submit", OnMakeSubmitClick, 9));
             make.Add("cancel", new WidgetButton(272, 552, 128, 32, "Cancel", OnCancelClick, 10));
             Form1.formgen.AddPage("staff.make", make);
-        }
-
-
-        // ----------------------------------------------------------------- //
-        // This method is invoked on display, now we perform any last second //
-        // adjustments to the controls associated with this page.            //
-        // ----------------------------------------------------------------- //
-        public override void OnLoadPage() {
-            string staffid = "z" + Form1.context.staffs.Count().ToString("000");
-
-            string pagename = "staff.make";
-            (Form1.formgen.GetControl(pagename, "staffid") as TextBox).Text = staffid;
         }
 
 

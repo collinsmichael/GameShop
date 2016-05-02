@@ -92,8 +92,16 @@ namespace GameShop {
         // Once a user has been added it can later be referred to by name.   //
         // ----------------------------------------------------------------- //
         public bool AddStaff(string key, Staff staff) {
-            if (staffs.ContainsKey(key)) staffs.Remove(key);
-            staffs.Add(key, staff);
+            if (staffs.ContainsKey(key)) {
+                string message = "Staff "+key+" Already exists!\n Replace existing staff?";
+                DialogResult result = MessageBox.Show(message, "Warning", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes) {
+                    staffs.Remove(key);
+                    staffs.Add(key, staff);
+                }
+            } else {
+                staffs.Add(key, staff);
+            }
             return true;
         }
 
@@ -151,8 +159,16 @@ namespace GameShop {
         // Once a game has been added it can later be referred to by name.   //
         // ----------------------------------------------------------------- //
         public bool AddGame(string key, Game game) {
-            if (games.ContainsKey(key)) games.Remove(key);
-            games.Add(key, game);
+            if (games.ContainsKey(key)) {
+                string message = "Game "+key+" Already exists!\n Replace existing game?";
+                DialogResult result = MessageBox.Show(message, "Warning", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes) {
+                    games.Remove(key);
+                    games.Add(key, game);
+                }
+            } else {
+                games.Add(key, game);
+            }
             return true;
         }
 
@@ -195,8 +211,16 @@ namespace GameShop {
         // Once a game has been added it can later be referred to by name.   //
         // ----------------------------------------------------------------- //
         public bool AddReport(string key, Report report) {
-            if (reports.ContainsKey(key)) reports.Remove(key);
-            reports.Add(key, report);
+            if (reports.ContainsKey(key)) {
+                string message = "Report "+key+" Already exists!\n Replace existing report?";
+                DialogResult result = MessageBox.Show(message, "Warning", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes) {
+                    reports.Remove(key);
+                    reports.Add(key, report);
+                }
+            } else {
+                reports.Add(key, report);
+            }
             return true;
         }
 
@@ -239,8 +263,16 @@ namespace GameShop {
         // Once an order has been added it can later be referred to by name. //
         // ----------------------------------------------------------------- //
         public bool AddOrder(string key, Order order) {
-            if (orders.ContainsKey(key)) orders.Remove(key);
-            orders.Add(key, order);
+            if (orders.ContainsKey(key)) {
+                string message = "Order "+key+" Already exists!\n Replace existing order?";
+                DialogResult result = MessageBox.Show(message, "Warning", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes) {
+                    orders.Remove(key);
+                    orders.Add(key, order);
+                }
+            } else {
+                orders.Add(key, order);
+            }
             return true;
         }
 

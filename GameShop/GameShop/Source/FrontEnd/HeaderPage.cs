@@ -49,10 +49,10 @@ namespace GameShop {
             header.Add("logged", new WidgetLabel(800-64-256, 16, 128, 32,  "username"));
             header.Add("logout", new WidgetButton(800-64-128, 16, 128, 32, "Log Out", OnLogOut, -1));
             header.Add("games",  new WidgetRadio( 32, 16, 80, 32, "Games",  OnGamesClick));
-            header.Add("users",  new WidgetRadio(112, 16, 80, 32, "Users",  OnUsersClick));
-            header.Add("orders", new WidgetRadio(192, 16, 80, 32, "Orders", OnOrdersClick));
-            header.Add("reports", new WidgetRadio(272, 16, 80, 32, "Reports", OnReportsClick));
-            header.Add("staff", new WidgetRadio(352, 16, 80, 32, "Staff", OnStaffClick));
+            header.Add("users",  new WidgetRadio(112, 16, 100, 32, "Members",  OnUsersClick));
+            header.Add("orders", new WidgetRadio(212, 16, 80, 32, "Orders", OnOrdersClick));
+            header.Add("reports", new WidgetRadio(292, 16, 90, 32, "Reports", OnReportsClick));
+            header.Add("staff", new WidgetRadio(382, 16, 70, 32, "Staff", OnStaffClick));
 
             Form1.formgen.AddPage("header.page", header);
             Label label = Form1.formgen.GetControl("header.page", "logged") as Label;

@@ -177,7 +177,7 @@ namespace GameShop {
         // ----------------------------------------------------------------- //
         public void OnEditSubmitClick(object sender, EventArgs e) {
             FormPage form = Form1.formgen.GetPage("game.form") as FormPage;
-            if (form != null && form.Sanitize("game.make") == true) {
+            if (form != null && form.Sanitize("game.edit") == true) {
                 Form1.formgen.BuildPage("game.list");
             }
         }
