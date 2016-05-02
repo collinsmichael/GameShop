@@ -44,34 +44,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlackList.cs" />
-    <Compile Include="Context.cs" />
-    <Compile Include="Entity.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormGen.cs" />
-    <Compile Include="FormPage.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="GamePages.cs" />
-    <Compile Include="HeaderPage.cs" />
-    <Compile Include="LogOnPage.cs" />
-    <Compile Include="Manager.cs" />
-    <Compile Include="Member.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="OrderPages.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Report.cs" />
-    <Compile Include="ReportPages.cs" />
-    <Compile Include="Staff.cs" />
-    <Compile Include="StaffPages.cs" />
-    <Compile Include="User.cs" />
-    <Compile Include="UserPages.cs" />
-    <Compile Include="Widget.cs" />
+    <Compile Include="Source\BackEnd\Context.cs" />
+    <Compile Include="Source\Core\BlackList.cs" />
+    <Compile Include="Source\Core\Entity.cs" />
+    <Compile Include="Source\Core\Game.cs" />
+    <Compile Include="Source\Core\Manager.cs" />
+    <Compile Include="Source\Core\Member.cs" />
+    <Compile Include="Source\Core\Order.cs" />
+    <Compile Include="Source\Core\Report.cs" />
+    <Compile Include="Source\Core\Staff.cs" />
+    <Compile Include="Source\Core\User.cs" />
+    <Compile Include="Source\FrontEnd\FormGen.cs" />
+    <Compile Include="Source\FrontEnd\FormPage.cs" />
+    <Compile Include="Source\FrontEnd\GamePages.cs" />
+    <Compile Include="Source\FrontEnd\HeaderPage.cs" />
+    <Compile Include="Source\FrontEnd\LogOnPage.cs" />
+    <Compile Include="Source\FrontEnd\OrderPages.cs" />
+    <Compile Include="Source\FrontEnd\ReportPages.cs" />
+    <Compile Include="Source\FrontEnd\StaffPages.cs" />
+    <Compile Include="Source\FrontEnd\UserPages.cs" />
+    <Compile Include="Source\FrontEnd\Widget.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -101,6 +101,7 @@
   <ItemGroup>
     <None Include="Source\Resources\bg7.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
