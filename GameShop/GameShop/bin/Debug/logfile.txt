@@ -35,6 +35,15 @@
  PhoneNo     = 067-555123
  DateOfBirth = 01/01/1990
 
+ Member
+ UserName    = joe
+ FirstName   = joe
+ Surname     = bloggs
+ Email       = joe@bloggs.com
+ Address     = limerick
+ PhoneNo     = 061-123456
+ DateOfBirth = 1/1/1990
+
  Manager
  UserName    = manager
  FirstName   = manager
@@ -90,7 +99,7 @@
  Game
  Title     = pacman
  Genre     = maze
- Stock     = 10
+ Stock     = 9
  AgeRating = 12
  Info      = help pacman get out of the ghost ridden maze
 
@@ -104,7 +113,7 @@
  Game
  Title     = fallout 4
  Genre     = rpg
- Stock     = 10
+ Stock     = 9
  AgeRating = 18
  Info      = explore the post apocolyptic world after a nuclear fallout
 
@@ -118,7 +127,7 @@
  Game
  Title     = minecraft
  Genre     = rpg
- Stock     = 10
+ Stock     = 9
  AgeRating = 7
  Info      = explore and build in a generated block world, let your imagination run wild
 
@@ -155,6 +164,41 @@
  UserName    = lisa
  Title       = asteroids
  OrderDate   = 03/04/2016
+ Return Date = 
+
+ Order
+ OrderNo     = x003
+ UserName    = joe
+ Title       = mario
+ OrderDate   = 04/05/2016
+ Return Date = 4/5/2016
+
+ Order
+ OrderNo     = x004
+ UserName    = joe
+ Title       = minecraft
+ OrderDate   = 04/05/2016
+ Return Date = 4/5/2016
+
+ Order
+ OrderNo     = x005
+ UserName    = joe
+ Title       = fallout 4
+ OrderDate   = 04/05/2016
+ Return Date = 
+
+ Order
+ OrderNo     = x006
+ UserName    = lisa
+ Title       = minecraft
+ OrderDate   = 04/05/2016
+ Return Date = 4/5/2016
+
+ Order
+ OrderNo     = x007
+ UserName    = lisa
+ Title       = pacman
+ OrderDate   = 04/05/2016
  Return Date = 
 
  Transaction

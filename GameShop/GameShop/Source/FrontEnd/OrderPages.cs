@@ -268,6 +268,7 @@ namespace GameShop {
             string pagename = typename + ".make";
             (Form1.formgen.GetControl(pagename, "orderno")    as TextBox).Text = orderno;
             (Form1.formgen.GetControl(pagename, "orderdate")  as TextBox).Text = today;
+            (Form1.formgen.GetControl(pagename, "returndate") as TextBox).Text = "";
         }
 
 
