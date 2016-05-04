@@ -96,6 +96,54 @@ namespace GameShop {
     #endregion
 
 
+    #region viewpage
+    [Serializable]
+    public abstract class ViewPage : Page {
+        // ----------------------------------------------------------------- //
+        // Default constructor.                                              //
+        // ----------------------------------------------------------------- //
+        public ViewPage(string TypeName, string PageName)
+        : base(TypeName, PageName) { }
+    }
+    #endregion
+
+
+    #region editpage
+    [Serializable]
+    public abstract class EditPage : Page {
+        // ----------------------------------------------------------------- //
+        // Default constructor.                                              //
+        // ----------------------------------------------------------------- //
+        public EditPage(string TypeName, string PageName)
+        : base(TypeName, PageName) { }
+    }
+    #endregion
+
+
+    #region Makepage
+    [Serializable]
+    public abstract class MakePage : Page {
+        // ----------------------------------------------------------------- //
+        // Default constructor.                                              //
+        // ----------------------------------------------------------------- //
+        public MakePage(string TypeName, string PageName)
+        : base(TypeName, PageName) { }
+    }
+    #endregion
+
+
+    #region dropage
+    [Serializable]
+    public abstract class DropPage : Page {
+        // ----------------------------------------------------------------- //
+        // Default constructor.                                              //
+        // ----------------------------------------------------------------- //
+        public DropPage(string TypeName, string PageName)
+        : base(TypeName, PageName) { }
+    }
+    #endregion
+
+
     #region listpage
     [Serializable]
     public abstract class ListPage : Page {

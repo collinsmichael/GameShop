@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameShop.Context" Collapsed="true">
+    <Position X="12.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACYBhAQAAAAIYAAAAMAQCAQwwwAaIAKAEAGAQAAA=</HashCode>
+      <FileName>Source\BackEnd\Context.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.BlackList" Collapsed="true">
+    <Position X="17.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Core\BlackList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.Entity" Collapsed="true">
+    <Position X="5.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAQAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Core\Entity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.Game" Collapsed="true">
+    <Position X="5.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CACAAAAEQAABAAAAAAAAAAAiCIAABMAAQBAAAAEAAAA=</HashCode>
+      <FileName>Source\Core\Game.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.Manager" Collapsed="true">
+    <Position X="3" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Core\Manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.Member" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\Core\Member.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.Order" Collapsed="true">
+    <Position X="0.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BECIAAAEQAAEIAAAAQAAAIEgAAAAAAAAABAAAgoAAAA=</HashCode>
+      <FileName>Source\Core\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.Report" Collapsed="true">
+    <Position X="9.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQGAQAKAAEgAAAABABQAiAEgAAAAAEQAAAAAAAIIEAA=</HashCode>
+      <FileName>Source\Core\Report.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.Staff" Collapsed="true">
+    <Position X="3" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QACAACAACIBAQAAgAQAEEQEgAAIAAAgCFRAQAgAQAAA=</HashCode>
+      <FileName>Source\Core\Staff.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.User" Collapsed="true">
+    <Position X="7.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QACAACAACIBAQAAgAQAEEQEgAAIAAAACFRAQAAAQAAA=</HashCode>
+      <FileName>Source\Core\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.FormGen" Collapsed="true">
+    <Position X="15" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAgAAACQAAAAQQAAAAAAABCAAAQgAAAAAAAAQAAAEA=</HashCode>
+      <FileName>Source\FrontEnd\FormGen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.Page" Collapsed="true">
+    <Position X="15.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAEQAAAAAAAAAAABAAAAAIAAgAA=</HashCode>
+      <FileName>Source\FrontEnd\FormPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.FormPage" Collapsed="true">
+    <Position X="24.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAgAAA=</HashCode>
+      <FileName>Source\FrontEnd\FormPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.ViewPage" Collapsed="true">
+    <Position X="15.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\FormPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.EditPage" Collapsed="true">
+    <Position X="10.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\FormPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.MakePage" Collapsed="true">
+    <Position X="5.75" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\FormPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.DropPage" Collapsed="true">
+    <Position X="9.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\FormPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.ListPage" Collapsed="true">
+    <Position X="20.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAEAABAAAAAAAAAIAAAAACAAICAAAEgAAACAEA=</HashCode>
+      <FileName>Source\FrontEnd\FormPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.GameFormPage" Collapsed="true">
+    <Position X="23.25" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBAAAAAAAgAAA=</HashCode>
+      <FileName>Source\FrontEnd\GamePages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.GameViewPage" Collapsed="true">
+    <Position X="14" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAgA=</HashCode>
+      <FileName>Source\FrontEnd\GamePages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.GameEditPage" Collapsed="true">
+    <Position X="10.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABACAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\GamePages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.GameMakePage" Collapsed="true">
+    <Position X="5.75" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\GamePages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.GameDropPage" Collapsed="true">
+    <Position X="8" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\GamePages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.GameListPage" Collapsed="true">
+    <Position X="19" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAIAAACQAIAACBAgIAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\GamePages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.HeaderPage" Collapsed="true">
+    <Position X="20" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAADAAAAAAAAAAACICAAAAAQAAABAAAAAAAEAAA=</HashCode>
+      <FileName>Source\FrontEnd\HeaderPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.LogOnPage" Collapsed="true">
+    <Position X="17.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAIAAAAAAAAAAAAAAAAQAAABAAAAAIAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\LogOnPage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.OrderFormPage" Collapsed="true">
+    <Position X="24.5" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBAAAAAAAgAAA=</HashCode>
+      <FileName>Source\FrontEnd\OrderPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.OrderViewPage" Collapsed="true">
+    <Position X="15.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAABAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\OrderPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.OrderEditPage" Collapsed="true">
+    <Position X="11.5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABACAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\OrderPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.OrderMakePage" Collapsed="true">
+    <Position X="7" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAABAAAAAIAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\OrderPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.OrderListPage" Collapsed="true">
+    <Position X="17.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAIAAACAAIAAiBAgIAEAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\OrderPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.ReportFormPage" Collapsed="true">
+    <Position X="22" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBAAAAAAAgAAA=</HashCode>
+      <FileName>Source\FrontEnd\ReportPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.ReportViewPage" Collapsed="true">
+    <Position X="12.75" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAACAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\ReportPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.ReportEditPage" Collapsed="true">
+    <Position X="9" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABACAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\ReportPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.ReportMakePage" Collapsed="true">
+    <Position X="4.5" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAABAAAAAIAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\ReportPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.ReportListPage" Collapsed="true">
+    <Position X="22.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAIAAACAAIAACBAgIAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\ReportPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.StaffFormPage" Collapsed="true">
+    <Position X="27.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBAAAAAAAgAAA=</HashCode>
+      <FileName>Source\FrontEnd\StaffPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.StaffViewPage" Collapsed="true">
+    <Position X="17.75" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\StaffPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.StaffEditPage" Collapsed="true">
+    <Position X="7.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABACAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\StaffPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.StaffMakePage" Collapsed="true">
+    <Position X="3.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\StaffPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.StaffDropPage" Collapsed="true">
+    <Position X="11.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\StaffPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.StaffListPage" Collapsed="true">
+    <Position X="21.5" Y="14" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAIAAACQAIAACBAgIAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\StaffPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.UserFormPage" Collapsed="true">
+    <Position X="25.75" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQBAAAAAAAgAAA=</HashCode>
+      <FileName>Source\FrontEnd\UserPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.UserViewPage" Collapsed="true">
+    <Position X="16.5" Y="18" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAABAAAAAAAEAAA=</HashCode>
+      <FileName>Source\FrontEnd\UserPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.UserEditPage" Collapsed="true">
+    <Position X="12.75" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABACAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\UserPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.UserMakePage" Collapsed="true">
+    <Position X="8.25" Y="16.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\UserPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.UserDropPage" Collapsed="true">
+    <Position X="9.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\UserPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.UserListPage" Collapsed="true">
+    <Position X="20.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAIAAACQAIAACBAgIAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\UserPages.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.Widget" Collapsed="true">
+    <Position X="24" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAgADAAAAAAAAACAA=</HashCode>
+      <FileName>Source\FrontEnd\Widget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.WidgetTitle" Collapsed="true">
+    <Position X="22.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\Widget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.WidgetLabel" Collapsed="true">
+    <Position X="24" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\Widget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.WidgetButton" Collapsed="true">
+    <Position X="25.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAACAAAAAAAAAAAAAAgAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\Widget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.WidgetRadio" Collapsed="true">
+    <Position X="26.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAgAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\Widget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.WidgetTextBox" Collapsed="true">
+    <Position X="28" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAQAAAAAAgAAIAAAAEgAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\Widget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.WidgetListView" Collapsed="true">
+    <Position X="20" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAgAAAAAEAACAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\Widget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameShop.WidgetListBox" Collapsed="true">
+    <Position X="21.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAACAAAAA=</HashCode>
+      <FileName>Source\FrontEnd\Widget.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

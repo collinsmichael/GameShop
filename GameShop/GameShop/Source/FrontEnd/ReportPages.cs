@@ -114,7 +114,7 @@ namespace GameShop {
 
     #region viewpage
     [Serializable]
-    public class ReportViewPage : Page {
+    public class ReportViewPage : ViewPage {
         // ----------------------------------------------------------------- //
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
@@ -194,7 +194,7 @@ namespace GameShop {
 
     #region editpage
     [Serializable]
-    public class ReportEditPage : Page {
+    public class ReportEditPage : EditPage {
         // ----------------------------------------------------------------- //
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
@@ -233,7 +233,7 @@ namespace GameShop {
 
     #region makepage
     [Serializable]
-    public class ReportMakePage : Page {
+    public class ReportMakePage : MakePage {
         // ----------------------------------------------------------------- //
         // Default constructor.                                              //
         // ----------------------------------------------------------------- //
